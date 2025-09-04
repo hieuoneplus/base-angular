@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "styles-variables";
+@import "./assets/scss/material_icons.scss";
+@import "./assets/scss/fonts.scss";
+@import "./assets/scss/reboot";
+@import "assets/mb/index";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";

@@ -1,0 +1,26 @@
+<div class="pdl-2 pdr-2"
+     [ngClass]="{'control-error': isValidControl(item.key)}">
+    <label class="form-label">{{item.label | translate}}
+        <mat-icon *ngIf="isValidControl(item.key)"
+                  class="mbb-icon ic-error sm fc-error mrl-1">
+        </mat-icon>
+        <span *ngIf="item.required && !isValidControl(item.key)"
+              class="fc-error mrl-1">*</span>
+    </label>
+    <!-- CASE TEXTBOX -->
+    <!-- CASE TEXTBOX -->
+    <div [formGroup]="form"
+         [class.error]="isValidControl(item.key)"
+         [class.slide-status]="item.key === 'slideStatus'">
+
+        <mat-slide-toggle color="primary"
+                          [formControlName]="item.key"
+                          (change)="item.paramData?.changeEvent?.next($event)">{{item.placeholder}}
+        </mat-slide-toggle>
+
+        <div *ngIf="isValidControl(item.key, 'required')"
+             class="form-remark">
+            {{'validations.required' | translate}}
+        </div>
+    </div>
+</div>

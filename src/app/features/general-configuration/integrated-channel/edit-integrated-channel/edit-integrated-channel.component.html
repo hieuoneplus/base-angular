@@ -1,0 +1,47 @@
+<div class="search-ctqt">
+  <h1 class="title-page">
+    Chỉnh sửa cấu hình kênh tích hợp
+    <mat-icon
+      class="mbb-icon ic-error_outline fc-primary mrr-0"
+      [matTooltip]="
+      'Đây là tính năng phục vụ Cấu hình kênh tích hợp' | translate
+      "
+    >
+    </mat-icon>
+  </h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{ "Thông tin chung" | uppercase }}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-text-control maxLengthView="true" [item]="$channel" [form]="form" (input)="onInputChange($event)" [ngClass]="{ 'error-border': this.isFieldDuplicated }"
+          ></sm-text-control>
+          <div *ngIf="isFieldDuplicated" class="error-message">
+            Mã kênh tích hợp và Loại giao dịch đã tồn tại.
+          </div>
+        </div>
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-select-control maxLengthView="true"  [item]="$transactionType" [form]="form" [ngClass]="{ 'error-border': this.isFieldDuplicated }"
+          ></sm-select-control>
+          <div *ngIf="isFieldDuplicated" class="error-message">
+            Mã kênh tích hợp và Loại giao dịch đã tồn tại.
+          </div>
+        </div>
+        <sm-select-control
+          [item]="$status"
+          fxFlex="50"
+          [form]="form"
+        ></sm-select-control>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel-bottom dform-child-content" style="margin-top: 6rem">
+    <dform-footer
+      [listButton]="listButton"
+      (eventClick)="onClickBtn($event)"
+    ></dform-footer>
+  </div>
+</div>

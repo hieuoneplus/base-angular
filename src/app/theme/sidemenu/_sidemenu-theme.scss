@@ -1,0 +1,73 @@
+@import '../style/variables';
+
+@mixin dform-sidemenu-theme($theme) {
+  $is-dark-theme: map-get($theme, is-dark);
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .dform-sidemenu,
+  .tableau-sidemenu {
+
+    >.dform-sidemenu-item,
+    .tableau-sidemenu-item {
+      >a {
+        color: mat-color($foreground, text);
+
+        &:hover {
+          // background: mat-color($background, hover);
+          border-radius: 5px;
+          color: $color-blue-primary;
+        }
+      }
+
+      &.active {
+        >a {
+          color: if($is-dark-theme, lighten(mat-color($primary), 25%), mat-color($primary));
+          background-color: #f2f2f2;
+          border-radius: 5px;
+
+          &:hover {
+            background: mat-color($background, hover);
+            border-radius: 5px;
+          }
+        }
+      }
+
+      &.tableau-sidemenu-item {
+        &.active {
+          >a {
+            color: if($is-dark-theme, lighten(mat-color($primary), 25%), mat-color($primary));
+            &:hover {
+              background: mat-color($background, hover);
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+
+    }
+
+    &.submenu {
+
+      >.dform-sidemenu-item,
+      .tableau-sidemenu-item {
+        &.active {
+          >a {
+            background-color: transparent;
+
+            &:hover {
+              // background: mat-color($background, hover);
+              border-radius: 5px;
+            }
+          }
+        }
+
+        &.open {
+          background: transparent;
+        }
+      }
+    }
+  }
+}

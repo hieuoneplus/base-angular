@@ -1,0 +1,90 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chi tiết người dùng</h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Tên đăng nhập</label>
+            <label style="font-weight: bold;">{{userDetail?.username}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Họ và tên</label>
+            <label style="font-weight: bold;">{{userDetail?.fullName}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Email</label>
+            <label style="font-weight: bold;">{{userDetail?.email}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Đơn vị</label>
+            <label style="font-weight: bold;">{{userDetail?.orgName}}</label>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%;  height: 100px; padding: 10px;">
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Mã nhân viên</label>
+            <label style="font-weight: bold;">{{userDetail?.employeeCode}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Số điện thoại</label>
+            <label style="font-weight: bold;">{{userDetail?.phoneNumber}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Chức danh</label>
+            <label style="font-weight: bold;">{{userDetail?.jobName}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Trạng thái</label>
+            <mat-slide-toggle [disabled]="true" color="primary" [checked]="userDetail?.active"> </mat-slide-toggle>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        DANH SÁCH VAI TRÒ
+      </label>
+    </div>
+    <div class="panel-body">
+      <div [ngClass]="'table-css'">
+        <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+
+          <ng-container matColumnDef="stt">
+            <th mat-header-cell *matHeaderCellDef>STT</th>
+            <td mat-cell *matCellDef="let element;"> {{element?.stt}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="roleCode">
+            <th mat-header-cell *matHeaderCellDef>MÃ VAI TRÒ</th>
+            <td mat-cell *matCellDef="let element;">{{element?.roleCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="roleType">
+            <th mat-header-cell *matHeaderCellDef>LOẠI VAI TRÒ</th>
+            <td mat-cell *matCellDef="let element;"> {{element?.roleType}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>TÊN VAI TRÒ</th>
+            <td mat-cell *matCellDef="let element;"> {{element?.roleName}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+        </app-no-data>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-bottom dform-child-content " style="margin-top: 6rem;">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)" ></dform-footer>
+  </div>
+</div>

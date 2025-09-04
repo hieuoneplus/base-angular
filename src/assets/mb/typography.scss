@@ -1,0 +1,114 @@
+h1 {
+    font-size: pxtorem(18) !important;
+    font-weight: bold;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+
+h2 {
+    font-size: pxtorem(16) !important;
+    font-weight: 600;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+
+h3 {
+    font-size: pxtorem(14) !important;
+    font-weight: normal;
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
+}
+
+h4 {
+    font-size: pxtorem(12) !important;
+    font-weight: normal;
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
+}
+
+@each $prefix,
+$font-size in $font-sizes {
+    .fs-#{$prefix} {
+        font-size: $font-size !important;
+    }
+}
+
+@each $name,
+$color in $colors {
+    .fc-#{$name} {
+        color: #{$color} !important;
+    }
+
+    .fc-#{$name}:before {
+        color: #{$color} !important;
+    }
+}
+
+@each $value in $text-align {
+    .text-#{$value} {
+        text-align: $value !important;
+    }
+}
+
+@each $attr,
+$value in $font-weights {
+    .fw-#{$attr} {
+        font-weight: $value !important;
+    }
+}
+
+.text-upper {
+    text-transform: uppercase !important;
+}
+
+.text-lower {
+    text-transform: lowercase !important;
+}
+
+.text-italic {
+    font-style: italic !important;
+}
+
+.text-italic {
+    font-style: italic !important;
+}
+
+@each $name,$color in $colors {
+    .hover-cl-#{$name} {
+        color: $color !important;
+    }
+
+    .hover-cl-#{$name}:before {
+        color: $color !important;
+    }
+
+    .hover-bg-#{$name}:hover {
+        background-color: $color !important;
+    }
+}
+
+@each $case in $text-cases {
+    .case-#{$case} {
+        text-transform: $case;
+    }
+}
+
+.text-truncate-text{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+$alignment: (
+  'alignment': (
+    property: vertical-align,
+    class: align,
+    values: (
+      top: top,
+      middle: middle,
+      bottom: bottom
+    )
+  )
+);
+
+$utilities: map-merge($alignment, $utilities);

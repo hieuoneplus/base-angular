@@ -1,0 +1,100 @@
+.search-ctqt {
+  display: flow-root;
+}
+
+.title {
+  font-size: 24px !important;
+  font-family: Roboto-bold;
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+  margin-left: 24px !important;
+}
+
+.label-item {
+  font-size: 14px !important;
+  font-family: Roboto-bold;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.table-css {
+  max-width: 100%;
+  overflow: auto;
+
+  th:nth-child(1), td:nth-child(1) {
+    min-width: 5rem !important;
+    text-align: center;
+  }
+
+  th:nth-child(2), td:nth-child(2) {
+    min-width: 15rem !important;
+    text-align: center;
+  }
+
+  td:nth-child(3) {
+    min-width: 7rem !important;
+  }
+
+  th:nth-child(4), td:nth-child(4) {
+    min-width: 7rem !important;
+  }
+
+  th:nth-child(5), td:nth-child(5) {
+    min-width: 7rem !important;
+  }
+
+  th:nth-child(6), td:nth-child(6) {
+    min-width: 7rem !important;
+  }
+
+  th:nth-child(7), td:nth-child(7) {
+    min-width: 7rem !important;
+  }
+
+  th:nth-child(8), td:nth-child(8) {
+    min-width: 10rem !important;
+  }
+
+  th:nth-child(9), td:nth-child(9) {
+    min-width: 10rem !important;
+  }
+
+  th:nth-child(10), td:nth-child(10) {
+    min-width: 10rem !important;
+  }
+
+  th:nth-child(11), td:nth-child(11) {
+    min-width: 7rem !important;
+  }
+
+  th:nth-child(12), td:nth-child(12) {
+    min-width: 5rem !important;
+  }
+
+  th:nth-child(13), td:nth-child(13) {
+    min-width: 8rem !important;
+  }
+
+  th:nth-child(14), td:nth-child(14) {
+    min-width: 7rem !important;
+  }
+
+}
+
+.div-search input  {
+  max-width: 90% !important;
+}
+
+.label-status {
+  font-weight: bold;
+}
+
+.content-info-custom {
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  max-height: 60px;
+  overflow-y: scroll;
+  word-wrap: break-word; /* Deprecated but works in some cases */
+  overflow-wrap: break-word; /* Standard way */
+  white-space: normal;
+}

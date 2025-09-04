@@ -1,0 +1,68 @@
+<div class="search-ctqt">
+  <h1 class="title-page">{{'Chi tiết thông tin cờ đối soát' }}
+  </h1>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin cờ đối soát' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div *ngIf="this.hasDataSource" fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tên báo cáo</label>
+          <label style="font-weight: bold;" fxFlex="70" [innerHtml]="getLabelReportName(this.dataFlagReport?.reportName)"></label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Vai trò của TCTV</label>
+          <label style="font-weight: bold;" fxFlex="70" [innerHtml]="getLabelReceivingRole(this.dataFlagReport?.receivingRole)"></label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Ngày quyết toán</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataFlagReport?.settlementDate}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Phiên quyết toán</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataFlagReport?.settlementCode}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Loại dịch vụ</label>
+          <label style="font-weight: bold;" fxFlex="70" [innerHtml]="getLabelService(this.dataFlagReport?.services)"></label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái nhận dữ liệu</label>
+          <label style="font-weight: bold;" fxFlex="70" [innerHtml]="getLabel(this.dataFlagReport?.flag)"></label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái ODS</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataFlagReport?.flagOrs}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã báo cáo</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataFlagReport?.reportId}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Version Reconcile</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataFlagReport?.versionReconcile}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tổng số page</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataFlagReport?.totalPage}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Ngày báo cáo</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataFlagReport?.createDate}}</label>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

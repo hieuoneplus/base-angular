@@ -1,0 +1,36 @@
+<div cdkDrag
+     cdkDragRootElement=".cdk-overlay-pane">
+  <div class="dform-header d-flex justify-content-end"
+       cdkDragHandle>
+    <button mat-icon-button
+            (click)="onCloseCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <div class="d-flex justify-content-center">
+      <img src="assets/images/images-status/error-delete.png"
+           alt="{{'lbl.no-data' | translate}}"
+           class="img-empty">
+    </div>
+    <div class="dform-title">
+      {{data?.title || 'Title' | translate}}
+    </div>
+    <!-- Error Detail -->
+    <p class="text-center"
+       *ngIf="data?.message">
+      {{data?.message || 'Message' }}
+    </p>
+    <p class="text-center"
+       *ngIf="data?.innerHTML"
+       [innerHTML]="data?.innerHTML"></p>
+  </div>
+  <div mat-dialog-actions
+       class="justify-content-center">
+    <button class="btn btn-error btn-md"
+            (click)="onCloseConfirm()">
+      <!-- Error Button -->
+      {{ 'btn.close' | translate }}
+    </button>
+  </div>
+</div>

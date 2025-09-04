@@ -1,0 +1,23 @@
+@media print {
+  app-root.print-div, .cdk-overlay-container {
+    display: none;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+  }
+
+  .panel {
+    box-shadow: unset;
+  }
+
+  .print-ignore {
+    display: none !important;
+  }
+}
+
+@media not print {
+  #printSection {
+    display: none;
+  }
+}

@@ -1,0 +1,106 @@
+mat-dialog-container {
+  @include query-lt-md{
+      min-width: 300px;
+  }
+  @include query-gt-md{
+      min-width: 400px;
+  }
+  @include query-lg{
+      min-width: 500px;
+  }
+  @include border-radius(0.25rem !important);
+  .mat-dialog-title {
+      margin-right: -24px;
+      margin-left: -24px;
+      margin-top: -24px !important;
+      text-align: center;
+      background-color: $color-gray-100;
+      padding: 1rem;
+      color: $color-sematic-error;
+  }
+  .mat-dform-title {
+    margin-right: -24px;
+    margin-left: -24px;
+    margin-top: -24px !important;
+    text-align: right;
+    padding: 1rem;
+    color: $color-blue-primary;
+ }
+ 
+ .d-flex {
+    display: flex!important;
+}
+}
+
+.no-padding-dialog {
+    .mat-dialog-container {
+        padding: 0px !important;
+    }
+}
+
+.dialog-dform{
+    .mat-dialog-container {
+        padding: 0px !important;
+    }
+    .dform-header {
+        padding-right: 10px;
+        button {
+            margin-top: 14px;
+            color: $color-gray-400;
+        }
+    }
+    .mat-dialog-content{
+        padding: 0px 40px !important;
+        margin: 0px !important;
+        .dform-title {
+            margin-top: 24px;
+            font-family: Roboto-bold;
+            font-size: 20px;
+            text-align: center;
+            color: $color-blue-primary;
+        }
+        .text-center {
+            // color: $color-gray-custom;
+        }
+    }
+    .mat-dialog-actions {
+        margin: 0px;
+        padding-top: 20px !important;
+        padding-bottom: 40px !important;
+    }
+}
+
+.header-dialog-dform {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10.5px 24px;
+    box-shadow: inset 0 -1px 0 0 #dedede;
+    background-color: $color-neutral-white;
+  
+    .header-dialog-title {
+      font-family: Roboto-bold;
+      font-size: 18px;
+    }
+  }
+  
+.dform-dialog-content {
+    padding: 0px;
+    // min-height: 40vh;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  
+    &.dform-height {
+      max-height: 80vh !important;
+      overflow: auto !important;
+    }
+  
+  }
+  
+.actions-dialog-dform {
+    margin-left: -24px;
+    margin-right: -24px;
+    padding: 16px 24px !important;
+    box-shadow: inset 0 1px 0 0 #dedede;
+}

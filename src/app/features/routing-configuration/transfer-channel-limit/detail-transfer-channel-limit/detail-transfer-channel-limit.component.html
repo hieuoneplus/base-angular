@@ -1,0 +1,63 @@
+<div class="search-ctqt">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h1 class="title-page m-0">
+        Chi tiết cấu hình định mức chuyển tiền
+        <mat-icon class="mbb-icon ic-error_outline fc-primary mrr-0"
+                  [matTooltip]="'Đây là tính năng phục vụ theo dõi, chỉnh sửa cấu hình định mức chuyển tiền theo kênh chuyển tiền' | translate">
+        </mat-icon>
+      </h1>
+
+      <button *ngIf="enableView" class="btn btn-light-blue" (click)="onClickHistory()">
+        <mat-icon class="mbb-icon ic-calendar"></mat-icon>
+        <span>Xem lịch sử</span>
+      </button>
+    </div>
+    <div class="panel mrt-4">
+      <div class="panel-heading justify-content-between bdt">
+        <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+      </div>
+      <div class="panel-body panel-padding">
+        <div fxLayout="row">
+          <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+            <div fxLayout="row" style="margin-bottom: 20px;">
+              <label fxFlex="50">Kênh chuyển tiền</label>
+              <label style="font-weight: bold;">{{transferChannelLimitContent?.transferChannel}}</label>
+            </div>
+            <div fxLayout="row" style="margin-bottom: 20px;">
+              <label fxFlex="50">Số tiền tối thiểu</label>
+              <label style="font-weight: bold;">{{transferChannelLimitContent?.minAmount | number}}</label>
+            </div>
+            <div *ngIf="transferChannelLimitContent?.fragmentMaxAmount" fxLayout="row" style="margin-bottom: 20px;">
+              <label fxFlex="50">Số tiền tối đa được tách lệnh</label>
+              <label style="font-weight: bold;">{{transferChannelLimitContent?.fragmentMaxAmount | number}}</label>
+            </div>
+            <div fxLayout="row" style="margin-bottom: 20px;">
+              <label fxFlex="50">Trạng thái </label>
+              <mat-slide-toggle class="custom-disabled-toggle" [disabled]="true" color="primary" [checked]="transferChannelLimitContent?.active"></mat-slide-toggle>
+            </div>
+
+          </div>
+          <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+            <div fxLayout="row" style="margin-bottom: 20px;">
+              <label fxFlex="50">Loại tiền</label>
+              <label style="font-weight: bold;">{{transferChannelLimitContent?.currency ?? 'VND'}}</label>
+            </div>
+            <div fxLayout="row" style="margin-bottom: 20px;">
+              <label fxFlex="50">Số tiền tối đa</label>
+              <label style="font-weight: bold;">{{transferChannelLimitContent?.maxAmount | number}}</label>
+            </div>
+            <div *ngIf="transferChannelLimitContent?.fragmentAmount" fxLayout="row" style="margin-bottom: 20px;">
+              <label fxFlex="50">Số tiền mặc định của 1 giao dịch tách lệnh</label>
+              <label style="font-weight: bold;">{{transferChannelLimitContent?.fragmentAmount | number}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="panel panel-bottom dform-child-content button-footer" >
+        <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+      </div>
+
+  </div>

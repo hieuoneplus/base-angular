@@ -1,0 +1,41 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chi tiết cấu hình chung</h1>
+  <div class="panel mrt-4 mrb-5">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Nghiệp vụ sử dụng</label>
+            <label class="content-info-custom" fxFlex="80" style="font-weight: bold;">{{configDetail?.functionCode}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Giá trị</label>
+            <label class="content-info-custom" fxFlex="80" style="font-weight: bold;">{{configDetail?.value}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Trạng thái</label>
+            <mat-slide-toggle [disabled]="true" color="primary" [checked]="configDetail?.isActive === 'Y'"> </mat-slide-toggle>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%;  height: 100px; padding: 10px;">
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Tham số cấu hình</label>
+            <label class="content-info-custom" fxFlex="80" style="font-weight: bold;">{{configDetail?.key}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Mô tả</label>
+            <label class="content-info-custom" fxFlex="80" style="font-weight: bold;">{{configDetail?.description}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-bottom button-footer mrt-15">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+  </div>
+
+</div>

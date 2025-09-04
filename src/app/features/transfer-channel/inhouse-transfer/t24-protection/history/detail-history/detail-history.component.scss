@@ -1,0 +1,49 @@
+.dilog-history {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: inset 0 -1px 0 0 #dedede;
+  .title-history {
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
+
+.label-history-detail {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 135px;
+}
+
+.content-history-detail {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.content-history-detail-json {
+  font-weight: bold;
+  max-height: 20rem;
+  overflow-y: scroll;
+  word-wrap: break-word; /* Deprecated but works in some cases */
+  overflow-wrap: break-word; /* Standard way */
+  white-space: pre;
+}
+
+.content-history-detail-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 135px;
+}
+
+.history-detail-content-scroll {
+  display: block;
+  font-weight: bold;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.box-history-detail-content-scroll {
+    max-height: 250px;
+    overflow-y: scroll;
+}

@@ -1,0 +1,72 @@
+<div class="content_login">
+  <div class="login_group">
+    <div class="login_group--left">
+      <div class="login_box">
+        <div class="login_header">
+          <img class="brand" src="{{urlBase}}/assets/images/login/logo_mb_1.svg">
+          <div class='login_welcome'>
+            <img style="width: 20px; height: 20px;" src="{{urlBase}}/assets/images/login/hand-wave.gif" alt=''>
+            <span class="welcome_text">Chào mừng bạn đến với</span>
+          </div>
+          <div class='login_sys--name' style='font-weight:bold;'>
+            Admin Portal
+          </div>
+        </div>
+        <div class="form-content-login">
+          <div class="dform-content-login">
+            <form [formGroup]="newForm" (ngSubmit)="verifyOTP()" #formDirective="ngForm">
+              <button type="button" fxLayout="row" fxLayoutAlign="center center" class="btn-auth-other-acc"
+                (click)="goBack()">
+                <mat-icon class="mbb-icon ic-arrow-right2 fc-primary md back-icon"></mat-icon>
+                <span class="title-other-account">Quay lại</span>
+              </button>
+              <div>
+                <div fxLayout="column" class="view-auth-otp comp-email">
+                  <div style="margin-top: 50px; margin-bottom: 10px;">
+                    <span class="time">Xác nhận OTP</span>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="space-between center" class="input-otp-container">
+                    <input #otp formControlName="otp" matInput placeholder="Nhập mã OTP"
+                      class="form-control input-otp, form-XT2L" type="text" autocomplete="off" id="otp" maxlength="6" [readonly]="!this.otpKey">
+                    <div *ngIf="timeExpireOtp > 0; else sendBack"
+                      class="get-otp pdu-2 pds-2">
+                      <span class="time">{{timeExpireOtp}}s</span>
+                    </div>
+                    <ng-template #sendBack>
+                      <button type="button"
+                        class="time-expire-otp btn-send-back pdu-2 pds-2" (click)="sendOtp()">
+                        <span class="time">Lấy mã OTP</span>
+                      </button>
+                    </ng-template>
+                  </div>
+                </div>
+                <div class="form-remark" *ngIf="errorData" fxLayOut="row" fxLayoutAlign="start center">
+                  <mat-icon class="mbb-icon ic-error sm fc-error">
+                  </mat-icon>
+                  <span [innerHTML]="errorData | translate"></span>
+                </div>
+              </div>
+              <button ng-disabled="!otpKey" class="btn btn-primary login-button" [disabled]="!this.otpKey" type="submit">Xác nhận</button>
+              <div fxlayOut="row" class="mrt-5 pd-4 view-info-otp" *ngIf="messageOtp">
+                <mat-icon [ngClass]="errorOtp ? 'mbb-icon ic-error sm fc-error' : 'mbb-icon ic-error sm fc-primary'">
+                </mat-icon>
+                <span [ngClass]="errorOtp ? 'fc-error' : ''">{{messageOtp}}</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='login_group--right'>
+      <div class='img_login' style="background-image: url({{urlBase}}/assets/images/bg-right.svg);">
+        <div class='slogan_login'>
+          <div class='sys_name'>
+          </div>
+          <!-- <div class='sys_content'>SMARTCHANNEL - HỆ THỐNG ĐĂNG KÝ DỊCH VỤ MỘT CỬA</div>
+          <div class='sys_info'>Nơi cung cấp các dịch vụ tại sàn giao dịch và tiện tích một cách dễ dàng nhất</div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

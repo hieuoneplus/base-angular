@@ -1,0 +1,42 @@
+<div class="search-ctqt">
+  <h2 class="title-page">
+    Cấu hình tài khoản không đủ điều kiện AUTO treo
+    <mat-icon  class=" mbb-icon ic-error_outline fc-primary mrr-0" style="cursor: pointer;" (mouseover)="showTooltip = true" (mouseout)="showTooltip = false">
+    </mat-icon>
+    <div *ngIf="showTooltip" class="custom-tooltip-mbs"> 
+      Key: hold.receiver-account<br> 
+      Type: hold_receiver_account
+    </div>
+  </h2>
+  <div class="panel mrt-4 dform-child-content">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        BẢNG CẤU HÌNH TÀI KHOẢN KHÔNG ĐỦ ĐIỀU KIỆN AUTO TREO
+      </label>
+      <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+        <button fxFlex="35" class="btn btn-light-blue btn-export mrl-4" (click)="exportExcel()">
+          <mat-icon class="mbb-icon ic-download mrr-0" [matTooltip]="'Xuất file'"> </mat-icon>
+          <span>Xuất file</span>
+        </button>
+        <button fxFlex="35" class="btn btn-light-blue mrl-4" (click)="onClickHistory()">
+          <mat-icon class="mbb-icon ic-calendar"></mat-icon>
+          <span>Xem lịch sử</span>
+        </button>
+        <button *ngIf="enableUpdate" fxFlex="35" class="btn btn-dark-blue mrl-4" (click)="editHoldReceiverAccount()">
+          <mat-icon class="mbb-icon ic-edit"></mat-icon>
+          <span>Chỉnh sửa</span>
+        </button>
+      </div>
+    </div>
+    <div class="panel-body panel-padding">
+      <div style="display: flex; flex-direction: column;">
+        <div *ngFor="let items of listHoldReceiverAccount; let i = index" fxFlex="50" class="hold-receiver-account" >
+          <sm-text-control [matTooltip]="listValueHoldReceiverAccount[i].value" [item]="listValueHoldReceiverAccount[i]" fxFlex="100" [form]="form"></sm-text-control>
+        </div>
+      </div>
+      <div *ngIf="!(listHoldReceiverAccount.length > 0)" style="display: flex; justify-content: center;">
+        <p>Vui lòng thêm trường thông tin</p>
+      </div>
+    </div>
+  </div>
+</div>

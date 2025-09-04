@@ -1,0 +1,29 @@
+<div class="pdl-2 pdr-2"
+     [ngClass]="{'control-error': isValidControl(item.key)}">
+    <label class="form-label">{{item.label | translate}}
+        <mat-icon *ngIf="isValidControl(item.key)"
+                  class="mbb-icon ic-error sm fc-error mrl-1">
+        </mat-icon>
+        <span *ngIf="item.required && !isValidControl(item.key)"
+              class="fc-error mrl-1">*</span>
+    </label>
+    <div fxLayout="col wrap"
+         class="mrl-2 p-b-16"
+         *ngIf="item.options.length > 0">
+        <mat-checkbox fxFlex="100"
+                      color="primary"
+                      *ngFor="let control of item.options;  let i=index;"
+                      [checked]="control.checked"
+                      [value]="control.key"
+                      [disabled]="item.type === 'disabled'"
+                      (change)="onCheckboxChange($event)">{{control.value}}</mat-checkbox>
+
+    </div>
+    <div class="form-group"
+         [class.error]="isValidControl(item.key)">
+        <div *ngIf="isValidControl(item.key, 'required')"
+             class="form-remark">
+            {{'validations.required' | translate}}
+        </div>
+    </div>
+</div>

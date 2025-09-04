@@ -1,0 +1,219 @@
+.search-ctqt {
+    display: flow-root;
+  }
+  
+  .title {
+    font-size: 24px !important;
+    font-family: Roboto-bold;
+    margin-top: 16px !important;
+    margin-bottom: 24px !important;
+  }
+  
+  .table-css {
+    max-width: 100%;
+    overflow: auto;
+    td {
+      border-bottom: 1px solid rgb(230, 230, 230);
+    }
+    th {
+      text-transform: uppercase;
+    }
+    th:nth-child(1),
+    td:nth-child(1) {
+      // min-width: 3rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(2),
+    td:nth-child(2) {
+      // min-width: 10rem !important;
+      text-align: center;
+    }
+  
+    td:nth-child(3),
+    th:nth-child(3) {
+      // min-width: 7rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(4),
+    td:nth-child(4) {
+      // min-width: 5rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(5),
+    td:nth-child(5) {
+      // min-width: 5rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(6),
+    td:nth-child(6) {
+      // min-width: 7rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(7),
+    td:nth-child(7) {
+      // min-width: 7rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(8),
+    td:nth-child(8) {
+      // min-width: 5rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(9),
+    td:nth-child(9) {
+      // min-width: 5rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(10),
+    td:nth-child(10) {
+      // min-width: 7rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(11),
+    td:nth-child(11) {
+      // min-width: 5rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(12),
+    td:nth-child(12) {
+      min-width: 13rem !important;
+      text-align: center;
+    }
+  
+    th:nth-child(13),
+    td:nth-child(13) {
+      // min-width: 10rem !important;
+      // width: 10rem !important;
+  
+      text-align: center;
+    }
+
+  }
+  
+  button[mat-icon-button]:hover {
+    cursor: pointer;
+  }
+  
+  .icon-send {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .label-icon-wrapper {
+    position: relative;
+  }
+  
+  .error-message {
+    color: #eb2d4b;
+    font-size: 14px;
+    margin-top: 0.5rem;
+    margin-bottom: -2rem;
+    position: relative;
+    font-family: RobotoItalic;
+    bottom: 2rem;
+    left: 0.5rem;
+  }
+
+  @import "src/assets/mb/common.scss";
+
+  .upload-box {
+      background-color: #f9f9f9;
+      border: 2px dashed $color-gray-400;
+      border-radius: 5px;
+      min-width: 398px;
+      min-height: 221px;
+      margin: 21px 0 0 24px;
+      .img-upload{
+          margin-top: 29px;
+          margin-bottom: 14px;
+      }
+      .title-text-upload {
+          font-size: 14px;
+          font-family: Roboto-bold;
+          opacity: 0.54;
+      }
+      .title-text-or {
+          margin: 4px 0px;
+          font-size: 12px;
+          font-family: Roboto;
+      }
+      .btnUpload {
+          font-family: Roboto;
+          font-weight: normal !important;
+          font-size: 10px;
+          width: 121px;
+          height: 28px;
+          padding: 6px 12.5px 7px 11.5px;
+      }
+  }
+  .view-item-upload{
+      width: 475px;
+      height: 221px;
+      margin: 18px 24px 0 24px;
+      padding-left: 43px;
+      font-family: Roboto !important;
+      span{
+          font-size: 14px !important;
+      }
+      .link-template{
+          margin: 6px 0px 29px 0px;
+          img{
+              margin-right: 7px;
+          }
+          a{
+              text-decoration: underline;
+          }
+      }
+      .boxMethodValue{
+          width: 433px;
+          height: 60px;
+          margin: 12px 0px;
+          border-radius: 0.5rem;
+          background-color: #fbfbfb;
+          border: 1px solid $color-gray-400;
+          .btn{
+              padding: 0px !important;
+          }
+          .mat-icon{
+              font-size: 24px !important;
+              margin-right: 10px !important;
+              margin-top: 2px !important;
+          }
+          .processing {
+              font-size: 14px;
+              font-family: Roboto;
+              margin: 13px 18px 0px 24px;
+              .file-persen{
+                  margin-bottom: 11px;
+              }
+              .file-name{
+                  color: $color-blue-primary;
+              }
+              .progress-bar{
+                  height: 1px;
+              }
+          }
+      }
+      .btnCreateParcel{
+          width: 125px;
+          height: 40px;
+      }
+      .truncate {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+      }
+  
+  }

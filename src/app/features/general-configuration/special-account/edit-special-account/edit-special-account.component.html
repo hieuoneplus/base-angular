@@ -1,0 +1,40 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chỉnh sửa tài khoản đặc biệt
+    <mat-icon  class=" mbb-icon ic-error_outline fc-primary mrr-0" [matTooltip]="'Đây là tính năng phục vụ cấu hình tài khoản đặc biệt' | translate">
+    </mat-icon>
+  </h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <sm-text-control maxLengthView="true" [item]="$accountType" fxFlex="50" [form]="form" (focusout)="trimInput($event, $accountType.key)" (input)="upperCase($event, $accountType.key)"></sm-text-control>
+        <sm-text-control maxLengthView="true" [item]="$key" fxFlex="50" [form]="form" (focusout)="trimInput($event, $key.key)"></sm-text-control>
+        <sm-text-control maxLengthView="true" [item]="$accountNumber" fxFlex="50" [form]="form" (input)="onInputChange($event, $accountNumber.key)"></sm-text-control>
+        <sm-select-control maxLengthView="true" [item]="$partnerType" fxFlex="50" [form]="form" (input)="onInputChange($event, $partnerType.key)">></sm-select-control>
+        <sm-text-control maxLengthView="true" [item]="$urlName" fxFlex="50" [form]="form" (focusout)="trimInput($event, $urlName.key)"></sm-text-control>
+        <sm-text-control maxLengthView="true" [item]="$urlCallback" fxFlex="50" [form]="form" (focusout)="trimInput($event, $urlCallback.key)"></sm-text-control>
+        <sm-text-control maxLengthView="true" [item]="$protocol" fxFlex="50" [form]="form" (focusout)="trimInput($event, $protocol.key)"></sm-text-control>
+        <sm-text-control maxLengthView="true" [item]="$channel" fxFlex="50" [form]="form" (focusout)="trimInput($event, $channel.key)"></sm-text-control>
+        <sm-text-control #minTransInput [item]="$minTrans" fxFlex="50" [form]="form" (input)="validateMoney($event, $minTrans.key)"></sm-text-control>
+        <sm-text-control #maxTransInput [item]="$maxTrans" fxFlex="50" [form]="form" (input)="validateMoney($event, $maxTrans.key)"></sm-text-control>
+        <sm-textarea-dynamic maxLengthView="true" [item]="$publicKey" fxFlex="100" [form]="form" (focusout)="trimInput($event, $publicKey.key)"></sm-textarea-dynamic>
+        <sm-textarea-dynamic maxLengthView="true" [item]="$privateKey" fxFlex="100" [form]="form" (focusout)="trimInput($event, $privateKey.key)"></sm-textarea-dynamic>
+        <div fxFlex="50" class="pdl-2">
+          <label class="custom-checkbox-label">
+            <span class="checkmark"></span>
+            Cho phép Retry
+            <input type="checkbox" [checked]="isRetryConfirm" (change)="toggleIsRetryConfirm($event)" />
+          </label>
+        </div>
+        <dform-form-group-slide-toggle [item]="$activeSlide" [form]="form" fxFlex="50" fxLayoutAlign="start center" style="margin-bottom: 50px; place-content: start" class="pdl-2">
+        </dform-form-group-slide-toggle>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel-bottom dform-child-content " style="margin-top: 7rem;">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

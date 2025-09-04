@@ -1,0 +1,21 @@
+<div class="pd-4 mru-2 no-items" [ngClass]="[styleClass ? styleClass : 'no-items-default']" [fxLayout]="layout" fxLayoutAlign="center center" >
+  <div fxLayout="column" fxLayoutAlign="center center">
+      <img src="assets/images/no-item.png" alt="" class="img-no-item">
+  </div>
+  <div fxLayout="column" [fxLayoutAlign]="fxStart" >
+    <span class="no-register">{{titleNo}}</span>
+    <strong class="title-no-account">{{title}}</strong>
+    <div *ngIf="typeBtn; else iconButton">
+      <button class="btn btn-primary pds-10 pdu-3 mrt-3" *ngIf="showBtn" (click)="createService()">
+        <mat-icon class="mbb-icon ic-plus" *ngIf="isShowIconPlus"></mat-icon>
+        <strong>{{textBtn}}</strong>
+      </button>
+    </div>
+    <ng-template #iconButton>
+      <button *ngIf="showBtn" fxLayout="row" class="pdt-4 item-btn-icon" fxLayoutAlign="start center" (click)="createService()">
+        <mat-icon>add_circle</mat-icon>
+        <strong class="pdl-2">{{textBtnIcon}}</strong>
+      </button>
+    </ng-template>
+  </div>
+</div>

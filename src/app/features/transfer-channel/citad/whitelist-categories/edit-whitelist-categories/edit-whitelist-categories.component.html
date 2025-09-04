@@ -1,0 +1,75 @@
+<div class="search-ctqt">
+  <h1 class="title-page">
+    Chỉnh sửa Cấu hình category được phép ghi có tự động
+    <mat-icon
+      class="mbb-icon ic-error_outline fc-primary mrr-0"
+      [matTooltip]="
+        'Đây là tính năng phục vụ Cấu hình category được phép ghi có tự động'
+          | translate
+      "
+    >
+    </mat-icon>
+  </h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{ "Thông tin chung" | uppercase }}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-text-control [item]="$category" [form]="form"
+          [ngClass]="{
+            'error-border': handleRestrictSpecialChars('category')
+          }"></sm-text-control>
+          <div
+            *ngIf="this.handleRestrictSpecialChars('category')"
+            class="error-message"
+          >
+            Sai định dạng ký tự
+          </div>
+        </div>
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-text-control [item]="$code" [form]="form"
+          [ngClass]="{'error-border': handleRestrictSpecialChars('code')}"></sm-text-control>
+          <div
+            *ngIf="this.handleRestrictSpecialChars('code')"
+            class="error-message"
+          >
+            Sai định dạng ký tự
+          </div>
+        </div>
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-text-control [item]="$subProduct" [form]="form"
+          [ngClass]="{'error-border': handleRestrictSpecialChars('subProduct')}"></sm-text-control>
+          <div
+            *ngIf="this.handleRestrictSpecialChars('subProduct')"
+            class="error-message"
+          >
+            Sai định dạng ký tự
+          </div>
+        </div>
+        <dform-form-group-slide-toggle
+          fxFlex="50"
+          class="mrl-2"
+          [item]="$subProductSlide"
+          [form]="form"
+          fxLayoutAlign="start center"
+        ></dform-form-group-slide-toggle>
+        <dform-form-group-slide-toggle
+          fxFlex="20"
+          class="mrl-2"
+          [item]="$activeSlide"
+          [form]="form"
+          fxLayoutAlign="start center"
+        ></dform-form-group-slide-toggle>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer
+      [listButton]="listButton"
+      (eventClick)="onClickBtn($event)"
+    ></dform-footer>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="tooltipRefuse">
+    <div class="dform-title justify-content-start">
+        {{data?.title || 'Title' | translate}}
+        <mat-icon *ngIf="!confirm?.trim() && isRequired"
+                  class="mbb-icon ic-error sm fc-error mrl-1">
+        </mat-icon>
+        <span *ngIf="confirm || !isRequired"
+              class="fc-error mrl-1">*</span>
+    </div>
+    <div *ngIf="data?.description"
+         [class.error]="!confirm?.trim() && isRequired">
+        <div class="form-input-row">
+            <textarea ref-textarea
+                      rows="10"
+                      cols="33"
+                      class="dialog-text-area"
+                      [(ngModel)]="confirm"
+                      [ngClass]="!confirm?.trim() && isRequired ? 'error' : ''"
+                      [placeholder]="data?.description"
+                      maxlength="300"></textarea>
+        </div>
+        <div *ngIf="!confirm?.trim() && isRequired"
+             class="form-remark fc-error">
+            {{data?.title || 'Title' | translate}} {{ 'validations.not-null' | translate}}
+        </div>
+    </div>
+    <div mat-dialog-actions
+         fxLayout="row">
+        <div fxFlex="50"
+             fxLayoutAlign="start center">
+            <mat-checkbox color="primary"
+                          [(ngModel)]="isAdditional"
+                          *ngIf="isShowCheckBox"
+                          class="checkbox-ybs">Yêu cầu
+                bổ sung</mat-checkbox>
+        </div>
+        <div fxFlex="50"
+             fxLayoutAlign="end center">
+            <button class="btn btn-primary btn-md mrl-1"
+                    (click)="onUpdateConfirm()">
+                {{ data?.acceptBtn | translate }}
+            </button>
+        </div>
+    </div>
+</div>

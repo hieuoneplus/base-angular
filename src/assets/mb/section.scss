@@ -1,0 +1,28 @@
+section.mbb-section {
+    width: 100%;
+    .section-heading {
+        padding: 1rem 0rem;
+        border-bottom: solid 1px $color-gray-300;
+        width: 100%;
+        >label {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+            color: $color-blue-primary;
+            mat-icon.mbb-icon {
+                font-weight: 400;
+                font-size: 18px;
+                width: 18px;
+                height: 18px;
+                margin-bottom: 2px;
+            }
+        }
+    }
+    .section-body {
+        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;   
+    }
+}

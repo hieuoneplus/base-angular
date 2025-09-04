@@ -1,0 +1,45 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chi tiết tài khoản trung gian</h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Nghiệp vụ sử dụng</label>
+            <label style="font-weight: bold;">{{accDetail?.functionCode}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Loại tiền</label>
+            <label style="font-weight: bold;">{{accDetail?.currency}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Trạng thái</label>
+            <mat-slide-toggle [disabled]="true" color="primary" [checked]="accDetail?.isActive === 'Y'"> </mat-slide-toggle>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%;  height: 100px; padding: 10px;">
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Số tài khoản</label>
+            <label style="font-weight: bold;">{{accDetail?.accountNumber}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Loại tài khoản</label>
+            <label style="font-weight: bold;">{{accDetail?.accountType}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Mô tả</label>
+            <label style="font-weight: bold;">{{accDetail?.description}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-bottom button-footer mrt-15">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+  </div>
+
+</div>

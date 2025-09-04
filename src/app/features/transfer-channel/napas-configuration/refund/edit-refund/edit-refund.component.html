@@ -1,0 +1,74 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chỉnh sửa yêu cầu hoàn trả
+  </h1>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin giao dịch gốc' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div *ngIf="this.hasDataSource" fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tổ chức phát lệnh</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.acceptingInstitutionIdentificationCode}} - {{this.dataTransactionOrigin?.senderName}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/ số tài khoản gửi</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.fromAccountIdentification}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tổ chức nhận lệnh</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.receivingInstitutionIdentificationCode}} - {{this.dataTransactionOrigin?.receiverName}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/ số tài khoản nhận</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.toAccountIdentification}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số tiền giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.settlementAmount | currencyMask}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">FT hạch toán T24</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.ft}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Nội dung giao dịch</label>
+          <label class="custom-css-word" style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.contentTransfers}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.transactionStatus}}</label>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="this.dataTransactionOrigin" class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin tạo mới yêu cầu hoàn trả' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <sm-select-control [item]="$returnDataProcessingCode" fxFlex="50" [form]="form"></sm-select-control>
+        <sm-text-control [item]="$senderAcc" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control class="custom-vnd" #amountValue [item]="$returnDataTransactionAmount" fxFlex="50" [form]="form" (input)="validateMoney($event, $returnDataTransactionAmount.key)"></sm-text-control>
+        <sm-text-control [item]="$receiverAcc" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$returnDataCurrencyCode" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$contentTransfers" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-select-control [item]="$disputeId" fxFlex="50" [form]="form"></sm-select-control>
+        <sm-select-control [item]="$transactionAccountingType" fxFlex="50" [form]="form"></sm-select-control>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

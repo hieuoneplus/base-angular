@@ -1,0 +1,29 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chỉnh sửa thông tin cờ đối soát
+  </h1>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin cờ đối soát' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <sm-select-control [item]="$reportName" fxFlex="50" [form]="form"></sm-select-control>
+        <sm-select-control [item]="$receivingRole" fxFlex="50" [form]="form"></sm-select-control>
+        <sm-text-control [item]="$settlementDate" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$settlementCode" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-select-control [item]="$services" fxFlex="50" [form]="form"></sm-select-control>
+        <sm-select-control [item]="$flag" fxFlex="50" [form]="form"></sm-select-control>
+        <sm-select-control [item]="$flagOrs" fxFlex="50" [form]="form"></sm-select-control>
+        <sm-text-control [item]="$reportId" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$versionReconcile" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$totalPage" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-date-control [item]="$createDate" fxFlex="50" [form]="form"></sm-date-control>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

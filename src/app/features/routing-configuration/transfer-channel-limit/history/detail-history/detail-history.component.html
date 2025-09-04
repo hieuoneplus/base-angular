@@ -1,0 +1,79 @@
+<div class="dilog-history pds-5">
+    <div class="title-history">
+      Chi tiết lịch sử thay đổi
+    </div>
+    <button mat-icon-button (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="pds-3 pdu-6">
+    <div class="pds-2" fxLayout="row wrap">
+      <div fxFlex="100">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Kênh chuyển tiền</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.transferChannel}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Số tiền tối thiểu</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.minAmount | number}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Số tiền tối đa</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.maxAmount | number}}</label>
+        </div>
+      </div>
+      <div *ngIf="dataHistoryConfig?.fragmentMaxAmount" fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Số tiền tối đa được tách lệnh</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.fragmentMaxAmount | number}}</label>
+        </div>
+      </div>
+      <div *ngIf="dataHistoryConfig?.fragmentAmount" fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Số tiền mặc định của 1 giao dịch được tách lệnh</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.fragmentAmount | number}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Trạng thái</label>
+          <mat-slide-toggle class="custom-disabled-toggle" color="primary" [disabled]="true" [checked]="this.dataHistoryConfig?.active"> </mat-slide-toggle>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Loại thay đổi</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.action}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Ngày sửa đổi</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Người sửa đổi</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.updatedBy}}</label>
+        </div>
+      </div>
+      <div fxFlex="100">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail" style="width: 145px;">Lý do sửa đổi</label>
+          <div class="content-history-detail-reson" fxFlex="70">{{this.dataHistoryConfig?.reason | json}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="" fxLayout="row" fxLayoutAlign="center">
+    <button class="btn btn-light-blue btn-xs" (click)="closeDialog()">
+      Đóng
+    </button>
+  </div>

@@ -1,0 +1,306 @@
+// Material components style fix
+// .mat-form-field-flex > .mat-form-field-infix { 
+//   padding: 0.71rem 0px !important; border-top: 0.4rem solid transparent;
+//   .mat-input-element{
+//     height: 100% !important;
+//   }
+// }
+// .mat-form-field-label-wrapper { top: -1.5rem; }
+
+// .mat-form-field-appearance-outline {
+//   &.mat-form-field-can-float.mat-form-field-should-float{
+//     .mat-form-field-label {
+//       transform: translateY(-1.1rem) scale(.75);
+//       width: 133.33333%;
+//     }
+//   }
+//   .mat-form-field-wrapper {
+//     margin: .75em 0 !important;
+//   }
+//   .mat-select-arrow-wrapper {
+//     transform: translateY(5%) !important;
+//   }
+//   .mat-form-field-outline-thick .mat-form-field-outline-start,
+//   .mat-form-field-outline-thick .mat-form-field-outline-end,
+//   .mat-form-field-outline-thick .mat-form-field-outline-gap {
+//     border-width: 1px !important;
+//   }
+// }
+.form-group-login {
+  &.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.28125em) scale(1) perspective(100px) translateZ(0.001px) !important;
+    -ms-transform: translateY(-1.28125em) scale(0.75) !important;
+    color: $color-gray-700;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: Roboto;
+  }
+
+  &.mat-form-field-appearance-legacy .mat-form-field-label,
+  input.mat-input-element {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: Semibold;
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0rem !important;
+  }
+
+  input.mat-input-element {
+    color: #000000;
+  }
+
+  .mat-form-field-underline {
+    width: 0px !important;
+    font-family: Roboto;
+  }
+}
+
+
+
+.mat-form-field-subscript-wrapper {
+  font-size: 90% !important;
+}
+
+.mat-tab-label-active {
+  color: $color-blue-primary !important;
+  opacity: 1 !important;
+}
+
+.ng-select {
+  width: 100%;
+}
+
+.ng-select {
+
+  &.ng-select-single .ng-select-container,
+  &.ng-select-multiple .ng-select-container {
+    min-height: 40px !important;
+    border-radius: 0.5rem;
+    border: solid 1px $color-gray-300;
+
+    .ng-value-container {
+
+      .ng-placeholder,
+      .ng-input {
+        top: 10px;
+      }
+    }
+
+    .ng-value {
+      span {
+        font-size: 1rem;
+        font-family: Roboto;
+      }
+    }
+  }
+
+  &.ng-select-disabled {
+    .ng-value-container {
+      .ng-input {
+        input {
+          color: $color-gray-900;
+        }
+      }
+
+      .ng-value {
+        color: $color-gray-900;
+      }
+    }
+  }
+
+  &.ng-select-focused:not(.ng-select-opend)>.ng-select-container {
+    border-color: $color-blue-primary;
+    box-shadow: none;
+  }
+
+  .ng-dropdown-panel {
+    .ng-dropdown-panel-items .ng-option span {
+      font-size: 1rem;
+      font-family: Roboto;
+    }
+  }
+
+  .ng-dropdown-panel-items {
+    max-height: 176px !important;
+
+    .ng-option {
+      font-size: 1rem;
+      font-family: Roboto;
+    }
+  }
+}
+
+.ng-select-error.ng-select .ng-select-container {
+  border: 1px solid $color-sematic-error !important;
+}
+
+.error-select {
+  font-size: 75%;
+  padding: 0 1rem 0.9rem 1rem;
+  margin-top: 0.6666666667rem;
+  top: calc(100% - 1.7916666667rem);
+}
+
+// Custom form field with search
+.search-form-field .mat-form-field-prefix {
+  top: 0.6rem !important;
+
+  .mat-icon {
+    font-size: 30px;
+  }
+}
+
+.search-form-field .mat-form-field-suffix {
+  top: 0.4rem !important;
+}
+
+
+// Change expansion material
+
+.mat-expansion-panel-content {
+  font-size: 16px !important;
+}
+
+.mat-drawer-content {
+  background-color: $color-gray-200;
+}
+
+.wf-status-inprocess {
+  color: $color-blue-primary;
+  background-color: $color-light-blue;
+}
+
+.wf-status-approved {
+  color: $color-sematic-success;
+  background-color: $color-light-success;
+}
+
+.wf-status-waitting {
+  color: #e59d01;
+  background-color: #fff2d3;
+}
+
+.wf-status-warning {
+  color: $color-blue-primary;
+  background-color: $sematic-warning;
+}
+
+.wf-status-reject {
+  color: $color-sematic-error;
+  background-color: $color-light-error;
+}
+
+.wf-status-update {
+  color: $color-blue-primary;
+  background-color: $color-light-blue;
+}
+
+.wf-status-halfapprove {
+  color: $color-blue-primary;
+  background-color: $color-sematic-disabled;
+}
+
+.wf-status-waittingapprove {
+  color: $color-sematic-success;
+  background-color: $color-light-success;
+}
+
+.wf-status-delete {
+  color: $color-sematic-error;
+  background-color: $color-light-error;
+}
+
+.wf-status-cancel {
+  color: $color-gray-900;
+  background-color: $color-gray-400;
+}
+
+.wf-status {
+  border-radius: 17px;
+  white-space: nowrap;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  height: 21px;
+  padding: 5px 13.7px 3px 14px;
+  font-family: Roboto-bold;
+  font-weight: bold;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.login .swiper-pagination-bullet {
+  width: 29px !important;
+  height: 4px !important;
+  opacity: 0.4 !important;
+  border-radius: 2.5px !important;
+  background-color: $color-neutral-white !important;
+}
+
+.login .swiper-pagination-bullet-active {
+  opacity: 1 !important;
+}
+
+.mat-slide-toggle-label {
+  span {
+    font-size: Roboto-bold;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #303030;
+  }
+}
+
+.mat-tooltip {
+  background-color: $color-neutral-white !important;
+  opacity: 1;
+  color: $color-neutral-black !important;
+  padding: 0.8rem 1.2rem !important;
+  font-size: 14px !important;
+  font-family: Roboto !important;
+  line-height: 24px !important;
+  border-radius: 0.5rem;
+  overflow: visible !important;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-shadow: 0px 1px 2px #00000029, 0px 2px 4px #0000001f,
+    0px 1px 8px #0000001a;
+}
+
+.mat-tooltip:before {
+  border-right-color: white !important;
+}
+
+.mat-tooltip:after {
+  content: '';
+  position: absolute;
+  margin-top: -5px;
+  border-width: 10px;
+  border-style: solid;
+}
+
+.mat-tooltip[style*="transform-origin: center top"]:after {
+  bottom: 100%;
+  left: 45%;
+  border-color: transparent transparent #fff transparent;
+}
+
+.mat-tooltip[style*="transform-origin: center bottom"]:after {
+  top: 110%;
+  left: 45%;
+  border-color: #fff transparent transparent transparent;
+}
+
+.mat-tooltip[style*="transform-origin: left center"]:after {
+  top: 40%;
+  right: 100%;
+  border-color: transparent #fff transparent transparent;
+}
+
+.mat-tooltip[style*="transform-origin: right center"]:after {
+  top: 40%;
+  left: 100%;
+  border-color: transparent transparent transparent #fff;
+}

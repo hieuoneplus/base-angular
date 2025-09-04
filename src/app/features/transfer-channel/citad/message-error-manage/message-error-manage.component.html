@@ -1,0 +1,119 @@
+<div class="search-ctqt">
+  <h2 class="title-page">
+    Retry message lỗi
+  </h2>
+  <div class="panel batch-search mrt-8" style="z-index: 1000;">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        TÌM KIẾM
+      </label>
+    </div>
+    <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap" (ngSubmit)="search()">
+      <sm-text-control [item]="$keys" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-text-control [item]="$topics" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-date-control [item]="$createdAtFrom" fxFlex="25" [form]="form"></sm-date-control>
+      <sm-date-control [item]="$createdAtTo" fxFlex="25" [form]="form"></sm-date-control>
+      <sm-select-control [item]="$status" fxFlex="25" [form]="form"></sm-select-control>
+      <div fxLayoutAlign="end center" class="mrt-5">
+        <button type="submit" fxFlex="20" class="btn btn-primary mrr-2">
+          <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+          <span>Tìm kiếm</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        DANH SÁCH
+      </label>
+      <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+        <button *ngIf="enableRetry" fxFlex="35" class="btn btn-dark-blue mrl-4" [disabled]="this.listDataSelect.length === 0" (click)="onClickRetry()">
+          <mat-icon class="mbb-icon ic-refresh"></mat-icon>
+          <span>Retry</span>
+        </button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div [ngClass]="'table-css'">
+        <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+
+          <ng-container matColumnDef="check">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox color="primary" [(ngModel)]="checked" (change)="onChange()" [disabled]="isChecker">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let element;">
+              <mat-checkbox *ngIf="element.status === 'INIT' && !this.checkCreatedAtOver15Days(element.createdAt)" color="primary" [(ngModel)]="element.isChecked" (change)="onChangeRegister(element)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="stt">
+            <th mat-header-cell *matHeaderCellDef>STT</th>
+            <td mat-cell *matCellDef="let element;"> {{element.stt}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="key">
+            <th mat-header-cell *matHeaderCellDef [matTooltip]="'Key trên Kafka'">KEY</th>
+            <td mat-cell *matCellDef="let element;"> {{element.key}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="topic">
+            <th mat-header-cell *matHeaderCellDef [matTooltip]="'Topic trên Kafka'">TOPIC</th>
+            <td mat-cell *matCellDef="let element;" > {{element.topic}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="partition">
+            <th mat-header-cell *matHeaderCellDef [matTooltip]="'Partition trên Kafka'">PARTITION</th>
+            <td mat-cell *matCellDef="let element;" > {{element.partition}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="offset">
+            <th mat-header-cell *matHeaderCellDef [matTooltip]="'Offset trên Kafka'">OFFSET</th>
+            <td mat-cell *matCellDef="let element;" > {{element.offset}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef [matTooltip]="'Created at trên Kafka'">CREATED AT</th>
+            <td mat-cell *matCellDef="let element;" >{{element.createdAt | date: 'dd/MM/yyyy HH:mm'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef [matTooltip]="'Status trên Kafka'">STATUS</th>
+            <td mat-cell *matCellDef="let element"  [innerHtml]="getLabel(element.status)"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef>ACTION</th>
+            <td mat-cell *matCellDef="let element;">
+              <button mat-icon-button (click)="viewDetail(element)">
+                <mat-icon class=" mbb-icon ic-eye fc-primary mrr-0" [matTooltip]="'View' | translate">
+                </mat-icon>
+              </button>
+              <button *ngIf="enableDelete && element.status === 'INIT'" mat-icon-button (click)="onClickDelete(element)">
+                <mat-icon class=" mbb-icon ic-delete fc-error mrr-0" [matTooltip]="'Delete' | translate">
+                </mat-icon>
+              </button>
+              <button *ngIf="element.status === 'INIT' && !this.checkCreatedAtOver15Days(element.createdAt) && enableRetry" mat-icon-button (click)="onClickRetry(element.id)">
+                <mat-icon class=" mbb-icon ic-refresh mrr-0" [matTooltip]="'Retry' | translate">
+                </mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+        </app-no-data>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <dform-pagination-plus class="fullWidth" #pagePage showPageSelect [pageIndex]="pageIndex"
+        (page)="changePageIndex($event);" [totalItem]="totalItem" [pageSize]="pageSize" [showPageSizeList]="true"
+        [pageSizeList]="[10, 20, 50, 100]">
+      </dform-pagination-plus>
+    </div>
+  </div>
+</div>

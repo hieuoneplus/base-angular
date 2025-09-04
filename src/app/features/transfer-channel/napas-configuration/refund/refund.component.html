@@ -1,0 +1,157 @@
+<div class="search-ctqt">
+  <h2 class="title-page">
+    Tra cứu thông tin giao dịch hoàn trả
+    <mat-icon class=" mbb-icon ic-error_outline fc-primary mrr-0"
+      [matTooltip]="'Đây là tính năng phục vụ tra cứu thông tin giao dịch hoàn trả' | translate">
+    </mat-icon>
+  </h2>
+  <div class="panel batch-search mrt-8">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        TÌM KIẾM
+      </label>
+    </div>
+    <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap" (ngSubmit)="search()">
+
+      <sm-text-control [item]="$caseId" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-date-control [item]="$creationDateTime" fxFlex="25" [form]="form"></sm-date-control>
+      <ng-container *ngIf="form.get('creationDateTime')?.invalid && (form.get('creationDateTime')?.dirty || form.get('creationDateTime')?.touched)">
+      </ng-container>
+      <div fxFlex="25" style="display: flex; flex-direction: column">
+        <sm-date-control [item]="$toCreationDateTime" [form]="form"></sm-date-control>
+        <ng-container *ngIf="form.get('toCreationDateTime')?.invalid && (form.get('toCreationDateTime')?.dirty || form.get('toCreationDateTime')?.touched)">
+          <span class="error-message" *ngIf="form.get('toCreationDateTime')?.errors?.['dateOrderInvalid']">Ngày kết thúc không được nhỏ hơn ngày bắt đầu.</span>
+          <span class="error-message" *ngIf="form.get('toCreationDateTime')?.errors?.['dateRangeExceeded']">Khoảng thời gian tìm kiếm không được vượt quá 10 ngày.</span>
+        </ng-container>
+      </div>
+      <!-- <sm-date-control [item]="$toCreationDateTime" fxFlex="25" [form]="form"></sm-date-control> -->
+      <sm-text-control [item]="$batchId" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-text-control [item]="$origTransactionReference" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-text-control [item]="$origSystemTrace" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-text-control [item]="$origFT" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-select-control [item]="$direction" fxFlex="25" [form]="form"></sm-select-control>
+      <sm-text-control [item]="$receivingMember" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-text-control [item]="$sendingMember" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-select-control [item]="$returnStatus" fxFlex="25" [form]="form"></sm-select-control>
+
+      <div class="mrr-2" fxLayoutAlign="end center">
+        <button [disabled]="this.form.invalid" type="submit" fxFlex="25" class="btn btn-primary mrr-2">
+          <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+          <span>Tìm kiếm</span>
+        </button>
+        <button type="submit" class="btn btn-light-blue" (click)="resetFormSearch()">
+          <mat-icon class="mbb-icon ic-refresh mrl-2"></mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div style="z-index: 0;" class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        DANH SÁCH
+      </label>
+      <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+        <button *ngIf="enableInsert" fxFlex="35" class="btn btn-dark-blue mrl-4" (click)="onOpenRefundBatch()">
+          <mat-icon class="mbb-icon ic-plus"></mat-icon>
+          <span>Quản lý lô hoàn trả</span>
+        </button>
+
+        <button *ngIf="enableInsert" fxFlex="35" class="btn btn-dark-blue mrl-4" (click)="onClickCreateReq()">
+          <mat-icon class="mbb-icon ic-plus"></mat-icon>
+          <span>Thêm yêu cầu</span>
+        </button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div [ngClass]="'table-css'">
+        <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+
+          <ng-container matColumnDef="stt">
+            <th mat-header-cell *matHeaderCellDef>STT</th>
+            <td mat-cell *matCellDef="let element;"> {{element.stt}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="senderReference">
+            <th mat-header-cell *matHeaderCellDef>Mã điện hoàn trả</th>
+            <td mat-cell *matCellDef="let element;"> {{element.senderReference}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="creationDateTime">
+            <th mat-header-cell *matHeaderCellDef>Ngày tạo</th>
+            <td mat-cell *matCellDef="let element;">{{element.creationDateTime | date: 'dd-MM-YY hh:mm:ss'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="caseId">
+            <th mat-header-cell *matHeaderCellDef>Mã điện hoàn trả gốc</th>
+            <td mat-cell *matCellDef="let element;"> {{element.caseId}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="origTransactionReference">
+            <th mat-header-cell *matHeaderCellDef>Mã giao dịch gốc</th>
+            <td mat-cell *matCellDef="let element;"> {{element.origTransactionReference}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="settlementAmount">
+            <th mat-header-cell *matHeaderCellDef>Số tiền quyết toán</th>
+            <td mat-cell *matCellDef="let element;"> {{element?.settlementAmount | currencyMask}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ft">
+            <th mat-header-cell *matHeaderCellDef>FT gốc</th>
+            <td mat-cell *matCellDef="let element;"> {{element?.ft}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="sendingMember">
+            <th mat-header-cell *matHeaderCellDef>Tổ chức gửi điện</th>
+            <td mat-cell *matCellDef="let element;"> {{element?.sendingMember}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="receivingMember">
+            <th mat-header-cell *matHeaderCellDef>Tổ chức nhận điện</th>
+            <td mat-cell *matCellDef="let element;"> {{element?.receivingMember}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="transactionAmount">
+            <th mat-header-cell *matHeaderCellDef>Số tiền hoàn trả</th>
+            <td mat-cell *matCellDef="let element;"> {{element?.transactionAmount | currencyMask}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Trạng thái hoàn trả</th>
+            <td mat-cell *matCellDef="let element;" [innerHtml]="getLabel(element.status)"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef>HÀNH ĐỘNG</th>
+            <td mat-cell *matCellDef="let element;">
+              <button *ngIf="enableView && element?.origCreatedAt" mat-icon-button (click)="viewDetail(element)">
+                <mat-icon class=" mbb-icon ic-eye fc-primary mrr-0" [matTooltip]="'View' | translate">
+                </mat-icon>
+              </button>
+
+              <button *ngIf="enableUpdate && !element?.batchId && (element?.status==='VALIDATED' || element?.status ==='VALIDATE_FAILED')" mat-icon-button (click)="onClickEdit(element)">
+                <mat-icon class=" mbb-icon ic-edit fc-primary mrr-0" [matTooltip]="'Edit' | translate">
+                </mat-icon>
+              </button>
+
+              <!-- <button *ngIf="enableReply && this.enableBtnReply(element)" mat-icon-button (click)="onClickReplyDispute(element)">
+                <mat-icon class="icon-send fc-primary">send</mat-icon>
+              </button> -->
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+        </app-no-data>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <dform-pagination-plus class="fullWidth" #pagePage showPageSelect [pageIndex]="pageIndex"
+        (page)="changePageIndex($event);" [totalItem]="totalItem" [pageSize]="pageSize" [showPageSizeList]="true"
+        [pageSizeList]="[10, 20, 50, 100]">
+      </dform-pagination-plus>
+    </div>
+  </div>
+</div>

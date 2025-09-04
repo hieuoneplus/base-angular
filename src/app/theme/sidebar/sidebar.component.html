@@ -1,0 +1,10 @@
+<!-- <div class="dform-sidebar-header" *ngIf="showHeader">
+  <app-user-panel></app-user-panel>
+</div> -->
+<div class="dform-sidebar-main scrollbar-none" [ngClass]="{'tableau-main': options.menuMode == 3}">
+  <app-user-panel></app-user-panel>
+  <app-sidemenu *ngIf="options.menuMode == 1 || options.menuMode == 2"
+                [ripple]="showToggle"></app-sidemenu>
+  <!-- <app-tableau-menu *ngIf="options.menuMode == 3"
+                    [ripple]="showToggle"></app-tableau-menu> -->
+</div>

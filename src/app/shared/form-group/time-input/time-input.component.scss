@@ -1,0 +1,40 @@
+.time-input-container {
+  width: 120px;
+  position: relative;
+}
+
+.time-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.time-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.clear-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #999;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  color: #666;
+}
+
+.form-label {
+  display: flex;
+  min-height: 19px;
+}

@@ -1,0 +1,85 @@
+<div class="main-container">
+  <h2 class="title-page">
+    Chỉnh sửa cấu hình từ điển viết tắt
+  </h2>
+  <div class="mrt-4">
+    <div class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+      <div class="panel-heading justify-content-between bdt">
+        <label fxFlex="50">
+          {{'BẢNG CẤU HÌNH' | translate}}
+        </label>
+        <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+          <button fxFlex="25" class="btn btn-light-blue mrl-4" (click)="onClickHistory()" >
+            <mat-icon class="mbb-icon ic-calendar"></mat-icon>
+            <span>Xem lịch sử</span>
+          </button>
+          <button fxFlex="25" class="btn btn-dark-blue mrl-4" (click)="onClickAddFields()" >
+            <mat-icon class="mbb-icon ic-edit"></mat-icon>
+            <span>Thêm trường</span>
+          </button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div [ngClass]="'table-css'">
+          <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+            <ng-container matColumnDef="abbreviation">
+              <th mat-header-cell *matHeaderCellDef>{{"TỪ VIẾT TẮT" | translate}}</th>
+              <td mat-cell *matCellDef="let element;">
+                <div class="input-with-icon">
+                  <mat-form-field appearance="outline" class="form-field">
+                    <input maxlength="250" class="table-input" (input)="onChangeAbbreviation()" matInput [(ngModel)]="element.abbreviation"/>
+                  </mat-form-field>
+                  <mat-icon class="icon-input">link</mat-icon>
+                </div>
+                <span *ngIf="element.required" class="error-message">Vui lòng nhập nội dung</span>
+                <br *ngIf="element.required" />
+                <span *ngIf="element.duplicated" class="error-message">Từ viết tắt đã tồn tại</span>
+                <br *ngIf="element.duplicated || element.required" />
+                <span *ngIf="element.valid" class="error-message">Sai định dạng kí tự</span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="content">
+              <th mat-header-cell *matHeaderCellDef>{{"NỘI DUNG" | translate}}</th>
+              <td mat-cell *matCellDef="let element;" style="border-left: 1px solid rgba(0, 0, 0, 0.1);">
+                <ng-container *ngFor="let content of element.content">
+                  <div class="content-container">
+                    <div class="content-row">
+                      <mat-form-field appearance="outline" class="form-field">
+                        <input maxlength="250" [ngChange] (input)="onChangeContent(content.nContent, element)" class="table-input" matInput [(ngModel)]="content.nContent"/>
+                      </mat-form-field>
+                      <mat-icon class="delete-icon" (click)="onClickDeleteContent(content, element)">{{element.content.length > 1 ? 'close' : ''}}</mat-icon>
+                    </div>
+                    <span *ngIf="content.nRequired" class="error-message">Vui lòng nhập nội dung</span>
+                    <br *ngIf="content.nRequired"/>
+                    <span *ngIf="content.nValid" class="error-message">Sai định dạng kí tự</span>
+                  </div>
+                </ng-container>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions" stickyEnd>
+              <th mat-header-cell *matHeaderCellDef>HÀNH ĐỘNG</th>
+              <td mat-cell *matCellDef="let element;">
+                <button mat-icon-button (click)="onClickAddContent(element)">
+                  <mat-icon class=" mbb-icon ic-plus fc-primary mrr-0" [matTooltip]="'Xóa' | translate">
+                  </mat-icon>
+                </button>
+                <button mat-icon-button (click)="onClickDeleteRow(element)">
+                  <mat-icon class=" mbb-icon ic-delete fc-error mrr-0" [matTooltip]="'Xóa' | translate">
+                  </mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+          </app-no-data>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+  </div>
+</div>

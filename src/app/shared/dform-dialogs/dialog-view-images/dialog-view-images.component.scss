@@ -1,0 +1,88 @@
+@import "src/assets/mb/common.scss";
+.dialog-image-view{
+    .mat-dialog-container{
+        padding: 0px !important;
+    }
+    .panel-heading{
+        padding: 0 !important;
+    }
+    .header-heading{
+        margin-bottom: 24px;
+        font-size: 1rem;
+        color: #141ed2;
+        font-weight: bold;
+        font-family: "Roboto-bold";
+    }
+    .btn-close{
+        position: absolute;
+        top: -11px;
+        right: 0px;
+    }
+    .panel-body{
+        height: 100%;
+        width: 100%;
+        .panel-body-content{
+            position: relative;
+        }
+        .list-image{
+            overflow: auto;
+            height: 480px;
+            border-right: solid 1px $color-gray-300;
+            .image-item{
+                margin: 1rem 0px !important;
+                cursor: pointer;
+                width: 100%;
+                justify-content: center !important;
+                img{
+                    max-width: 118px;
+                    max-height: 68px;
+                    border-radius: 3px;
+                    padding: 2px;
+                    &.active{
+                        border: solid 2px $color-blue-primary;
+                    }
+                }
+            }
+        }
+        .detail-image{
+            .content-detail-image{
+                width: 100%;
+            }
+            .image-current{
+                position: relative;
+                border-right: solid 1px $color-gray-300;
+                &.multi{
+                    width: 588px;
+                    height: 428px;
+                    overflow: auto;
+                }
+                &.single{
+                    width: 734px;
+                    height: 428px;
+                    overflow: auto;
+                    border-left: solid 1px $color-gray-300;
+                }
+                .main-image{
+                    position: absolute;
+                    cursor: grabbing;
+                    cursor: -webkit-grabbing;
+                }
+            }
+            .tool-icon{
+                padding-top: 24px;
+                width: 100%;
+                border-top: solid 1px $color-gray-300;
+                .mbb-icon{
+                    cursor: pointer;
+                    font-weight: bold;
+                    &.sm{
+                        padding-top: 4px;
+                    }
+                }
+                .chevron-icon{
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

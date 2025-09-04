@@ -1,0 +1,139 @@
+.search-ctqt {
+    display: flow-root;
+  }
+
+  .title {
+    font-size: 24px !important;
+    font-family: Roboto-bold;
+    margin-top: 16px !important;
+    margin-bottom: 24px !important;
+    margin-left: 24px !important;
+  }
+
+  .table-css {
+    max-width: 100%;
+    overflow: auto;
+    table-layout: fixed;
+
+    th:nth-child(1), td:nth-child(1) {
+      min-width: 6rem !important;
+     text-align: center;
+    }
+
+    th:nth-child(2), td:nth-child(2) {
+      min-width: 15rem !important;
+    //  text-align: center;
+    }
+
+    td:nth-child(3), th:nth-child(3){
+      min-width: 15rem !important;
+    //  text-align: center;
+    }
+
+    th:nth-child(4), td:nth-child(4) {
+      min-width: 15rem !important;
+    //  text-align: center;
+    }
+
+    th:nth-child(5), td:nth-child(5) {
+      min-width: 15rem !important;
+    //  text-align: center;
+    }
+
+    th:nth-child(6), td:nth-child(6) {
+      min-width: 15rem !important;
+    }
+
+    th:nth-child(7), td:nth-child(7) {
+      min-width: 15rem !important;
+    }
+
+    th:nth-child(8), td:nth-child(8) {
+      min-width: 15rem !important;
+    //  text-align: center;
+    }
+
+    th:nth-child(9), td:nth-child(9) {
+      min-width: 7rem !important;
+    //  text-align: center;
+    }
+
+    th:nth-child(10), td:nth-child(10) {
+      min-width: 15rem !important;
+    //  text-align: center;
+    }
+
+    th:nth-child(11), td:nth-child(11) {
+      min-width: 15rem !important;
+     text-align: center;
+    }
+    th:nth-child(12), td:nth-child(12)  {
+      min-width: 15rem !important;
+    }
+
+    th:nth-child(13), td:nth-child(13) {
+      min-width: 15rem !important;
+    }
+
+    th:nth-child(14), td:nth-child(14) {
+      min-width: 7rem !important;
+    //  text-align: center;
+    }
+
+    th:nth-child(15), td:nth-child(15) {
+      min-width: 15rem !important;
+      //  text-align: center;
+    }
+
+    th:nth-child(16), td:nth-child(16) {
+      min-width: 15rem !important;
+      //  text-align: center;
+    }
+
+    th:nth-child(17), td:nth-child(17) {
+      min-width: 13rem !important;
+      //  text-align: center;
+    }
+
+    th:nth-child(18), td:nth-child(18) {
+      min-width: 10rem !important;
+      //  text-align: center;
+    }
+    th:nth-child(19), td:nth-child(19) {
+      min-width: 15rem !important;
+    }
+    th:nth-child(20), td:nth-child(20) {
+      min-width: 15rem !important;
+    }
+
+    th:nth-child(21) {
+      min-width: 8rem !important;
+      //  text-align: center;
+      color: #141ed2 !important;
+    }
+
+    td:nth-child(21) {
+      min-width: 8rem !important;
+      //  text-align: center;
+      background-color: #ffffff !important;
+      &:hover{
+        background-color: #ebf3ff !important;
+        cursor: pointer;
+      }
+    }
+
+    td {
+      border-bottom: 1px solid rgb(230, 230, 230);
+    }
+    th {
+      text-transform: uppercase;
+    }
+  }
+
+.scrollable-column {
+  max-height: 100px;      /* Giới hạn chiều cao của cột để cuộn */
+  overflow-y: auto;       /* Thêm scroll dọc khi nội dung vượt quá max-height */
+  white-space: normal;    /* Cho phép nội dung xuống dòng */
+  word-wrap: break-word;  /* Cho phép từ dài xuống dòng nếu cần */
+  display: block;         /* Đảm bảo nội dung của cột có thể cuộn */
+}

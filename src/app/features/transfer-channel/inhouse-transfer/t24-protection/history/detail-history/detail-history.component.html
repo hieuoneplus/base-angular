@@ -1,0 +1,79 @@
+<div class="dilog-history pds-5">
+    <div class="title-history">
+      Chi tiết lịch sử thay đổi
+    </div>
+    <button mat-icon-button (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="pds-3 pdu-6">
+    <div class="pds-2" fxLayout="row wrap">
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">ID</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.id}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Config Id</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.configId | number}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Key</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.key}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Loại thay đổi</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.action}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Người tạo</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.createdBy}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Ngày tạo</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.createdAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Người sửa đổi</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.updatedBy}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Ngày sửa đổi</label>
+          <label class="content-history-detail">{{this.dataHistoryConfig?.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+        </div>
+      </div>
+      <div fxFlex="100">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail">Lý do sửa đổi</label>
+          <div class="content-history-detail">{{this.dataHistoryConfig?.reason}}</div>
+        </div>
+      </div>
+      <div fxFlex="100">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-history-detail" style="width: 145px;">Nội dung sửa đổi</label>
+          <pre class="content-history-detail-json" fxFlex="70">{{this.dataHistoryConfig?.value | json}}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="" fxLayout="row" fxLayoutAlign="center">
+    <button class="btn btn-light-blue btn-xs" (click)="closeDialog()">
+      Đóng
+    </button>
+  </div>

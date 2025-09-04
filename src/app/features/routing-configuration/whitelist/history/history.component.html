@@ -1,0 +1,119 @@
+<div class="search-ctqt">
+  <h2 class="title-page">
+    Lịch sử thay đổi
+  </h2>
+  <div class="panel batch-search mrt-8">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        TÌM KIẾM
+      </label>
+    </div>
+    <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap" (ngSubmit)="onClickSearch()">
+      <sm-date-control [item]="$updatedAtFrom" fxFlex="25" [form]="form"></sm-date-control>
+      <sm-date-control [item]="$updatedAtTo" fxFlex="25" [form]="form"></sm-date-control>
+      <sm-text-control [item]="$updatedBy" fxFlex="25" [form]="form"></sm-text-control>
+
+      <div fxLayoutAlign="end center" class="mrt-5">
+        <button [disabled]="this.form.invalid" type="submit" fxFlex="20" class="btn btn-primary mrr-2">
+          <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+          <span>Tìm kiếm</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="panel mrt-4 dform-child-content">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        DANH SÁCH
+      </label>
+    </div>
+    <div class="panel-body">
+      <div [ngClass]="'table-css'">
+        <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+          <ng-container matColumnDef="stt">
+            <th mat-header-cell *matHeaderCellDef>STT</th>
+             <td mat-cell *matCellDef="let element;">{{element?.stt}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="accountNo">
+            <th mat-header-cell *matHeaderCellDef>SỐ TÀI KHOẢN</th>
+             <td mat-cell *matCellDef="let element;">{{element?.accountNo}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="bankCode">
+            <th mat-header-cell *matHeaderCellDef>MÃ NGÂN HÀNG</th>
+             <td mat-cell *matCellDef="let element;">{{element?.bankCode}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="transferChannel">
+            <th mat-header-cell *matHeaderCellDef>KÊNH THỨC HIỆN THANH TOÁN</th>
+             <td mat-cell *matCellDef="let element;">{{element?.transferChannel}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef>TRẠNG THÁI</th>
+             <td mat-cell *matCellDef="let element;">
+              <mat-icon [ngClass]="element.active ? 'mbb-icon ic-unchecked fc-success mrr-1' : 'mbb-icon ic-unchecked fc-gray-600 mrr-1'" style="font-size: 10px; "></mat-icon>
+              <span>{{element.active ? 'Đang hoạt động' : 'Dừng hoạt động'}}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="approvalStatus">
+            <th mat-header-cell *matHeaderCellDef>TRẠNG THÁI PHÊ DUYỆT</th>
+            <td mat-cell *matCellDef="let element;" [innerHtml]="element.approvalStatusLabel">
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="typeUpdate">
+            <th mat-header-cell *matHeaderCellDef>LOẠI THAY ĐỔI</th>
+             <td mat-cell *matCellDef="let element;">{{element.action}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="updatedAt">
+            <th mat-header-cell *matHeaderCellDef>NGÀY SỬA ĐỔI</th>
+             <td mat-cell *matCellDef="let element;">{{element?.updatedAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="updatedBy">
+            <th mat-header-cell *matHeaderCellDef>NGƯỜI SỬA ĐỔI</th>
+             <td mat-cell *matCellDef="let element;">{{element?.updatedBy}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="reason">
+            <th mat-header-cell *matHeaderCellDef>LÝ DO THAY ĐỔI</th>
+             <td mat-cell *matCellDef="let element;" [matTooltip]="element.reason">
+              <div class="scrollable-column">
+                {{element.reason}}
+              </div>
+             </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef>HÀNH ĐỘNG</th>
+            <td mat-cell *matCellDef="let element;">
+              <button mat-icon-button (click)="viewDetailHistory(element.id)">
+                <mat-icon class=" mbb-icon ic-eye fc-primary mrr-0" [matTooltip]="'View' | translate">
+                </mat-icon>
+              </button>
+
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+        </app-no-data>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <dform-pagination-plus class="fullWidth" #pagePage showPageSelect [pageIndex]="pageIndex"
+        (page)="changePageIndex($event);" [totalItem]="totalItem" [pageSize]="pageSize" [showPageSizeList]="true"
+        [pageSizeList]="[10, 20, 50, 100]">
+      </dform-pagination-plus>
+    </div>
+  </div>
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

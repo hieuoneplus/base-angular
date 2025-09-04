@@ -1,0 +1,13 @@
+.label-transaction-detail {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 30px;
+}
+
+.content-transaction-detail {
+    font-weight: bold;
+    margin-left: 10px;
+    word-wrap: break-word; /* Deprecated but works in some cases */
+    overflow-wrap: break-word; /* Standard way */
+    white-space: normal;
+}

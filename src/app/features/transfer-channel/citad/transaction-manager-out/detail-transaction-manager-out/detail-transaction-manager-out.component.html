@@ -1,0 +1,381 @@
+<h1 class="title-page">Chi tiết giao dịch đến</h1>
+
+<div class="panel mrt-4">
+  <div class="panel-heading justify-content-between bdt">
+    <label fxFlex="50">THÔNG TIN CHUNG</label>
+  </div>
+  <div class="panel-body panel-padding">
+    <div class="pds-2" fxLayout="row wrap">
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Id</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.id}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Transaction Id</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.transactionId}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Kind</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.kind}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">T24 Reference Number</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.t24ReferenceNumber}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Way4 Wallet Reference Number</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.way4WalletReferenceNumber}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Way4 Card Reference Number</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.way4CardReferenceNumber}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">T24 Txn Type</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.t24TxnType}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Payment Type</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.paymentType}}</label>
+        </div>
+      </div>
+           <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Transaction Type</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.transactionType}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Channel</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.channel}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Source Channel</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.sourceChannel}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Gateway</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.gateway}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Debit Their Ref</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.debitTheirRef}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Debit Account No</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.debitAccountNo}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Debit Account Type</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.debitAccountType}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Debit Account Name</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.debitAccountName}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Debit Amount</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.debitAmount | number}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Amount Credited</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.amountCredited | number}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Debit Currency</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.debitCurrency}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Debit Value Date</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.debitValueDate}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Credit Their Ref</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.creditTheirRef}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Credit Account No</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.creditAccountNo}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Credit Account Type</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.creditAccountType}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Credit Account Name</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.creditAccountName}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Credit Amount</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.creditAmount | number}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Credit Currency</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.creditCurrency}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Credit Value Date</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.creditValueDate}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Charge Account No</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.chargeAccountNo}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Charge Account Type</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.chargeAccountType}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Charge Currency</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.chargeCurrency}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Charge Type</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.chargeType}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Sender Account No</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.senderAccountNo}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Sender Account Type</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.senderAccountType}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Sender Name</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.senderName}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Sender Bank Code</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.senderBankCode}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Sender Branch Code</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.senderBranchCode}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Sender Address</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.senderAddress}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Receiver Account No</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.receiverAccountNo}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Receiver Account Type</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.receiverAccountType}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Receiver Name</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.receiverName}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Receiver Bank Code</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.receiverBankCode}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Receiver Branch Code</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.receiverBranchCode}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Receiver Address</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.receiverAddress}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Description</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.description}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Extended Description</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.extendedDescription}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Payment System</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.paymentSystem}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Status</label>
+          <label class="content-transaction-detail" [innerHtml]="getLabel(queryTransactionInDetail?.status)"></label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Error</label>
+          <label class="content-transaction-detail" fxFlex="65">{{queryTransactionInDetail?.error ? (queryTransactionInDetail?.error | json) : ''}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Created By</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.createdBy}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Created At</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.createdAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Updated By</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.updatedBy}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Updated At</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Payment Processor</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.paymentProcessor}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Metadata</label>
+          <label class="content-transaction-detail" fxFlex="65">{{queryTransactionInDetail?.metadata ? (queryTransactionInDetail?.metadata | json) : ''}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Partner Status</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.partnerStatus}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Partner Metadata</label>
+          <label class="content-transaction-detail" fxFlex="65">{{queryTransactionInDetail?.partnerMetadata ? (queryTransactionInDetail?.partnerMetadata | json) : ''}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Partner Reference</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.partnerReference}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Partner Id</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.partnerId}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Original Transaction Id</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.originalTransactionId}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Transaction Reference</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.transactionReference}}</label>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div fxLayout="row" class="mrb-4">
+          <label class="label-transaction-detail" fxFlex="30">Original Transaction Reference</label>
+          <label class="content-transaction-detail">{{queryTransactionInDetail?.originalTransactionReference}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="panel panel-bottom dform-child-content" style="margin-top: 50px;">
+  <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+</div>

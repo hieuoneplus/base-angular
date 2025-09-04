@@ -1,0 +1,117 @@
+<div class="main-container">
+  <h2 class="title-page">
+    Chỉnh sửa cấu hình
+  </h2>
+  <div class="mrt-4 mrb-10">
+    <div class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+      <div class="panel-heading justify-content-between bdt">
+        <label fxFlex="50">
+          {{'BẢNG CẤU HÌNH' | translate}}
+        </label>
+        <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+          <button fxFlex="25" class="btn btn-light-blue mrl-4" (click)="onClickHistory()" >
+            <mat-icon class="mbb-icon ic-calendar"></mat-icon>
+            <span>Xem lịch sử</span>
+          </button>
+          <button fxFlex="25" class="btn btn-dark-blue mrl-4" (click)="onClickAddRow()" >
+            <mat-icon class="mbb-icon ic-edit"></mat-icon>
+            <span>Thêm trường</span>
+          </button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div [ngClass]="'table-css'">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <table class="dform-table table-info w-full" mat-table [dataSource]="rows.controls" matSort [@.disabled]="true" formArrayName="rows">
+              <ng-container matColumnDef="priority">
+                <th mat-header-cell *matHeaderCellDef>{{"Độ ưu tiên" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="250" type="number" appInputNumber class="table-input" matInput formControlName="priority" placeholder="Nhập độ ưu tiên"/>
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="row.get('priority').hasError('required')" class="error-message">Độ ưu tiên bắt buộc nhập</span>
+                  <span *ngIf="row.get('priority').hasError('specialCharacters')"class="error-message">Sai định dạng kí tự</span>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef>{{"Type" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="250" class="table-input" matInput formControlName="type"/>
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="row.get('type').touched && row.get('type').hasError('required')" class="error-message">Type bắt buộc nhập</span>
+                  <span *ngIf="row.hasError('isDuplicated')" class="error-message">Type đã tồn tại</span>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="creditAccountNo">
+                <th mat-header-cell *matHeaderCellDef>{{"Tài khoản ghi có" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="250" class="table-input" matInput formControlName="creditAccountNo"/>
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="row.get('creditAccountNo').hasError('required')" class="error-message">Tài khoản ghi có bắt buộc nhập</span>
+                  <span *ngIf="row.get('creditAccountNo').hasError('specialCharacters')" class="error-message">Sai định dạng kí tự <br/></span>
+                  <span *ngIf="row.hasError('isDuplicated')" class="error-message">Tài khoản này đã tồn tại</span>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="auto">
+                <th mat-header-cell *matHeaderCellDef>{{"Tự động" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <mat-slide-toggle formControlName="auto"> </mat-slide-toggle>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="parameter">
+                <th mat-header-cell *matHeaderCellDef>{{"Tham số" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="250" class="table-input" matInput formControlName="parameter" />
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="row.get('parameter').touched && row.get('parameter').hasError('required')" class="error-message">Tham số bắt buộc nhập</span>
+                  <span *ngIf="row.get('parameter').hasError('specialCharacters')"class="error-message">Sai định dạng kí tự<br/></span>
+                  <span *ngIf="row.hasError('isDuplicated')"class="error-message">Tham số này đã tồn tại</span>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="processingUnit">
+                <th mat-header-cell *matHeaderCellDef>{{"Đơn vị xử lý" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="250" class="table-input" matInput formControlName="processingUnit"/>
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="row.get('processingUnit').hasError('required')" class="error-message">Đơn vị xử lý bắt buộc nhập</span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions" stickyEnd>
+                <th mat-header-cell *matHeaderCellDef>HÀNH ĐỘNG</th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                  <button mat-icon-button (click)="onClickDeleteRow(row, i)">
+                    <mat-icon class=" mbb-icon ic-delete fc-error mrr-0" [matTooltip]="'Xóa' | translate">
+                    </mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <app-no-data *ngIf="!rows.controls || (rows.controls && rows.controls.length === 0)">
+            </app-no-data>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-bottom dform-child-content button-footer">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+  </div>
+</div>
+

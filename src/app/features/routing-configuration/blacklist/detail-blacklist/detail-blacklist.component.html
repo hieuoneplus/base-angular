@@ -1,0 +1,45 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chi tiết tài khoản Blacklist
+    <mat-icon  class=" mbb-icon ic-error_outline fc-primary mrr-0" [matTooltip]="'Đây là tính năng phục vụ cấu hình tài khoản Blacklist' | translate">
+    </mat-icon>
+  </h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="30">Số tài khoản</label>
+            <label style="font-weight: bold;">{{accDetail?.accountNo}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="30">Loại giao dịch</label>
+            <label style="font-weight: bold;" [innerHtml]="getLabelTransactionTyppe(accDetail?.transactionType)">{{accDetail?.transactionType}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="30">Trạng thái</label>
+            <mat-slide-toggle class="custom-disabled-toggle" [disabled]="true" color="primary" [checked]="accDetail?.active"> </mat-slide-toggle>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%;  height: 100px; padding: 10px;">
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Mã ngân hàng</label>
+            <label style="font-weight: bold;">{{bankName}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Loại tài khoản</label>
+            <label style="font-weight: bold;" [innerHtml]="getLabelAccountTyppe(accDetail?.type)"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="panel panel-bottom dform-child-content button-footer" >
+      <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+    </div>
+
+</div>

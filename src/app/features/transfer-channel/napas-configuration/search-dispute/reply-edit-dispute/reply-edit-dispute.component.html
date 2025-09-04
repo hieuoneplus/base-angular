@@ -1,0 +1,210 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chỉnh sửa phản hồi yêu cầu tra soát
+  </h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin giao dịch gốc' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã giao dịch gốc</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.transactionReferenceNumber}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số trace giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.systemTraceAuditNumber}} </label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Ngày giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.convertToDateFormat(this.dataTransactionOrigin?.dateLocalTransaction)}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Giờ giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.convertToTimeFormat(this.dataTransactionOrigin?.timeLocalTransaction)}} </label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">FT hạch toán T24</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.ft}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Loại giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.paymentCode}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/ số tài khoản gửi</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.fromAccountIdentification}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tổ chức phát lệnh</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.acceptingInstitutionIdentificationCode}} </label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/ số tài khoản nhận</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.toAccountIdentification}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tổ chức nhận lệnh</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.receivingInstitutionIdentificationCode}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tên ngân hàng chuyển</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.senderName}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tên ngân hàng nhận</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.receiverName}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số tiền giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.settlementAmount | currencyMask}} {{this.dataTransactionOrigin?.settlementCurrencyCode.toString() === '704' ? 'VND' : ''}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.transactionStatus}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Nội dung giao dịch</label>
+          <label class="custom-css-word" style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.contentTransfers}}</label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin yêu cầu tra soát' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã giao dịch gốc</label>
+          <label style="font-weight: bold;" fxFlex="70">{{dataTransactionDisputeRequest?.origTransactionReference}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/ số tài khoản nhận</label>
+          <label style="font-weight: bold;" fxFlex="70">{{dataTransactionDisputeRequest?.origReceiverAcc}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số trace giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{dataTransactionDisputeRequest?.origSystemTrace}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số tiền giao dịch gốc</label>
+          <label style="font-weight: bold;" fxFlex="70">{{dataTransactionDisputeRequest?.origTransactionAmount | currencyMask}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">FileAttachment</label>
+          <label [ngStyle]="{'font-weight': 'bold', 'cursor': dataTransactionDisputeRequest?.fileName ? 'pointer' : 'default'}" fxFlex="70" (click)="dataTransactionDisputeRequest?.fileName && downLoadFile(dataTransactionDisputeRequest?.fileId, dataTransactionDisputeRequest?.fileName)">{{dataTransactionDisputeRequest?.fileName}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let ht of dataTransactionRefund" class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin hoàn trả' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã điện hoàn trả</label>
+          <label style="font-weight: bold;" fxFlex="70">{{ ht.batchId }}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số tiền hoàn trả</label>
+          <label style="font-weight: bold;" fxFlex="70">{{ ht.transactionAmount | currencyMask }}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Ngày tạo yêu cầu hoàn trả</label>
+          <label style="font-weight: bold;" fxFlex="70">{{ ht.createdAt | date:'dd/MM/yyyy' }}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số Tk/ thẻ hoàn</label>
+          <label style="font-weight: bold;" fxFlex="70">{{ ht.senderAcc }}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Nội dụng hoàn trả</label>
+          <label style="font-weight: bold;" fxFlex="70">{{ ht.contentTransfers }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let bc of dataChargecredit" class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin báo có' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã điện báo có</label>
+          <label style="font-weight: bold;" fxFlex="70">{{ bc.id }}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số tiền báo có</label>
+          <label style="font-weight: bold;" fxFlex="70">{{ bc.amountValue | number }}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Ngày tạo yêu cầu báo có</label>
+          <label style="font-weight: bold;" fxFlex="70">{{ bc.creationDateTime | date:'dd/MM/yyyy' }}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Đơn vị tiền tệ</label>
+          <label style="font-weight: bold;" fxFlex="70">{{ bc.amountCurrency_code }}</label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Kết quả tra soát' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <sm-text-control [item]="$disputeSubject" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$disputeMessage" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-select-control [item]="$disputeStatus" fxFlex="50" [form]="form"></sm-select-control>
+       <sm-text-control *ngIf="showDisputeAmount" #amountDispute [item]="$disputeAmount" fxFlex="50" [form]="form" (input)="validateMoney($event, $disputeAmount.key)"></sm-text-control>
+        <div fxFlex="50">
+          <div class="pds-2" fxLayout="column">
+            <label class="form-label">FileAttachment</label>
+            <div style="margin-top: 0.75rem;" fxLayout="row wrap">
+              <div class="content-file-attachment" draggable="true" appDrag (fileEvent)="dragFileInput($event)">
+                <label class="label-select" *ngIf="!selectedFiles && !this.fileName" (click)="file.click()"><mat-icon class="mbb-icon ic-upload_file fc-primary mrr-0"></mat-icon>Chọn file tải lên</label>
+                <input type="file"
+                  accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" #file
+                  (change)="handleFileInput($event)" hidden>
+              </div>
+              <div fxLayoutAlign="row wrap" *ngIf="selectedFiles || this.fileName">
+                <mat-icon class="mbb-icon ic-upload_file fc-primary mrr-1" (click)="file.click()"></mat-icon>
+                <label class="label-select"
+                  [matTooltip]="selectedFiles ? selectedFiles.name : this.fileName" (click)="downLoadFile(dataTransactionDisputeResponse?.fileId, dataTransactionDisputeResponse?.fileName)">
+                  {{selectedFiles ? selectedFiles.name : this.fileName}}</label>
+                <mat-icon class="mbb-icon ic-close_blue fc-primary mrr-0" (click)="destroyFile()"></mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div *ngIf="numberOfPages > 0 && totalItem > pageSizeList[0]" class="paginator" [ngClass]="{'justify-content-between': showTextPage, 'justify-content-end': !showTextPage}" style="justify-content: space-between;">
+  <span *ngIf="showTextPage" class="mrt-3">Đã hiển thị {{pageIndex * page.pageSize + 1}} - {{pageIndex * page.pageSize + (totalItem - pageIndex * page.pageSize < page.pageSize? totalItem - pageIndex * page.pageSize : page.pageSize)}} trên {{totalItem}} kết quả</span>
+  <div id="page-items">
+    <button mat-button [disabled]="page.pageIndex===0" (click)="setPageIndex(page.pageIndex-1, true)">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button mat-button *ngFor="let p of pages" (click)="setPageIndex(p.value-1, true)"
+      [class.active]="pageIndex===p.value-1">{{p.label}}
+    </button>
+    <button mat-button [disabled]="page.pageIndex===numberOfPages-1"
+      (click)="setPageIndex(page.pageIndex+1, true)">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+    <mat-select *ngIf="showPageSizeList" class="dform-select-custom mrr-4" [(value)]="page.pageSize === totalItem ? -1 : page.pageSize"
+      (selectionChange)="goto($event.value)">
+      <mat-option *ngFor="let p of pageSizeList" [value]="p">
+        <span>{{p === -1 ? 'All' : p}}</span>
+      </mat-option>
+    </mat-select>
+    <label class="mrr-2">Chuyển đến </label>
+    <md-input-container>
+      <input #input type="number" matInput class="Rectangle" min="1" max="{{numberOfPages}}" (input)="setPageIndex($event.target.value? $event.target.value - 1 : 0)">
+    </md-input-container>
+  </div>
+</div>
+<mat-paginator class="d-none" #page [pageIndex]="pageIndex || 0" [length]="length || 0" [pageSize]="pageSize || 0"
+  (page)="onPageChange($event)">
+</mat-paginator>  

@@ -1,0 +1,63 @@
+<div class="dform-header d-flex mrt-3" style="justify-content: space-between; align-items: center;">
+  <div style="margin-left: 20px;">
+    <label class="form-label" style="font-size: larger;">{{data.label}}</label>
+  </div>
+  <button mat-icon-button (click)="closeDialog()" class="button-close-df-confirm">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="pdu-0" [ngStyle]="{'min-height': data?.description ? '145px' : '40px'}">
+
+  <form class="mrt-4" [formGroup]="form" style="display: flex; flex-direction: column">
+    <div *ngIf="data.active">
+      <div class="dform-title">
+        <label class="form-label">Tự động bật trạng thái hạch toán
+        </label>
+      </div>
+      <div fxLayout="row wrap">
+        <sm-date-control [item]="$selectDate" [notRequired]="true" fxFlex="50" [form]="form"></sm-date-control>
+        <app-time-input [item]="$time" fxFlex="50" [form]="form" [initialTime]="timeInput" (timeChange)="handleTimeChange($event)"></app-time-input>
+      </div>
+      <span *ngIf="!this.valid && !isValidControl($selectDate.key, 'matDatepickerParse')" class="note-message" >{{'Thời gian bật tối đa 24 giờ kể từ thời điểm chỉnh sửa'}}</span>
+      <span *ngIf="this.valid && !isValidControl($selectDate.key, 'matDatepickerParse')" class="error-message" >{{valid}}</span>
+    </div>
+  </form>
+    <div>
+      <div class="dform-title" *ngIf="data.title">
+        <label class="form-label">{{data.title}}
+          <span class="fc-error mrl-1">*</span>
+        </label>
+      </div>
+
+      <!-- Detail -->
+      <div style="margin-top: 5px;">
+        <p class="text-center fs-20" *ngIf="data?.message">{{data?.message || 'Message' | translate}}</p>
+        <p class="text-center fs-20" *ngIf="data?.innerHTML" [innerHTML]="data?.innerHTML"></p>
+      </div>
+      <div *ngIf="data?.description" class="form-group" [class.error]="!confirm && isRequired">
+        <div style="height: 50px" class="form-input-row1" style="flex-direction: column;">
+        <textarea ref-textarea rows="3" cols="70" class="dialog-text-area" [(ngModel)]="confirm"
+                  [placeholder]="data?.description" maxlength="{{ data?.maxLength ? data?.maxLength : 2000 }}" (ngModelChange)="ngModelChange()"></textarea>
+          <div class="max-length-info">
+            {{ this.confirm ? this.confirm!.length : 0 }} / {{data?.maxLength ? data?.maxLength : 2000}}
+          </div>
+        </div>
+        <div *ngIf="!confirm && isRequired" class="form-remark">
+          {{data?.description || 'Title' | translate}} {{ 'validations.not-null' | translate}}
+        </div>
+      </div>
+    </div>
+
+
+
+</div>
+<div mat-dialog-actions class="d-flex justify-content-center pdb-6 pdt-1" fxLayoutAlign="center">
+  <button class="btn btn-light-blue btn-md mrr-4" (click)="closeDialog()">
+    <!-- Accept Button -->
+    {{ data?.closeBtn | translate}}
+  </button>
+  <button class="btn btn-primary btn-md mrl-4" (click)="onUpdateConfirm()">
+    <!-- Error Button -->
+    {{ data?.acceptBtn | translate }}
+  </button>
+</div>

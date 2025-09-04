@@ -1,0 +1,41 @@
+.dialog-text-area {
+    border-color: #d8d8d8;
+    padding: 12px;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    &.error{
+        border-color: #eb2d4b;
+    }
+}
+
+.dform-title{
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Roboto-bold';
+    color: #212121;
+    margin-bottom: 16px;
+}
+.checkbox-ybs{
+    margin-right: 24px;
+}
+
+::ng-deep .dialog-tooltip-reject .mat-dialog-container{
+    min-width: unset !important;
+}
+
+.disable{
+    pointer-events: none !important;
+}
+
+.enable{
+    pointer-events: auto !important;
+}
+
+::ng-deep .backdrop-dialog-tooltip-reject {
+    opacity: 0 !important;
+}
+
+.form-remark{
+    font-family: 'RobotoItalic';
+}
+

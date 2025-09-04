@@ -1,0 +1,184 @@
+// ==================================================
+// GRID
+// ==================================================
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  >table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 100%;
+    //   margin-bottom: 1rem;
+      background-color: transparent;
+  }
+}
+
+table {
+  &.dform-table {
+      width: 100%;
+      tr {
+          vertical-align: text-top;
+          td {
+              padding: 1rem 0.5rem !important;
+              word-break: break-word !important;
+              border-bottom: 1px solid rgb(228, 228, 228);
+          }
+          th {
+            border-bottom: 1px solid rgb(228, 228, 228);
+          }
+          td:nth-child(1) {
+              font-weight: 600;
+          }
+          &.group-header{
+            vertical-align: middle !important;
+          }
+      }
+      &.table-primary {
+          thead {
+              tr {
+                  background-color: $color-blue-primary;
+                  th {
+                      height: 4rem;
+                      vertical-align: middle;
+                      color: white;
+                      font-size: 12px;
+                      text-align: center;
+                      .mat-sort-header-container {
+                          justify-content: center;
+                      }
+                  }
+              }
+          }
+
+          tbody tr {
+              td {
+                  text-align: center;
+              }
+          }
+
+          tbody tr {
+              td.left-align {
+                  text-align: left;
+              }
+              td.ft-weight {
+                 font-weight: 600;
+              }
+          }
+      }
+      &.table-info {
+        thead {
+            tr {
+                background-color: $color-light-blue;
+                th {
+                    padding: 1rem 0.5rem !important;
+                    vertical-align: middle;
+                    color: $color-blue-primary;
+                    font-size: 12px;
+                    font-weight: 600;
+                    text-align: left;
+                    border-bottom-width: 0px;
+                    border-top-width: 0px;
+                }
+                &.mat-row {
+                    min-height: 43px !important;
+                }
+            }
+        }
+
+        tbody tr {
+            &:hover{
+                background-color: $color-light-blue;
+                cursor: pointer;
+            }
+            td {
+                text-align: left;
+            }
+            .action-view {
+                padding: 0.4rem !important;
+            }
+        }
+        tbody tr {
+            td.center-align {
+                text-align: center;
+            }
+            td.ft-weight {
+                font-weight: 600;
+            }
+        }
+        .mat-sort-header-arrow {
+            color: $color-blue-primary;
+        }
+        .heard-group{
+            padding: 0 0 0 0.5rem !important;
+            background-color: #f7f7f7 !important;
+            border-bottom-width: 0px !important;
+        }
+        .mat-row {
+            height: 43px !important;
+        }
+        .border-bottom-group-expan{
+            border-bottom-width: 1px !important;
+        }
+      }
+      &.table-styles-odd-even, &.table-striped {
+          tbody {
+              tr:nth-child(odd) {
+                  background-color: transparent;
+              }
+              tr:nth-child(even) {
+                  background-color:  $color-gray-300;
+              }
+          }
+      }
+  }
+}
+
+.dform-table {
+  .mat-header-cell {
+    text-transform: uppercase;
+    word-break: normal;
+    padding: 0.75rem;
+    .mat-sort-header-button {
+        text-transform: uppercase;
+    }
+    border-bottom-style: none;
+  }
+
+  .mat-cell {
+    word-break: normal;
+    padding: 1.25rem;
+    border-bottom-style: none;
+    max-width: 20rem; 
+  }
+
+  .mat-footer-cell {
+    white-space: nowrap;
+    word-break: break-word;
+    padding: 0.75rem;
+    border-bottom-style: none;
+  }
+  .position-sticky{
+    position: sticky;
+    top: 0;
+    left: 3rem;
+  }
+  .position-sticky-1{
+    position: sticky;
+    top: 0;
+    left: 0.5rem;
+  }
+  .position-fixed-end{
+    right: 1.1rem;
+    position: sticky;
+    z-index: 1;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+  }
+}
+
+.table-over{
+    max-width: 100%;
+    overflow: auto;
+}

@@ -1,0 +1,90 @@
+<div class="dilog-message-error pds-5">
+  <div class="title-message-error">
+    Chi tiết message lỗi
+  </div>
+  <button mat-icon-button (click)="closeDialog()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="pds-3 pdu-6">
+  <div class="pds-2" fxLayout="row wrap">
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="30">Key</label>
+        <label class="content-message-error-detail">{{this.dataMessageErrorDetail?.key}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="30">Topic</label>
+        <label class="content-message-error-detail">{{this.dataMessageErrorDetail?.topic}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="30">Partition</label>
+        <label class="content-message-error-detail">{{this.dataMessageErrorDetail?.partition}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="30">Offset</label>
+        <label class="content-message-error-detail">{{this.dataMessageErrorDetail?.offset}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="30">Created By</label>
+        <label class="content-message-error-detail">{{this.dataMessageErrorDetail?.createdBy}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="30">Created At</label>
+        <label class="content-message-error-detail">{{this.dataMessageErrorDetail?.createdAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="30">Update By</label>
+        <label class="content-message-error-detail">{{this.dataMessageErrorDetail?.updatedBy}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="30">Update At</label>
+        <label class="content-message-error-detail">{{this.dataMessageErrorDetail?.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="30">Status</label>
+        <label class="content-message-error-detail">{{this.dataMessageErrorDetail?.status}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="30">Error</label>
+        <label class="content-message-error-detail" fxFlex="70" [matTooltip]="dataMessageErrorDetail?.error">{{this.dataMessageErrorDetail?.error}}</label>
+      </div>
+    </div>
+    <div fxFlex="100">
+      <div fxLayout="row" class="mrb-4">
+        <label fxFlex="15">Message</label>
+        <label class="content-message-error-detail" fxFlex="85"  [matTooltip]="dataMessageErrorDetail?.message">{{this.dataMessageErrorDetail?.message}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions class="" fxLayout="row" fxLayoutAlign="center">
+  <button class="btn btn-light-blue btn-xs mrr-4" (click)="closeDialog()">
+    Đóng
+  </button>
+
+  <button *ngIf="enableRetry" class="btn btn-dark-blue pds-4" [disabled]="this.dataMessageErrorDetail?.status !=='INIT' || this.checkCreatedAtOver15Days(this.dataMessageErrorDetail?.createdAt)" (click)="onClickRetry(this.dataMessageErrorDetail?.id)">
+    <mat-icon class="mbb-icon ic-refresh"></mat-icon>
+    Retry
+  </button>
+</div>

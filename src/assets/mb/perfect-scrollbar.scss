@@ -1,0 +1,32 @@
+.ps-mbb-vb {
+  .ps:hover {
+    > .ps__rail-y {
+      opacity: 0.5;
+    }
+  }
+  .ps.ps--scrolling-y {
+    > .ps__rail-y {
+      opacity: 0.9;
+    }
+  }
+  .ps__rail-y {
+    background-color: $color-gray-300 !important;
+    // opacity: 0.9;
+    width: 3px !important;
+    right: 8px !important;
+    margin-right: 8px;
+    .ps__thumb-y {
+      background-color: $color-blue-primary !important;
+      width: 10px;
+      border-radius: 10px;
+      right: 0px;
+      right: -4px;
+    }
+    &:hover {
+      width: 3px !important;
+      .ps__thumb-y {
+        width: 10px !important;
+      }
+    }
+  }
+}

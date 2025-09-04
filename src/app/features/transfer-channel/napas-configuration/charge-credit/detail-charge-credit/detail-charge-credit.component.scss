@@ -1,0 +1,80 @@
+@import "src/assets/mb/common.scss";
+.search-ctqt {
+  display: flow-root;
+}
+
+.title {
+  font-size: 24px !important;
+  font-family: Roboto-bold;
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+}
+
+.label-item {
+  font-size: 14px !important;
+  font-family: Roboto-bold;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.div-search form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.div-search .search-input-custom {
+  min-width: 80% !important;
+}
+
+.label-status {
+  font-weight: bold;
+}
+
+.label-select {
+  color: #141ed2;
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.content-file-attachment {
+  background: white !important;
+}
+
+.label-css {
+    margin: 1.5rem 0;
+    font-size: 1rem;
+    color: $color-blue-primary;
+    font-weight: bold;
+    font-family: 'Roboto-bold';
+}
+
+::ng-deep sm-text-control.custom-vnd {
+  position: relative;
+}
+
+::ng-deep sm-text-control.custom-vnd input {
+  padding-right: 30px;
+}
+
+::ng-deep sm-text-control.custom-vnd::after {
+  content: 'VND';
+  position: absolute;
+  right: 15px;
+  top: 35%;
+  bottom: 0;
+  transform: translateY(10%);
+  color: #666;
+  pointer-events: none;
+}
+
+.custom-css-word {
+  max-height: 60px;
+  overflow-y: scroll;
+  word-wrap: break-word; /* Deprecated but works in some cases */
+  overflow-wrap: break-word; /* Standard way */
+  white-space: normal;
+}

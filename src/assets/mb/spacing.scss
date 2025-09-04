@@ -1,0 +1,42 @@
+@each $class,
+$styles in $spacings {
+    @for $i from 0 through 32 {
+        .#{$class}-#{$i} {
+            @each $style in $styles {
+                #{$style}: spacing-loop($i) !important;
+            }
+        }
+    }
+}
+
+@each $breakpoint in $breakpoints {
+    @include create-responsives-style($breakpoint) {
+        @each $class,
+        $styles in $spacings {
+            @for $i from 0 through 32 {
+                .#{$class}-#{$breakpoint}-#{$i} {
+                    @each $style in $styles {
+                        #{$style}: spacing-loop($i) !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@each $breakpoint in $breakpoints {
+    @include create-responsives-style($breakpoint) {
+        @each $class,
+        $styles in $spacings {
+            @for $i from 0 through 32 {
+                .#{$class}-#{$breakpoint}-#{$i} {
+                    @each $style in $styles {
+                        #{$style}: spacing-loop($i) !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+$utilities: map-merge($flex-justify-content, $utilities);

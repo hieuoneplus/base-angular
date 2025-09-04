@@ -1,0 +1,241 @@
+@import '../style/variables';
+@import '../style/transitions';
+@import '../style/breakpoints';
+
+.dform-container-wrap,
+.dform-container {
+  height: 100%;
+  color: $color-gray-900;
+}
+
+.dform-content {
+  position: relative;
+  padding: 24px 16px;
+  height: 100%;
+}
+
+.emb-content {
+  position: relative;
+  height: 100%;
+}
+
+.dform-header {
+  position: relative;
+  z-index: 201;
+  display: block;
+
+  // .dform-toolbar {
+  //   padding: 0 8px;
+  // }
+
+  // Layout control
+  .dform-header-fixed & {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.dform-sidenav {
+  position: absolute;
+  overflow-x: hidden;
+  transition: swift-ease-out(width); // Only set width property
+
+  // @include mat-elevation(2);
+
+  &.mat-drawer-side {
+    border-width: 0;
+  }
+}
+
+// Layout control
+.dform-header-above {
+  .dform-container {
+    height: calc(100% - #{$toolbar-height-desktop}) !important;
+  }
+
+  .dform-sidebar-main {
+    height: 100% !important;
+  }
+
+  .smart-sidenav {
+    .dform-sidemenu.level-0>li>a>.menu-name {
+      text-transform: uppercase !important;
+    }
+  }
+}
+.dform-item-panel-avatar{
+  display: none;
+}
+
+// Layout control
+.dform-sidenav-collapsed,
+.dform-sidenav-collapsed-fix {
+  .dform-sidenav {
+    width: $sidenav-collapsed-width;
+
+    .menu-name,
+    .menu-label,
+    .menu-badge,
+    .menu-caret,
+    .dform-user-panel-name,
+    .dform-user-panel-email,
+    .dform-user-panel-icons {
+      opacity: 0;
+    }
+
+    .dform-user-panel-avatar, .dform-user-panel-avatar-biz {
+      transform: scale(.5);
+      display: none;
+    }
+
+    .dform-item-panel-avatar{
+      display: inline;
+      height: 40px;
+    }
+
+    .dform-sidebar-main{
+      padding-left: 8px;
+    }
+
+    .dform-sidemenu {
+      a {
+        padding: 12px 9px;
+      }
+      .dform-sidemenu-item.active > a {
+        border-radius: 5px;
+        width: 40px;
+        height: 40px;
+      }
+      &.level-1 > li > a {
+        padding-left: 19px;
+        padding-top: 10px ;
+        padding-bottom: 10px;
+        display: none;
+      }
+    }
+
+    &:hover {
+      width: $sidenav-width-padding;
+      .menu-name,
+      .menu-label,
+      .menu-badge,
+      .menu-caret,
+      .dform-user-panel-name,
+      .dform-user-panel-email,
+      .dform-user-panel-icons {
+        opacity: 1;
+      }
+
+      .dform-sidebar-main{
+        padding-left: 16px;
+      }
+
+      .dform-sidemenu {
+        // a {
+        //   padding: 12px 16px;
+        // }
+        .dform-sidemenu-item.active > a {
+          border-radius: 5px;
+          width: 100%;
+          height: 100%;
+        }
+        &.level-1 > li > a {
+          display: block;
+        }
+      }
+     
+      .dform-user-panel-avatar {
+        transform: scale(1);
+        display: inline;
+      }
+
+      .dform-user-panel-avatar-biz {
+        transform: scale(1.3);
+        display: inline;
+      }
+
+      .dform-item-panel-avatar{
+        display: none;
+      }
+    }
+  }
+  .emb-sidenav{
+    .dform-sidemenu {
+      width: $emb_sidenav-width !important;
+    }
+
+    .submenu>li>a>.menu-name {
+      font-size: 13px;
+    }
+
+    &:hover {
+      width: $emb_sidenav-width-padding;
+    }
+  }
+}
+
+// Layout control
+.dform-sidenav-collapsed {
+  .dform-content-wrap {
+    margin-left: $sidenav-collapsed-width !important;
+
+    [dir='rtl'] & {
+      margin-left: auto !important;
+      margin-right: $sidenav-collapsed-width !important;
+    }
+  }
+
+  &[dir='rtl'] .dform-content-wrap {
+    margin-left: auto !important;
+    margin-right: $sidenav-collapsed-width !important;
+  }
+}
+
+// Layout control
+.dform-navbar-top {
+  .dform-topmenu {
+    top: 0;
+  }
+
+  .dform-branding {
+    margin-left: 16px;
+
+    [dir='rtl'] & {
+      margin-left: auto;
+      margin-right: 16px;
+    }
+  }
+}
+
+// Layout control
+.dform-header-fixed {
+  .dform-topmenu {
+    top: $topmenu-sticky-position-desktop;
+
+    @include bp-lt(small) {
+      & {
+        top: $topmenu-sticky-position-mobile;
+      }
+    }
+  }
+}
+
+// Fix the init content width
+.dform-content-width-fix {
+  .dform-content-wrap {
+    margin-left: $sidenav-width !important;
+
+    [dir='rtl'] & {
+      margin-left: auto !important;
+      margin-right: $sidenav-width !important;
+    }
+  }
+}
+
+// Colorful
+.dform-header-white {
+  .dform-toolbar,
+  .dform-topmenu {
+    background-color: white;
+  }
+}

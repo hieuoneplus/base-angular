@@ -1,0 +1,35 @@
+.config-content {
+  flex-flow: wrap;
+  box-sizing: border-box;
+  display: flex;
+
+  .config-box {
+    width: 247px;
+    height: 160px;
+    margin-right: 16px;
+    background-color: #fff;
+    cursor: pointer;
+
+    .config-box-content {
+      flex-direction: column;
+      box-sizing: border-box;
+      display: flex;
+      place-content: center;
+      align-items: center;
+
+      .content-icon {
+        margin-top: 46px;
+        margin-bottom: 12px;
+        font-weight: bold;
+      }
+
+      span {
+        font-family: Roboto-bold;
+      }
+    }
+  }
+
+  .config-box:hover {
+    box-shadow: 0 6px 16px -6px #222
+  }
+}

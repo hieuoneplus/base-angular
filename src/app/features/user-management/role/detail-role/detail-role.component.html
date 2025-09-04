@@ -1,0 +1,157 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chi tiết vai trò</h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Mã vai trò</label>
+            <label fxFlex="80" style="font-weight: bold;">{{detail?.code}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Tên vai trò</label>
+            <label class="content-info-custom" fxFlex="80" style="font-weight: bold;">{{detail?.name}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Trạng thái</label>
+            <mat-slide-toggle [disabled]="true" color="primary" [checked]="detail?.active"> </mat-slide-toggle>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Loại vai trò</label>
+            <label fxFlex="80" style="font-weight: bold;">{{getRoleTypeName()}}</label>
+          </div>
+          <div fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="20">Mô tả</label>
+            <label class="content-info-custom" fxFlex="80" style="font-weight: bold;">{{detail?.description}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="row" class="mrt-5" >
+    <div fxFlex="25" class="panel">
+      <div class="panel-body">
+        <div class="panel-heading justify-content-between bdt">
+          <label>
+            DANH SÁCH MODULE GÁN QUYỀN
+          </label>
+        </div>
+        <div>
+          <ul class="menu">
+            <li *ngFor="let item of modules" (click)="onSelectModule(item)" [class.selected]="isSelectedModule(item)">
+              {{item.moduleName}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="75" class="panel mrl-5">
+      <div class="panel-body">
+        <div class="panel-heading justify-content-between bdt">
+          <label>
+              DANH SÁCH QUYỀN TƯƠNG ỨNG
+          </label>
+        </div>
+        <div [ngClass]="'table-css'">
+          <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element;" [ngStyle]="{'background-color': getRowColor(element)}">
+                {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="view">
+              <th mat-header-cell *matHeaderCellDef>Xem và tìm kiếm</th>
+              <td mat-cell *matCellDef="let element;" [ngStyle]="{'background-color': getRowColor(element)}">
+                <mat-checkbox *ngIf="isDisplayCheckboxAction(element, 'view')" color="primary"
+                  [checked]="isChecked(element, 'view')" (change)="onSelectPermission(element)" [disabled]="true">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="insert">
+              <th mat-header-cell *matHeaderCellDef>Thêm</th>
+              <td mat-cell *matCellDef="let element;" [ngStyle]="{'background-color': getRowColor(element)}">
+                <mat-checkbox *ngIf="isDisplayCheckboxAction(element, 'insert')" color="primary"
+                  [checked]="isChecked(element, 'insert')" (change)="onSelectPermission(element)" [disabled]="true">
+                </mat-checkbox>
+              </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="update">
+              <th mat-header-cell *matHeaderCellDef>Chỉnh sửa</th>
+              <td mat-cell *matCellDef="let element;" [ngStyle]="{'background-color': getRowColor(element)}">
+                <mat-checkbox *ngIf="isDisplayCheckboxAction(element, 'update')" color="primary"
+                  [checked]="isChecked(element, 'update')" (change)="onSelectPermission(element)" [disabled]="true">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef>Xóa</th>
+              <td mat-cell *matCellDef="let element;" [ngStyle]="{'background-color': getRowColor(element)}">
+                <mat-checkbox *ngIf="isDisplayCheckboxAction(element, 'delete')" color="primary"
+                  [checked]="isChecked(element, 'delete')" (change)="onSelectPermission(element)" [disabled]="true">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="assign">
+              <th mat-header-cell *matHeaderCellDef>Gán quyền</th>
+              <td mat-cell *matCellDef="let element;" [ngStyle]="{'background-color': getRowColor(element)}">
+                <mat-checkbox *ngIf="isDisplayCheckboxAction(element, 'assign')" color="primary"
+                  [checked]="isChecked(element, 'assign')" (change)="onSelectPermission(element)" [disabled]="true">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="retry">
+              <th mat-header-cell *matHeaderCellDef>Retry</th>
+              <td mat-cell *matCellDef="let element;" [ngStyle]="{'background-color': getRowColor(element)}">
+                <mat-checkbox *ngIf="isDisplayCheckboxAction(element, 'retry')" color="primary" [checked]="isChecked(element, 'retry')"
+                  (change)="onSelectPermission(element)"  [disabled]="true">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="reply">
+              <th mat-header-cell *matHeaderCellDef>Reply</th>
+              <td mat-cell *matCellDef="let element;" [ngStyle]="{'background-color': getRowColor(element)}">
+                <mat-checkbox *ngIf="isDisplayCheckboxAction(element, 'reply')" color="primary" [checked]="isChecked(element, 'reply')"
+                  (change)="onSelectPermission(element)"  [disabled]="true">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="approve">
+              <th mat-header-cell *matHeaderCellDef>Phê duyệt</th>
+              <td mat-cell *matCellDef="let element;" [ngStyle]="{'background-color': getRowColor(element)}">
+                <mat-checkbox *ngIf="isDisplayCheckboxAction(element, 'approve')" color="primary" [checked]="isChecked(element, 'approve')"
+                  (change)="onSelectPermission(element)"  [disabled]="true">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0) || modules.length === 0">
+          </app-no-data>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-bottom dform-child-content " style="margin-top: 7rem;">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+  </div>
+</div>
+

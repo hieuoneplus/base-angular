@@ -1,0 +1,35 @@
+<div class="pdl-2 pdr-2"
+     [ngClass]="{'control-error': isValidControl(item.key)}">
+    <label class="form-label">{{item.label | translate}}
+        <mat-icon *ngIf="isValidControl(item.key)"
+                  class="mbb-icon ic-error sm fc-error mrl-1">
+        </mat-icon>
+        <span *ngIf="item.required && !isValidControl(item.key)"
+              class="fc-error mrl-1">*</span>
+    </label>
+    <!-- CASE DROPDOWN -->
+    <div class="form-group"
+         [formGroup]="form"
+         [class.error]="isValidControl(item.key) || isValidCustom(item.key, item.customValidate)?.key">
+        <mat-select #selectElement
+                    [formControlName]="item.key"
+                    [placeholder]="item.placeholder | translate"
+                    (keydown)="makeChoice($event)">
+            <mat-option *ngIf="item.reset"
+                        [value]="">Không lựa chọn</mat-option>
+            <mat-option *ngFor="let opt of item.options"
+                        [value]="opt.key">{{opt.value}}</mat-option>
+        </mat-select>
+
+        <div *ngIf="isValidControl(item.key, 'required')"
+             class="form-remark">
+            {{'validations.required' | translate}}
+        </div>
+
+        <div *ngIf="isValidCustom(item.key, item.customValidate)?.key"
+             class="form-remark">
+            {{isValidCustom(item.key, item.customValidate)?.value | translate}}
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,25 @@
+<div class="search-ctqt">
+  <!-- <h2 class="title">Chi tiết cấu hình</h2> -->
+  <div class="panel batch-search mrt-8">
+
+    <div class="panel-body panel-padding" fxLayout="row wrap">
+      <h2 fxFlex="100" style="color: #141ed2">
+        Chi tiết cấu hình
+      </h2>
+      <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap">
+        <sm-text-control [item]="$swiftCode" fxFlex="50" [form]="general"></sm-text-control>
+        <sm-text-control [item]="$key" fxFlex="50" [form]="general"></sm-text-control>
+        <sm-textarea-control [item]="$value" fxFlex="50" [form]="general"></sm-textarea-control>
+      </form>
+      <div *ngIf="!isDisputeIncome" fxFlex="100" fxLayoutAlign="end">
+        <button fxFlex="20" class="btn btn-light-blue mrr-2" (click)="goBack()">
+          <span>Quay lại</span>
+        </button>
+        <button fxFlex="20" class="btn btn-primary mrr-2"
+          (click)="saveDispute()">
+          <span>Lưu</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div style="padding-bottom: 15rem;"></div>

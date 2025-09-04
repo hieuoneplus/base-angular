@@ -1,0 +1,188 @@
+<div
+  class="pdl-2 pdr-2"
+  [ngClass]="{ 'control-error': isValidControl(item.key) }"
+  *ngIf="typeForm === 'vertical'"
+>
+  <label class="form-label"
+    >{{ item.label }}
+    <mat-icon
+      *ngIf="isValidControl(item.key) && item.label"
+      class="mbb-icon ic-error sm fc-error mrl-1"
+    >
+    </mat-icon>
+    <span
+      *ngIf="item.required && !isValidControl(item.key) && item.label"
+      class="fc-error mrl-1"
+      >*</span
+    >
+    <mat-icon
+      *ngIf="item.toolTipInfo"
+      class="info-icon-tooltip"
+      (mouseenter)="showTooltip = true"
+      (mouseleave)="showTooltip = false"
+      >info</mat-icon
+    >
+    <div class="custom-tooltip-content" *ngIf="showTooltip">
+      {{ item.toolTipInfo }}
+    </div>
+  </label>
+  <!-- CASE TEXTBOX -->
+  <div
+    class="form-group"
+    [formGroup]="form"
+    [class.error]="
+      isValidControl(item.key) ||
+      isValidCustom(item.key, item.customValidate)?.key
+    "
+  >
+    <div class="form-input-row">
+      <input
+        #inputElement
+        matInput
+        class="form-control"
+        type="text"
+        [title]="item.title ? form.get(item.key)?.value : ''"
+        [regex]="item.customDirectives"
+        [dformItem]="item.directives"
+        [formControlName]="item.key"
+        autocomplete="off"
+        [placeholder]="item.placeholder"
+        [pattern]="item.pattern"
+        [type]="item.type"
+        [email]="item.type === 'email'"
+        [maxlength]="item.maxLength"
+        [readonly]="item.readOnly"
+        (focus)="focusFunction($event)"
+        (focusout)="focusOutFunction($event)"
+      />
+    </div>
+    <div *ngIf="maxLengthView" class="max-length-info">
+      {{
+        (form.get(item.key)?.value
+          ? form.get(item.key)?.value?.toString().length
+          : 0) +
+          "/" +
+          item.maxLength
+      }}
+    </div>
+    <div *ngIf="isValidControl(item.key, 'required')" class="form-remark">
+      {{ "validations.required" | translate }}
+    </div>
+    <div *ngIf="isValidControl(item.key, 'maxlength')" class="form-remark">
+      {{ "validations.maxlength" | translate : { number: item.maxLength } }}
+    </div>
+    <div *ngIf="isValidControl(item.key, 'minlength')" class="form-remark">
+      {{ "validations.minlength" | translate : { number: item.minLength } }}
+    </div>
+    <div *ngIf="isValidControl(item.key, 'pattern')" class="form-remark">
+      {{ "validations.email" | translate }}
+    </div>
+    <div
+      *ngIf="isValidCustom(item.key, item.customValidate)?.key"
+      class="form-remark"
+    >
+      {{
+        isValidCustom(item.key, item.customValidate)?.value
+          | translate : { number_max: item.max, number_min: item.min }
+      }}
+    </div>
+    <div *ngIf="isValidControl(item.key, 'email')" class="form-remark">
+      {{ "validations.email" | translate }}
+    </div>
+  </div>
+</div>
+<div
+  fxLayout="row wrap"
+  *ngIf="typeForm === 'horizontal'"
+  [ngClass]="{ 'control-error': isValidControl(item.key) }"
+>
+  <div
+    class="form-group"
+    *ngIf="item.label != ''"
+    class="pdl-2 mrt-4"
+    fxFlex.gt-sm="40"
+    fxFlex.gt-xs="100"
+    fxFlex="100"
+  >
+    <label class="form-label"
+      >{{ item.label }}
+      <mat-icon
+        *ngIf="isValidControl(item.key) && item.label"
+        class="mbb-icon ic-error sm fc-error mrl-1"
+      >
+      </mat-icon>
+      <span
+        *ngIf="item.required && !isValidControl(item.key) && item.label"
+        class="fc-error mrl-1"
+        >*</span
+      >
+      <mat-icon
+      *ngIf="item.toolTipInfo"
+      class="info-icon-tooltip"
+      (mouseenter)="showTooltip = true"
+      (mouseleave)="showTooltip = false"
+      >info</mat-icon
+    >
+    <div class="custom-tooltip-content" *ngIf="showTooltip">
+      {{ item.toolTipInfo }}
+    </div>
+    </label>
+  </div>
+  <div
+    class="form-group"
+    [formGroup]="form"
+    [class.error]="
+      isValidControl(item.key) ||
+      isValidCustom(item.key, item.customValidate)?.key
+    "
+  >
+    <div class="form-input-row">
+      <input
+        #inputElement
+        matInput
+        class="form-control"
+        type="text"
+        [title]="item.title ? form.get(item.key)?.value : ''"
+        [regex]="item.customDirectives"
+        [dformItem]="item.directives"
+        [formControlName]="item.key"
+        autocomplete="off"
+        [placeholder]="item.placeholder | translate"
+        [pattern]="item.pattern"
+        [type]="item.type"
+        [email]="item.type === 'email'"
+        [maxlength]="item.maxLength"
+        [readonly]="item.readOnly"
+        (focus)="focusFunction($event)"
+        (focusout)="focusOutFunction($event)"
+      />
+    </div>
+    <div *ngIf="maxLengthView" class="max-length-info">
+      {{ form.get(item.key)?.value.toString().length + "/" + item.maxLength }}
+    </div>
+    <div *ngIf="isValidControl(item.key, 'required')" class="form-remark">
+      {{ "validations.required" | translate }}
+    </div>
+    <div *ngIf="isValidControl(item.key, 'maxlength')" class="form-remark">
+      {{ "validations.maxlength" | translate : { number: item.maxLength } }}
+    </div>
+    <div *ngIf="isValidControl(item.key, 'minlength')" class="form-remark">
+      {{ "validations.minlength" | translate : { number: item.minLength } }}
+    </div>
+    <div *ngIf="isValidControl(item.key, 'pattern')" class="form-remark">
+      {{ "validations.email" | translate }}
+    </div>
+    <div
+      *ngIf="isValidCustom(item.key, item.customValidate)?.key"
+      class="form-remark"
+    >
+      {{
+        isValidCustom(item.key, item.customValidate)?.value
+          | translate : { number_max: item.max, number_min: item.min }
+      }}
+    </div>
+    <div *ngIf="isValidControl(item.key, 'email')" class="form-remark">
+      {{ "validations.email" | translate }}
+    </div>
+  </div>
+</div>

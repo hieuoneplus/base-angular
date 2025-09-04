@@ -1,0 +1,52 @@
+@import '../style/variables';
+@import '../style/transitions';
+
+.dform-user-panel {
+  padding: 16px 0;
+}
+
+.dform-user-panel-avatar, .dform-item-panel-avatar {
+  margin-bottom: 32px;
+  // Set default width and height can avoid flashing before avatar image loaded.
+  // width: 64px;
+  // height: 40px;
+  // border-radius: 999px;
+  transition: swift-ease-out(transform);
+  // transform: scale(.5);
+  // display: none;
+}
+
+.dform-item-panel-avatar{
+  padding-left: 3px;
+}
+
+.dform-user-panel-name,
+.dform-user-panel-email {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+
+.dform-user-panel-name,
+.dform-user-panel-email,
+.dform-user-panel-icons {
+  opacity: 1;
+  transition: swift-ease-out(opacity);
+}
+
+.dform-user-panel-icons {
+  white-space: nowrap;
+
+  .mat-icon-button {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+
+    .mat-icon {
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+      line-height: 18px;
+    }
+  }
+}

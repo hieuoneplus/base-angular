@@ -1,0 +1,91 @@
+<div class="search-ctqt">
+  <h2 class="title-page">Thông tin cấu hình đối tác</h2>
+  <div class="panel batch-search mrt-8">
+    <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap" (ngSubmit)="search()" style="z-index: 9999;">
+
+      <sm-select-control [item]="$swiftCode" fxFlex="30" [form]="form"></sm-select-control>
+      <sm-select-control [item]="$key" fxFlex="30" [form]="form"></sm-select-control>
+      <!-- <sm-text-control [item]="$value" fxFlex="30" [form]="form"></sm-text-control> -->
+
+      <div fxLayoutAlign="end center">
+        <button type="submit" fxFlex="25" class="btn btn-primary mrr-2">
+          <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+          <span>Tìm kiếm</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        {{'danh sách cấu hình' | translate | uppercase}}
+      </label>
+      <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+        <!-- button -->
+      </div>
+    </div>
+    <div class="panel-body">
+      <div [ngClass]="'table-css'">
+        <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+
+          <ng-container matColumnDef="stt">
+            <th mat-header-cell *matHeaderCellDef> STT</th>
+            <td mat-cell *matCellDef="let element;"> {{element.stt}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="swiftCode">
+            <th mat-header-cell *matHeaderCellDef>swiftCode</th>
+            <td mat-cell *matCellDef="let element;"> {{element.swiftCode}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="key">
+            <th mat-header-cell *matHeaderCellDef>KEY</th>
+            <td mat-cell *matCellDef="let element;"> {{element.key}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef>VALUE</th>
+            <td mat-cell *matCellDef="let element;"> {{element.value}} </td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="modifyDate">
+            <th mat-header-cell *matHeaderCellDef>Ngày sửa</th>
+            <td mat-cell *matCellDef="let element;"> {{element.updatedDateText}} </td>
+          </ng-container> -->
+
+          <!-- <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element;">
+            </td>
+          </ng-container> -->
+
+          <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element;">
+              <button mat-icon-button *ngIf="element.canEdit"
+                (click)="viewDetail(element)">
+                <mat-icon class=" mbb-icon ic-edit fc-primary mrr-0" [matTooltip]="'Edit' | translate">
+                </mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+        </app-no-data>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <dform-pagination-plus class="fullWidth" #pagePage showPageSelect [pageIndex]="0"
+        (page)="changePageIndex($event);" [totalItem]="0" [pageSize]="0" [showPageSizeList]="true"
+        [pageSizeList]="[10, 20, 50, 100]">
+      </dform-pagination-plus>
+    </div>
+  </div>
+  <div class="panel-bottom button-footer mrt-15">
+    <dform-footer *ngIf="isChecker" [listButton]="listButton" [isShowSelection]="true" [selection]="selectionObs"
+    [limitSelected]="limitSelected" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

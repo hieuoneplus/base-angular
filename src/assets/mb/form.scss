@@ -1,0 +1,311 @@
+.form-remark {
+    color: $color-blue-primary;
+    margin: 0;
+    font-weight: 400;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    position: relative;
+    >.d-flex {
+        @include flexWidth(1, 0, 100%);
+    }
+
+    .form-group {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .dform-radio {
+        width: 100%;
+    }
+    
+    .form-remark {
+        position: absolute;
+        bottom: -1.5rem;
+        left: 0;
+    }
+
+    .form-input-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 0;
+        padding-right: 0;
+        position: relative;
+        height: 40px !important;
+
+        button.btn {
+            margin: 0px;
+        }
+
+        input {
+            flex: 1 0 auto;
+        }
+    }
+
+    >div {
+        @include flexWidth(1, 0, 100%);
+    }
+
+    label {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        min-height: 2.3rem;
+        @include flexWidth(1, 0, 100%);
+        mat-icon.mbb-icon {
+            font-weight: 400;
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+            margin-bottom: 2px;
+        }
+    }
+
+    >input.form-control {
+        @include flexWidth(1, 0, 100%);
+    }
+
+    textarea.form-control {
+        height: 3rem;
+        resize: none;
+    }
+
+    input.form-control, textarea.form-control {
+        padding: 0.75rem;
+        font-size: 1rem;
+        line-height: 1.25rem;
+        border: solid 1px $color-gray-400;
+        max-height: 3rem;
+        width: initial;
+        font-family: Roboto;
+        background-color: #fff;
+        @include border-radius(0.5rem);
+
+        &:-ms-input-placeholder {
+            color: $color-gray-custom;
+            font-size: pxtorem(12);
+        }
+        
+        &::-ms-input-placeholder {
+            color: $color-gray-custom;
+            font-size: pxtorem(12);
+        }
+
+        &:focus,
+        &:hover {
+            border-color: $color-blue-primary !important;
+            // outline: thin dotted;
+        }
+
+        &.mat-input-element {
+            width: initial;
+            margin-top: 0px;
+        }
+
+        &[disabled] {
+            background-color: #f5f5f5;
+            border-color: $color-gray-400;
+            color: $color-gray-900;
+        }
+        &[readonly] {
+            background-color: #f5f5f5;
+            border-color: $color-gray-400;
+            color: $color-gray-900;
+        }
+    }
+
+    select.input-control {
+        &[disabled] {
+            background-color: #f5f5f5;
+            border-color: $color-gray-300;
+            color: $color-gray-900;
+        }
+        &[readonly] {
+            background-color: #f5f5f5;
+            border-color: $color-gray-400;
+            color: $color-gray-900;
+        }
+    }
+
+    &.error {
+        >label {
+            mat-icon.mbb-icon {
+                color: $color-sematic-error;
+            }
+        }
+
+        .form-remark {
+            color: $color-sematic-error;
+            font-family: RobotoItalic;
+        }
+
+        input, textarea {
+            border-color: $color-sematic-error;
+        }
+
+        select {
+            border-color: $color-sematic-error;
+        }
+
+        mat-select {
+            border-color: $color-sematic-error;
+        }
+    }
+
+    &.success {
+        mat-icon.mbb-icon {
+            color: $color-sematic-success;
+        }
+
+        .form-remark {
+            color: $color-sematic-success;
+        }
+
+        input {
+            border-color: $color-sematic-success;
+        }
+
+        select {
+            border-color: $color-sematic-success;
+        }
+
+        mat-select {
+            border-color: $color-sematic-success;
+        }
+    }
+    .mat-radio-button {
+        &.mat-accent {
+            &.mat-radio-checked {
+                .mat-radio-outer-circle {
+                    background-color: transparent;
+                    border-color: $color-blue-primary;
+                }
+            }
+
+            .mat-radio-inner-circle {
+                background-color: $color-blue-primary;
+            }
+
+            .mat-radio-ripple .mat-ripple-element {
+                background-color: opacity-color($color-blue-primary, 0.3);
+            }
+        }
+    }
+
+    .mat-select[aria-disabled='true'] {
+        background-color: whitesmoke;
+    }
+
+    .mat-checkbox {
+        &.mat-accent {
+            .mat-checkbox-ripple {
+
+                .mat-ripple,
+                .mat-ripple-element {
+                    background-color: opacity-color($color-blue-primary, 0.3) !important;
+                }
+            }
+        }
+    }
+
+    .mat-checkbox-checked {
+        &.mat-accent {
+            .mat-checkbox-background {
+                background-color: $color-blue-primary;
+            }
+        }
+    }
+
+    .mat-checkbox-checked.mat-accent,
+    .mat-checkbox-indeterminate.mat-accent {
+        .mat-checkbox-background {
+            background-color: $color-blue-primary;
+        }
+    }
+
+    .mat-select {
+        padding: 0.75rem;
+        border: solid 1px $color-gray-300;
+        border-radius: 0.5rem;
+        max-height: calc(3.25rem - 4px);
+        padding-top: calc(0.75rem - 2px);
+        &[disabled],
+        [aria-disabled="true"] {
+            background-color: whitesmoke;
+            border-color: $color-gray-300;
+            color: $color-gray-900;
+        }
+        &[aria-disabled="false"]:focus {
+          border: solid 1px  $color-blue-primary;
+        }
+        .mat-select-value{
+            color: $color-gray-900;
+        }
+    }
+}
+
+.form-label{
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Roboto-bold;
+    color: $color-neutral-black;
+}
+
+.mat-select-panel {
+    @include ie-only {
+        max-width: none !important;
+    }
+}
+
+input{
+    &.upper{
+        text-transform: uppercase;
+    }
+    &.pl-upper{
+        &::-webkit-input-placeholder { /* WebKit browsers */
+            text-transform: uppercase;
+        }
+        &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            text-transform: uppercase;
+        }
+        &::-moz-placeholder { /* Mozilla Firefox 19+ */
+            text-transform: uppercase;
+        }
+        &:-ms-input-placeholder { /* Internet Explorer 10+ */
+            text-transform: uppercase;
+        }
+        &::placeholder { /* Recent browsers */
+            text-transform: uppercase;
+        }
+    }
+}
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.slide-status{
+    margin-top: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
+    border: 1px solid #d8d8d8 !important;
+    min-height: 40px !important;
+    border-radius: 0.5rem !important;
+    padding-top: 0.5rem !important;
+    padding-left: 1rem !important;
+    .mat-slide-toggle-bar{
+      position: absolute !important;
+      margin-left: 40% !important;
+    }
+}

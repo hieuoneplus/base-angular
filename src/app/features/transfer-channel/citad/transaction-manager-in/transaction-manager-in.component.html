@@ -1,0 +1,171 @@
+<div class="search-ctqt">
+  <h2 class="title-page">
+    Quản lý giao dịch đến
+  </h2>
+  <div class="panel batch-search mrt-8" style="z-index: 1000;">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        TÌM KIẾM
+      </label>
+    </div>
+    <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap" (ngSubmit)="search()">
+      <sm-text-control [item]="$transactionId" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-text-control [item]="$t24ReferenceNumber" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-date-control [item]="$debitValueDate" fxFlex="25" [form]="form"></sm-date-control>
+      <sm-select-control [item]="$isRetryable" fxFlex="25" [form]="form"></sm-select-control>
+      <sm-select-control [item]="$status" fxFlex="25" [form]="form"></sm-select-control>
+      <sm-text-control [item]="$minAmount" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-text-control [item]="$maxAmount" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-text-control [item]="$debitTheirRef" fxFlex="25" [form]="form"></sm-text-control>
+      <sm-select-control [item]="$currency" fxFlex="25" [form]="form"></sm-select-control>
+      <sm-select-control [item]="$transactionType" fxFlex="25" [form]="form"></sm-select-control>
+
+      <div fxLayoutAlign="end center" class="mrt-5">
+        <button type="submit" fxFlex="20" class="btn btn-primary mrr-2">
+          <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+          <span>Tìm kiếm</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        DANH SÁCH
+      </label>
+      <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+        <button fxFlex="35" class="btn btn-light-blue btn-export mrl-4" (click)="exportExcel()">
+          <mat-icon class="mbb-icon ic-download mrr-0" [matTooltip]="'Xuất file'"> </mat-icon>
+          <span>Xuất file</span>
+        </button>
+        <button *ngIf="enableRetry" fxFlex="35" class="btn btn-dark-blue mrl-4" (click)="onClickRetry()" [disabled]="form.get('isRetryable')?.value !== 'true' || this.listDataSelect.length === 0">
+          <mat-icon class="mbb-icon ic-refresh"></mat-icon>
+          <span>Retry</span>
+        </button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div [ngClass]="'table-css'">
+        <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+
+          <ng-container matColumnDef="check" >
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox *ngIf="form.get('isRetryable')?.value === 'true'" color="primary" [(ngModel)]="checked" (change)="onChange()" [disabled]="isChecker">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let element;" >
+              <mat-checkbox *ngIf="form.get('isRetryable')?.value === 'true'" color="primary" [(ngModel)]="element.isChecked" (change)="onChangeRegister(element)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="stt">
+            <th mat-header-cell *matHeaderCellDef>STT</th>
+            <td mat-cell *matCellDef="let element;"> {{element.id}} </td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>TRANSACTION ID</th>
+            <td mat-cell *matCellDef="let element;">{{element.id}} </td>
+          </ng-container> -->
+
+          <ng-container matColumnDef="transactionId">
+            <th mat-header-cell *matHeaderCellDef>TRANSACTION ID</th>
+            <td mat-cell *matCellDef="let element;"> {{element.transactionId}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="soFt">
+            <th mat-header-cell *matHeaderCellDef>SỐ FT</th>
+            <td mat-cell *matCellDef="let element;"> {{element.t24ReferenceNumber}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="debitValueDate">
+            <th mat-header-cell *matHeaderCellDef>NGÀY GD</th>
+            <td mat-cell *matCellDef="let element;"> {{element.debitValueDate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="senderName">
+            <th mat-header-cell *matHeaderCellDef>NGƯỜI GỬI</th>
+            <td mat-cell *matCellDef="let element;"> {{element.senderName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="receiverName">
+            <th mat-header-cell *matHeaderCellDef>NGƯỜI NHẬN</th>
+            <td mat-cell *matCellDef="let element;">{{element.receiverName}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="receiverAccountNo">
+            <th mat-header-cell *matHeaderCellDef>STK NGƯỜI NHẬN</th>
+            <td mat-cell *matCellDef="let element;"> {{element.receiverAccountNo}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="debitTheirRef">
+            <th mat-header-cell *matHeaderCellDef>SỐ HIỆU GD</th>
+            <td mat-cell *matCellDef="let element;"> {{element.debitTheirRef}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="creditTheirRef">
+            <th mat-header-cell *matHeaderCellDef>SỐ BÚT TOÁN</th>
+            <td mat-cell *matCellDef="let element;"> {{element.creditTheirRef}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="debitAmount">
+            <th mat-header-cell *matHeaderCellDef>SỐ TIỀN</th>
+            <td mat-cell *matCellDef="let element;"> {{element.debitAmount | number}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="debitCurrency">
+            <th mat-header-cell *matHeaderCellDef>LOẠI TIỀN</th>
+            <td mat-cell *matCellDef="let element;"> {{element.debitCurrency}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>TRẠNG THÁI</th>
+            <td mat-cell *matCellDef="let element;" [innerHtml]="getLabel(element.status)"></td>
+          </ng-container>
+
+          <ng-container matColumnDef="message">
+            <th mat-header-cell *matHeaderCellDef>MESSAGE</th>
+            <td mat-cell *matCellDef="let element;"> {{element?.error ? (element?.error | json) : ''}} </td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="isActive">
+            <th mat-header-cell *matHeaderCellDef>TRẠNG THÁI</th>
+            <td mat-cell *matCellDef="let element;">
+              <mat-slide-toggle (change)="onClickChangeStatus(element)" color="primary" [checked]="element.isActive === 'Y'"> </mat-slide-toggle>
+            </td>
+          </ng-container> -->
+
+          <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef>HÀNH ĐỘNG</th>
+            <td mat-cell *matCellDef="let element;">
+              <button mat-icon-button (click)="viewDetail(element)">
+                <mat-icon  class=" mbb-icon ic-eye fc-primary mrr-0" [matTooltip]="'View' | translate">
+                </mat-icon>
+              </button>
+              <!-- <button mat-icon-button (click)="onClickEdit(element)">
+                <mat-icon class=" mbb-icon ic-edit fc-primary mrr-0" [matTooltip]="'Edit' | translate">
+                </mat-icon>
+              </button>
+              <button mat-icon-button (click)="onClickDelete(element)">
+                <mat-icon class=" mbb-icon ic-delete fc-error mrr-0" [matTooltip]="'Delete' | translate">
+                </mat-icon>
+              </button> -->
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+        </app-no-data>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <dform-pagination-plus class="fullWidth" #pagePage showPageSelect [pageIndex]="pageIndex"
+        (page)="changePageIndex($event);" [totalItem]="totalItem" [pageSize]="pageSize" [showPageSizeList]="true"
+        [pageSizeList]="[10, 20, 50, 100]">
+      </dform-pagination-plus>
+    </div>
+  </div>
+</div>

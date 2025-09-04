@@ -1,0 +1,60 @@
+<div class="search-ctqt">
+  <div fxLayout="row wrap"  style="justify-content: space-between; align-items: center;">
+    <h1 class="title-page">Chi tiết tài khoản Whitelist
+      <mat-icon  class=" mbb-icon ic-error_outline fc-primary mrr-0" [matTooltip]="'Đây là tính năng phục vụ cấu hình chỉ định kênh của tài khoản' | translate">
+      </mat-icon>
+    </h1>
+    <button *ngIf="enableInsert" class="btn btn-light-blue mrl-4" style="height: 40px; width: 135px;" (click)="viewHistory(accDetail?.id)">
+      <mat-icon class="mbb-icon ic-calendar"></mat-icon>
+      <span>Xem lịch sử</span>
+    </button>
+  </div>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin phê duyệt' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row">
+        <div class="pds-2 pdu-4" fxFlex="100">
+          <div fxLayout="row" fxFlex="100">
+            <label fxFlex="15">Trạng thái phê duyệt</label>
+            <label style="font-weight: bold;" [innerHtml]="getLabelApprovalStatus(accDetail?.approvalStatus)"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row wrap" class="pds-2" >
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số tài khoản</label>
+          <label style="font-weight: bold;">{{accDetail?.accountNo}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã ngân hàng</label>
+          <label style="font-weight: bold;">{{bankName}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Kênh thực hiện thanh toán</label>
+          <label style="font-weight: bold;">{{accDetail?.transferChannel}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái</label>
+          <mat-icon [ngClass]="accDetail?.active ? 'mbb-icon ic-unchecked fc-success mrr-1' : 'mbb-icon ic-unchecked fc-gray-600 mrr-1'" style="font-size: 10px; display: flex; align-items: center;"></mat-icon>
+          <span style="font-weight: bold;">{{accDetail?.active ? 'Đang hoạt động' : 'Dừng hoạt động'}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel dform-child-content button-footer" >
+    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+  </div>
+
+</div>

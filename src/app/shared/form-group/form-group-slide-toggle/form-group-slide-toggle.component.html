@@ -1,0 +1,18 @@
+<!-- CASE TEXTBOX -->
+<div [formGroup]="form" [class.error]="isValidControl(item.key)" [class.slide-status]="item.key === 'slideStatus'">
+  <div *ngIf="typeForm === 'vertical'" class="pdl-2 pdr-2">
+    <label class="form-label">{{item.label}}</label>
+    <div class="form-group">
+      <mat-slide-toggle  color="primary" [formControlName]="item.key" (change)="item.paramData?.changeEvent?.next($event)">
+      </mat-slide-toggle>
+    </div>
+  </div>
+  <div *ngIf="typeForm === 'horizontal'" fxLayoutAlign=" center">
+    <label class="form-label" style="margin-right: 10px;" >{{item.label}}</label>
+    <mat-slide-toggle  color="primary" [formControlName]="item.key" (change)="item.paramData?.changeEvent?.next($event)">
+    </mat-slide-toggle>
+  </div>
+  <div *ngIf="isValidControl(item.key, 'required')" class="form-remark">
+    {{'validations.required' | translate}}
+  </div>
+</div>

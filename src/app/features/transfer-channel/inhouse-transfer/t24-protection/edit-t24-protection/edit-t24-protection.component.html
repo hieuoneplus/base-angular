@@ -1,0 +1,145 @@
+<div class="main-container">
+  <h2 class="title-page">
+    Chỉnh sửa cấu hình tham số bảo vệ T24
+  </h2>
+  <div class="mrt-4 mrb-10">
+    <div class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+      <div class="panel-heading justify-content-between bdt">
+        <label fxFlex="50">
+          {{'BẢNG CẤU HÌNH' | translate}}
+        </label>
+        <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+          <button fxFlex="25" class="btn btn-light-blue mrl-4" (click)="onClickHistory()" >
+            <mat-icon class="mbb-icon ic-calendar"></mat-icon>
+            <span>Xem lịch sử</span>
+          </button>
+          <button fxFlex="25" class="btn btn-dark-blue mrl-4" (click)="onClickAddRow()" >
+            <mat-icon class="mbb-icon ic-edit"></mat-icon>
+            <span>Thêm cấu hình</span>
+          </button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div [ngClass]="'table-css'">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <table class="dform-table table-info w-full" mat-table [dataSource]="rows.controls" matSort [@.disabled]="true" formArrayName="rows">
+              <ng-container matColumnDef="channel">
+                <th mat-header-cell *matHeaderCellDef>{{"MÃ KÊNH" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="20" class="table-input" matInput formControlName="channel" placeholder="Nhập mã kênh" (input)="onChangeData($event, i, 'channel')" />
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="row.get('channel').hasError('required')" class="error-message">Mã kênh bắt buộc nhập</span>
+                  <span *ngIf="row.get('channel').hasError('duplicateChannel')" class="error-message">
+                    {{ row.get('channel').getError('duplicateChannel') }}
+                  </span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="waitingTimeSecond">
+                <th mat-header-cell *matHeaderCellDef>{{"THỜI GIAN TỐI ĐA ĐỢI LOCK TRÊN REDIS (GIÂY)" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="10" class="table-input" matInput formControlName="waitingTimeSecond" placeholder="Nhập thời gian" (input)="onChangeData($event, i, 'waitingTimeSecond')" />
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="row.get('waitingTimeSecond').hasError('required')" class="error-message">Bắt buộc nhập</span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="leaseTimeSecond">
+                <th mat-header-cell *matHeaderCellDef>{{"THỜI GIAN TỐI ĐA GIỮ LOCK TRÊN REDIS (GIÂY)" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="10" class="table-input" matInput formControlName="leaseTimeSecond" placeholder="Nhập thời gian" (input)="onChangeData($event, i, 'leaseTimeSecond')" />
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="row.get('leaseTimeSecond').hasError('required')" class="error-message">Bắt buộc nhập</span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ccuAccountThreshold">
+                <th mat-header-cell *matHeaderCellDef>{{"SL REQUEST TỐI ĐA TRÊN 1 ACCOUNT (REQUEST)" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="10" class="table-input" matInput formControlName="ccuAccountThreshold" placeholder="Nhập thời gian" (input)="onChangeData($event, i, 'ccuAccountThreshold')" />
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="row.get('ccuAccountThreshold').hasError('required')" class="error-message">Bắt buộc nhập</span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="keyExpireTimeSecond">
+                <th mat-header-cell *matHeaderCellDef>{{"THỜI GIAN TỒN TẠI 1 KEY TRÊN REDIS (GIÂY)" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="10" class="table-input" matInput formControlName="keyExpireTimeSecond" placeholder="Nhập thời gian" (input)="onChangeData($event, i, 'keyExpireTimeSecond')" />
+                    </mat-form-field>
+                  </div>
+                  <span *ngIf="row.get('keyExpireTimeSecond').hasError('required')" class="error-message">Bắt buộc nhập</span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="channelDetail">
+                <th mat-header-cell *matHeaderCellDef>{{"MÔ TẢ" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon">
+                    <mat-form-field appearance="outline" class="form-field">
+                      <input maxlength="4000" class="table-input" matInput formControlName="channelDetail" placeholder="Nhập mô tả" (input)="onChangeData($event, i, 'channelDetail')" />
+                      <mat-hint align="end">{{ row.get('channelDetail').value?.length || 0 }}/4000</mat-hint>
+                    </mat-form-field>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="active">
+                <th mat-header-cell *matHeaderCellDef>{{"TRẠNG THÁI" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index" [formGroupName]="i">
+                  <div class="input-with-icon toggle-wrapper">
+                    <mat-slide-toggle
+                      formControlName="active"
+                      color="primary"
+                      class="custom-disabled-toggle"
+                      (change)="onChangeData($event, i, 'active')">
+                    </mat-slide-toggle>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>{{"Hành động" | translate}}</th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                  <button mat-icon-button type="button" (click)="onClickDeleteRow(row, i)" [disabled]="row.get('channel')?.value === 'DEFAULT'"
+                          [ngClass]="{'default-disabled': row.get('channel')?.value === 'DEFAULT'}">
+                    <mat-icon class=" mbb-icon ic-delete fc-error mrr-0" [matTooltip]="'Xóa' | translate">
+                    </mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <app-no-data *ngIf="!rows.controls || (rows.controls && rows.controls.length === 0)">
+            </app-no-data>
+          </form>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <dform-pagination-plus class="fullWidth" #pagePage showPageSelect [pageIndex]="pageIndex"
+                               (page)="onPageChange($event);" [totalItem]="totalItem" [pageSize]="pageSize" [showPageSizeList]="true"
+                               [pageSizeList]="pageSizeList">
+        </dform-pagination-plus>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-bottom dform-child-content button-footer">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+  </div>
+</div>
+

@@ -1,0 +1,43 @@
+.mat-radio-button {
+    padding: 4px 8px;
+    border-radius: 4px;
+    &.mat-primary{
+      .mat-radio-inner-circle {
+        display: none;
+      }
+    }
+    .mat-radio-container{
+      width: 16px;
+      height: 16px;
+    }
+
+    .mat-radio-outer-circle{
+      height: 16px;
+      width: 16px;
+    }
+    .mat-radio-label-content{
+      font-family: Roboto;
+      font-size: 14px;
+    }
+  }
+
+  .mat-radio-checked {
+    .mat-radio-label-content{
+      color: $color-blue-primary;
+    }
+    .mat-radio-outer-circle {
+      background-image: url('~assets/images/icons/ic-checked.png');
+      background-repeat: no-repeat;
+      background-size: 10px 10px;
+      background-color: $color-blue-primary;
+      background-position: center
+    }
+  }
+  .dform-radio{
+    .mat-radio-button {
+      background-color: $color-gray-200;
+    }
+    .mat-radio-checked {
+      background-color: $color-light-blue;
+    }
+  }

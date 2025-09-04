@@ -1,0 +1,66 @@
+<div class="search-ctqt">
+  <h1 class="title-page">
+    Chỉnh sửa Cấu hình tài khoản ghi có kho bạc nhà nước
+    <mat-icon
+      class="mbb-icon ic-error_outline fc-primary mrr-0"
+      [matTooltip]="
+        'Đây là tính năng phục vụ Cấu hình tài khoản ghi có kho bạc nhà nước'
+          | translate
+      "
+    >
+    </mat-icon>
+  </h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{ "Thông tin chung" | uppercase }}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-text-control [item]="$code" [form]="form"></sm-text-control>
+        </div>
+
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-text-control [item]="$name" [form]="form"
+          [ngClass]="{'error-border': handleRestrictSpecialChars('name')}"></sm-text-control>
+          <div
+            *ngIf="this.handleRestrictSpecialChars('name')"
+            class="error-message"
+          >
+            Sai định dạng ký tự
+          </div>
+        </div>
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-text-control
+            [item]="$creditAccountNo"
+            [form]="form"
+            [ngClass]="{'error-border': handleRestrictSpecialChars('creditAccountNo')}"
+          ></sm-text-control>
+          <div
+            *ngIf="this.handleRestrictSpecialChars('creditAccountNo')"
+            class="error-message"
+          >
+            Sai định dạng ký tự
+          </div>
+        </div>
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-text-control [item]="$branchCode" [form]="form"
+          [ngClass]="{'error-border': handleRestrictSpecialChars('branchCode')}"></sm-text-control>
+          <div
+            *ngIf="this.handleRestrictSpecialChars('branchCode')"
+            class="error-message"
+          >
+            Sai định dạng ký tự
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer
+      [listButton]="listButton"
+      (eventClick)="onClickBtn($event)"
+    ></dform-footer>
+  </div>
+</div>

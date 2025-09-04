@@ -1,0 +1,213 @@
+// Size Height and Weight
+@for $i from 1 through 20 {
+    .w-#{$i*5} {
+        width: percentage(($i * 5)/100) !important;
+    }
+    .h-#{$i*5} {
+        height: percentage(($i * 5)/100) !important;
+    }
+
+    @each $breakpoint in $breakpoints {
+        @include create-responsives-style($breakpoint) {
+            .w-#{$breakpoint}-#{$i*5} {
+                width: percentage(($i * 5)/100) !important;
+            }
+            .h-#{$breakpoint}-#{$i*5} {
+                height: percentage(($i * 5)/100) !important;
+            }
+        }
+    }
+}
+
+// BackgroundColor
+@each $name, $color in $colors {
+    .bg-#{$name} {
+        background-color: $color;
+    }
+}
+
+.br-header-r {
+    border-right: solid 2px $color-gray-300;
+}
+
+@each $type in(w, h) {
+    img.fit-#{$type} {
+        @if $type==w {
+            width: 100%;
+            height: auto;
+        } @else if $type==h {
+            width: auto;
+            height: 100%;
+        }
+    }
+}
+
+// Shadow
+.shadow-inner-sm {
+    box-shadow: $color-gray-900;
+}
+
+.shadow-outer {
+    @include shadow(0 0 1rem 0 opacity-color($color-gray-900, 0.2));
+}
+
+// Flex
+.flex-sticky {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-content {
+    flex: 1 0 auto;
+}
+
+.flex-footer {
+    flex-shrink: 1;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+// Word Break
+.break-all {
+    word-break: break-all !important;
+}
+
+.title-page {
+    font-size: 24px !important;
+    font-family: Roboto-bold;
+    margin-top: 16px !important;
+    margin-bottom: 24px !important;
+}
+
+.br {
+    border-radius: 0.5rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.fullWidth {
+    width: 100%;
+}
+.txt-dot {
+    display: inline-block;
+    max-width: 500px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+@for $i from 1 through 40 {
+    .df-min-#{$i} {
+        min-width: #{$i}rem !important;
+    }
+}
+.flex-center-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+@for $i from 1 through 50 {
+    .btn-padding-#{$i} {
+        padding-left: #{$i}px !important;
+        padding-right: #{$i}px !important;
+    }
+}
+
+@for $i from 1 through 1000 {
+    .df-min-px-#{$i} {
+        min-height: #{$i}px !important;
+    }
+}
+
+// Generate Helpers
+@each $key, $utility in $utilities {
+    $values: map-get($utility, values);
+
+    @each $class-modifier, $value in $values {
+        $properties: map-get($utility, property);
+        $property-class-prefix: map-get($utility, class);
+        $property-class-prefix-hyphen: if(
+            $property-class-prefix== "",
+            $property-class-prefix,
+            $property-class-prefix + "-"
+        );
+
+        @if type-of($properties) == "string" {
+            $properties: append((), $properties);
+        }
+
+        .#{$property-class-prefix-hyphen + $class-modifier} {
+            @each $property in $properties {
+                #{$property}: $value !important;
+            }
+        }
+    }
+}
+
+* {
+    @include scrollbars(6px, rgb(158, 158, 158), #353434, transparent);
+}
+* {
+    &:active,
+    :focus {
+        outline: none !important;
+    }
+}
+.content {
+    position: relative;
+    .dform-col-left {
+        width: 284px !important;
+        position: absolute;
+    }
+    .dform-col-right {
+        margin-left: 284px !important;
+        // width: 100%;
+    }
+    .dform-child-content {
+        padding-left: 17px;
+    }
+    .dform-fixed {
+        position: fixed;
+        top: 135px;
+        .level-0 {
+            height: 84vh;
+        }
+    }
+}
+
+// ::ng-deep .mat-mdc-slide-toggle.mat-primary {
+//     --mdc-switch-selected-handle-color: #141ed2 !important;
+//     --mdc-switch-selected-pressed-handle-color: #141ed2 !important;
+//     --mdc-switch-selected-pressed-state-layer-color: #141ed2 !important;
+//     --mdc-switch-selected-hover-state-layer-color: #141ed2 !important;
+//     --mdc-switch-selected-hover-handle-color: #141ed2 !important;
+//     --mdc-switch-selected-focus-state-layer-color: #141ed2 !important;
+//     --mdc-switch-selected-focus-handle-color: #141ed2 !important;
+//     --mdc-switch-selected-track-color: #141ed2 !important;
+//     --mdc-switch-selected-pressed-track-color: #141ed2 !important;
+//     --mdc-switch-selected-hover-track-color: #141ed2 !important;
+//     --mdc-switch-selected-focus-track-color: #141ed2 !important;
+// }
+
+::ng-deep .mat-mdc-slide-toggle.mat-mdc-slide-toggle-checked:not(.mat-disabled) .mdc-switch__shadow {
+    background-color: #141ed2;
+    /*replace with your color*/
+}
+  
+::ng-deep .mat-mdc-slide-toggle.mat-mdc-slide-toggle-checked:not(.mat-disabled) .mdc-switch__track::after {
+    background-color: #141ed2 !important;
+    /*replace with your color*/
+}
+
+// .mat-slide-toggle.mat-slide-toggle-disabled {
+//     opacity: 1; /* Removes opacity for better clarity */
+//     filter: none; /* Ensure no filter is applied */
+//   }
+
+//   .mat-slide-toggle:disabled {
+//     opacity: 1 !important; /* Set opacity to normal */
+//     pointer-events: none;  /* Ensure it's non-interactive */
+//   }

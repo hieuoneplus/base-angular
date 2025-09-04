@@ -1,0 +1,81 @@
+{
+  "home": "Trang chủ",
+  "validations": {
+    "required": "Vui lòng nhập đúng định dạng",
+    "minlength": "Bạn phải nhập ít nhất {{number}} kí tự",
+    "maxlength": "Bạn phải nhập nhỏ hơn {{number}} kí tự",
+    "min": "Bạn phải nhập giá trị lớn hơn hoặc bằng {{number}}",
+    "max": "Bạn phải nhập giá trị nhỏ hơn hoặc bằng {{number}}",
+    "exist": "Giá trị {{value}} không tồn tại",
+    "inconsistent": "Không phù hợp với {{value}}",
+    "email": "Địa chỉ Email không hợp lệ",
+    "matDatepickerMin": "Bạn phải nhật lớn hơn ngày {{date}}",
+    "matDatepickerMax": "Bạn phải nhập nhỏ hơn ngày {{date}}",
+    "no-required-validate": "Dữ liệu chưa validate",
+    "search-process": "Bạn vui lòng nhập điều kiện tìm kiếm",
+    "errortype": "Giá trị nhập không đúng định dạng",
+    "search-require": "Bắt buộc nhập thông tin tìm kiếm",
+    "not-null": "không được để trống"
+  },
+  "error": {
+    "title": "Trang quý khách đang truy cập không tồn tại. Ngân Hàng TMCP Quân Đội xin lỗi quý khách vì sự bất tiện này.",
+    "button": "Quay về trang chủ",
+    "login_permission": "Bạn không có quyền truy cập hệ thống",
+    "4xx-error": "Truy cập thông tin xảy ra lỗi. Liên hệ CNTT để được hỗ trợ",
+    "dform-error-connect": "Bạn không có quyền truy cập vào hệ thống Dform",
+    "emb-error-connect": "Bạn không có quyền truy cập vào hệ thống EMB",
+    "retail-error-connect": "Bạn không có quyền truy cập vào hệ thống Retail",
+    "tablau-error-connect": "Bạn không có quyền truy cập vào hệ thống Tableau",
+    "dform-error-account-category": "Không có categoryId",
+    "dform-error-token": "Xử lý xác thực xảy ra lỗi. Liên hệ CNTT để được hỗ trợ",
+    "dform-error-identifier-account": "Hãy chọn tài khoản cần định danh",
+    "http-errorcode-401": "Phiên giao dịch không hợp lệ. Vui lòng đăng nhập lại.",
+    "error-update-account": "Đã xảy ra lỗi xử lý cập nhật số tài khoản. Vui lòng thử lại!",
+    "timeout_message": "Máy chủ không phản hồi. Vui lòng thử lại sau hoặc liên hệ CNTT để được hỗ trợ."
+  },
+  "btn": {
+    "accept": "Đồng ý",
+    "cancel": "Không",
+    "close": "Đóng",
+    "update": "Yêu cầu bổ sung",
+    "delete": "Hủy hồ sơ",
+    "refuse": "Từ chối hồ sơ",
+    "refuse_batch": "Từ chối duyệt lô",
+    "confirm": "Xác nhận",
+    "print_nice_number": "In bảng số đẹp",
+    "edit_infomation": "Xem thông tin",
+    "remove_infomation": "Xóa thông tin",
+    "copy_account": "Sao chép tài khoản",
+    "login": "Trở về trang đăng nhập",
+    "sendApprove": "Gửi duyệt",
+    "select_package": "Chọn gói",
+    "cancel_package": "Hủy gói",
+    "print_QRCode": "In QR Code",
+    "edit": "Chỉnh sửa",
+    "print_license": "In chứng từ"
+  },
+  "dialog": {
+    "notification": "Thông báo",
+    "messenge-error": "Đã xảy ra lỗi xử lý",
+    "valid-error": "Dữ liệu chưa validate",
+    "change-data-success": "Thay đổi dữ liệu thành công",
+    "change-data-error": "Thay đổi dữ liệu thất bại",
+    "valid-co-owner": "Vui lòng chọn đồng sở hữu!",
+    "khongcungcap-email": "Địa chỉ Email không hợp lệ",
+    "khongcungcap-mobie": "Số mobile không hợp lệ",
+    "ebank-nationality-valid": "Người nước ngoài không được phép đăng ký dịch vụ EBanking",
+    "ebank-nationality-warning": "KHCN người nước ngoài không thuộc đối tượng đăng ký dịch vụ eMB, đề nghị kiểm tra lại!",
+    "ebank-approve-level-valid": "Đang tồn tại người dùng với vai trò không thuộc cấp phê duyệt này. Bạn có muốn tiếp tục?",
+    "ebank-approve-level-error": "Đang tồn tại người dùng với vai trò không thuộc cấp phê duyệt này. Vui lòng kiểm tra lại.",
+    "signature_and_seal_sample": "Chữ ký và mẫu dấu"
+  },
+  "lbl": {
+    "no-data": "Chưa có dữ liệu"
+  },
+  "login": {
+    "login": "Đăng nhập",
+    "required_otp": "OTP không được để trống",
+    "minlength_otp": "OTP phải nhập đủ 6 ký tự",
+    "maxlength_otp": "OTP phải nhập đủ 6 ký tự"
+  }
+}

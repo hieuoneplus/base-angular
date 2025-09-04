@@ -1,0 +1,332 @@
+// GL
+button[disabled] {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.btn {
+    display: flex !important;
+    padding: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    line-height: initial !important;
+    min-height: 1.5rem;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: Roboto;
+    @include ie-only {
+        line-height: normal !important;
+    }
+
+    &.disabled{
+        opacity: 0.3;
+        pointer-events: none;
+    }
+
+    white-space: normal !important;
+    //margin: 0.5rem 0rem;
+    position: relative;
+    cursor: pointer;
+    // @include border-radius(0.25rem);
+
+    @each $color,
+    $value in $colors {
+        &.btn-#{$color} {
+            background-color: $value;
+            border: solid 1px $value;
+        }
+
+        &.btn-#{$color}:hover {
+            color: $value;
+
+            ::before {
+                color: $value;
+            }
+        }
+    }
+
+    @each $color,
+    $value in $colors-background {
+        &.btn-#{$color} {
+            color: $value;
+
+            ::before {
+                color: $value;
+            }
+        }
+
+        &.btn-#{$color}:hover {
+            background-color: $value;
+        }
+    }
+
+    @each $color,
+    $value in $colors-border {
+        &.btn-border-#{$color} {
+            border-color: $value !important;
+        }
+    }
+
+
+    @each $value in $flex-values {
+        @each $breakpoint in $breakpoints {
+            @include create-responsives-style($breakpoint) {
+                &.btn-flex-#{$breakpoint}-#{$value} {
+                    flex-direction: $value !important;
+
+                    &.mat-button {
+                        >span.mat-button-wrapper {
+                            flex-direction: $value !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.btn-flex-#{$value} {
+            flex-direction: $value !important;
+
+            &.mat-button {
+                >span.mat-button-wrapper {
+                    flex-direction: $value !important;
+                }
+            }
+        }
+    }
+
+    &.mat-button {
+        >span.mat-button-wrapper {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    @each $breakpoint in $breakpoints {
+        @include create-responsives-style($breakpoint) {
+            &.btn-#{$breakpoint}-border {
+                border: solid 2px !important;
+            }
+
+            &.#{$breakpoint}-rounded {
+                @include border-radius(500px !important);
+            }
+        }
+    }
+
+    &.btn-border {
+        border: solid 2px !important;
+    }
+
+    @each $name,
+    $color in $colors {
+        &.#{$name} {
+            border-color: #{$color};
+        }
+    }
+
+    @each $name,
+    $color in $colors {
+        &.btn-border-#{$name} {
+            border-color: #{$color};
+        }
+    }
+
+    &.rounded {
+        @include border-radius(500px !important);
+    }
+
+    /* Button Size */
+    &.btn-block {
+        width: 100%;
+        height: 100%;
+    }
+
+    &.btn-xs {
+        padding-left: 32px;
+        padding-right: 32px;
+        height: 40px;
+    }
+
+    &.btn-md {
+        padding-left: 43px;
+        padding-right: 43px;
+        height: 40px;
+    }
+
+    &.btn-lg {
+        padding: 0.75rem !important;
+        font-size: 1.25rem;
+    }
+
+    @each $breakpoint in $breakpoints {
+        @include create-responsives-style($breakpoint) {
+            &.btn-#{$breakpoint}-block {
+                width: 100%;
+                height: 100%;
+            }
+
+            &.btn-#{$breakpoint}-md {
+                min-width: 10rem;
+            }
+
+            &.btn-#{$breakpoint}-lg {
+                padding: 0.75rem !important;
+                font-size: 1.25rem;
+            }
+        }
+    }
+
+    /* Button Icons */
+    &.btn-icon-right {
+        .mat-icon {
+            order: 2;
+        }
+    }
+
+    &.btn-icon-left {
+        .mat-icon {
+            order: 1;
+        }
+    }
+
+    .loading {
+        &.active {
+            display: block;
+        }
+
+        animation-name: spin;
+        animation-duration: 2000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        display: none;
+        background: url('/assets/images/loading.png');
+        @include bg-thumb();
+        content: '';
+        position: absolute;
+        right: 1rem;
+        width: 29px;
+        height: 29px;
+    }
+
+    .spinning {
+        animation-name: spin;
+        animation-duration: 2000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        display: none;
+        position: absolute;
+        right: 1rem;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    &.btn-shadow {
+        @include shadow(0rem 0rem 1rem 0rem opacity-color($color-gray-900, 0.2));
+    }
+}
+
+.mbb-button {
+    height: pxtorem(40);
+    padding: 0 2rem;
+    background: $color-blue-primary;
+    border-radius: 0.25rem;
+    border: 1px solid $color-blue-primary;
+    cursor: pointer;
+    margin: 0.5rem 0rem;
+
+    &:hover,
+    &:focus {
+        background-color: $color-blue-primary;
+    }
+
+    .mbb-button-text {
+        vertical-align: middle;
+        font-size: inherit;
+        color: $color-gray-50;
+        margin-right: 0.7rem;
+    }
+
+    .mbb-button-icon-left,
+    .mbb-button-icon-right {
+        vertical-align: middle;
+        color: $color-gray-50;
+
+        &::before {
+            color: $color-gray-50;
+        }
+    }
+
+    &.mbb-button-dropdown {
+        padding-right: 1.4rem;
+    }
+
+    &.mbb-button-opening-above {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    &.mbb-button-opening-below {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+
+.mbb-button-panel {
+    background-color: white;
+    border: 1px solid $color-sematic-success;
+    border-width: 1px 1px 0px 1px;
+    @include shadow(0 0 0.5rem 0px opacity-color($color-gray-900,0.2));
+
+    &.mbb-button-panel-up {
+        border-width: 0px 1px 1px 1px;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        transform-origin: bottom;
+
+        .mbb-button-item:first-child {
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+
+        .mbb-button-item {
+            border-top: 1px solid $color-sematic-success;
+        }
+    }
+
+    &.mbb-button-panel-down {
+        border-width: 1px 1px 0px 1px;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        transform-origin: top;
+
+        .mbb-button-item:last-child {
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+
+        .mbb-button-item {
+            border-bottom: 1px solid $color-sematic-success;
+        }
+    }
+
+    .mbb-button-item {
+        height: pxtorem(40);
+        background-color: $color-gray-50;
+        width: 100%;
+        overflow: hidden;
+        clear: both;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $color-gray-300;
+        }
+
+        .mbb-button-text {
+            vertical-align: middle;;
+            font-size: inherit;
+        }
+    }
+}

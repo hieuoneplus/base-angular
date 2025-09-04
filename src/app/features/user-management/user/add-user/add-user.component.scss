@@ -1,0 +1,72 @@
+.search-ctqt {
+  display: flow-root;
+}
+
+.form-class-css {
+  width: 100%;
+}
+
+.title {
+  font-size: 24px !important;
+  font-family: Roboto-bold;
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+  // margin-left: 24px !important;
+}
+
+.label-item {
+  font-size: 14px !important;
+  font-family: Roboto-bold;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.table-css {
+  max-width: 100%;
+  overflow: auto;
+  td {
+    border-bottom: 1px solid rgb(230, 230, 230);
+  }
+  th {
+    text-transform: uppercase;
+  }
+  th:nth-child(1), td:nth-child(1) {
+    max-width: 3rem !important;
+    text-align: center;
+  }
+
+  th:nth-child(2), td:nth-child(2) {
+    max-width: 5rem !important;
+    text-align: center;
+  }
+
+  td:nth-child(3) {
+    min-width: 7rem !important;
+  }
+
+  th:nth-child(4), td:nth-child(4) {
+    min-width: 7rem !important;
+  }
+
+  th:nth-child(5), td:nth-child(5) {
+    min-width: 7rem !important;
+  }
+}
+.div-search-custom form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .div-search {
+  max-height: 40px !important;
+  height: 40px !important;
+}
+
+::ng-deep .div-search input {
+  min-width: 100% !important;
+}
+
+.label-status {
+  font-weight: bold;
+}

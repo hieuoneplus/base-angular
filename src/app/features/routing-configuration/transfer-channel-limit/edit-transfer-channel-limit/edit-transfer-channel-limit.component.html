@@ -1,0 +1,80 @@
+<div class="search-ctqt">
+  <h1 class="title-page">
+    Cập nhật cấu hình định mức chuyển tiền
+    <mat-icon class="mbb-icon ic-error_outline fc-primary mrr-0"
+      [matTooltip]="'Đây là tính năng phục vụ theo dõi, chỉnh sửa cấu hình định mức chuyển tiền theo kênh chuyển tiền'| translate"
+    >
+    </mat-icon>
+  </h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{ "Thông tin chung" | uppercase }}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-select-control [item]="$channel" [form]="form"></sm-select-control>
+        </div>
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <sm-text-control [item]="$currency" [form]="form"></sm-text-control>
+        </div>
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <div class="label-icon-wrapper">
+            <sm-text-control #minAmount [item]="$minAmount" (input)="validateMoney($event, $minAmount.key)" [form]="form" >
+            </sm-text-control>
+          </div>
+            <ng-container *ngIf="form.getError('invalidMinAmount') && (form.dirty || form.touched)">
+              <span class="error-message">Số tiền không hợp lệ. Vui lòng nhập theo tooltip</span>
+            </ng-container>
+        </div>
+        <div fxFlex="50" style="display: flex; flex-direction: column">
+          <div class="label-icon-wrapper">
+            <sm-text-control #maxAmount [item]="$maxAmount" (input)="validateMoney($event, $maxAmount.key)" [form]="form" >
+            </sm-text-control>
+          </div>
+            <ng-container *ngIf="form.getError('invalidMaxAmount') && (form.dirty || form.touched)">
+              <span class="error-message">Số tiền không hợp lệ. Vui lòng nhập theo tooltip</span>
+            </ng-container>
+        </div>
+
+        <div  *ngIf="showExpandCheckbox" fxFlex="100" class="pdl-2 pdr-2 mru-6" style="display: flex; flex-direction: column">
+          <label class="custom-checkbox-label">
+            <input type="checkbox" [checked]="isExpanded" (change)="toggleExpand($event)" />
+            <span class="checkmark"></span>
+            Có luồng tách lệnh
+          </label>
+        </div>
+
+        <div *ngIf="isExpanded" fxLayout="row wrap" fxFlex="100">
+          <div fxFlex="50" style="display: flex; flex-direction: column">
+            <div class="label-icon-wrapper">
+              <sm-text-control #fragmentMaxAmount [item]="$fragmentMaxAmount" (input)="validateMoney($event, $fragmentMaxAmount.key)" [form]="form">
+              </sm-text-control>
+            </div>
+              <ng-container *ngIf="form.getError('invalidFragmentMaxAmount') && (form.dirty || form.touched)">
+                <span class="error-message">Số tiền không hợp lệ. Vui lòng nhập theo tooltip</span>
+              </ng-container>
+          </div>
+          <div fxFlex="50" style="display: flex; flex-direction: column">
+            <div class="label-icon-wrapper">
+              <sm-text-control #fragmentAmount [item]="$fragmentAmount" (input)="validateMoney($event, $fragmentAmount.key)" [form]="form" >
+              </sm-text-control>
+            </div>
+              <ng-container *ngIf="form.getError('invalidFragmentAmount')&& (form.dirty || form.touched)">
+                <span class="error-message">Số tiền không hợp lệ. Vui lòng nhập theo tooltip</span>
+              </ng-container>
+          </div>
+        </div>
+        <dform-form-group-slide-toggle fxFlex="100" class="mrl-2 mrt-6" [item]="$active" [form]="form" fxLayoutAlign="start center">
+        </dform-form-group-slide-toggle>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer
+      [listButton]="listButton"
+      (eventClick)="onClickBtn($event)"
+    ></dform-footer>
+  </div>
+</div>

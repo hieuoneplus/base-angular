@@ -1,0 +1,99 @@
+<ul navAccordion class="dform-sidemenu level-0">
+  <li navAccordionItem class="dform-sidemenu-item" routerLinkActive="active" *ngFor="let menuItem of menus | async"
+    [group]="menuItem.route" [type]="menuItem.type">
+    <a class="dform-sidemenu-link" [routerLink]="menuItem.route" *ngIf="menuItem.type === 'link'" matRipple
+      [matRippleDisabled]="!ripple">
+      <mat-icon class="{{menuItem.icon}} menu-icon"></mat-icon>
+      <span class="menu-name">{{menuItem.name}}</span>
+      <span class="menu-label bg-{{menuItem.label.color}}" *ngIf="menuItem.label">
+        {{menuItem.label.value}}
+      </span>
+      <span fxFlex></span>
+      <span class="menu-badge bg-{{menuItem.badge.color}}" *ngIf="menuItem.badge">
+        {{menuItem.badge.value}}
+      </span>
+    </a>
+    <a class="dform-sidemenu-link" [href]="menuItem.route" *ngIf="menuItem.type === 'extLink'" matRipple
+      [matRippleDisabled]="!ripple">
+      <mat-icon class="{{menuItem.icon}} menu-icon"></mat-icon>
+      <span class="menu-name">{{menuItem.name}}</span>
+      <span class="menu-label bg-{{menuItem.label.color}}" *ngIf="menuItem.label">
+        {{menuItem.label.value}}
+      </span>
+      <span fxFlex></span>
+      <span class="menu-badge bg-{{menuItem.badge.color}}" *ngIf="menuItem.badge">
+        {{menuItem.badge.value}}
+      </span>
+    </a>
+    <a class="dform-sidemenu-link" [href]="menuItem.route" target="_blank" *ngIf="menuItem.type === 'extTabLink'"
+      matRipple [matRippleDisabled]="!ripple">
+      <mat-icon class="{{menuItem.icon}} menu-icon"></mat-icon>
+      <span class="menu-name">{{menuItem.name}}</span>
+      <span class="menu-label bg-{{menuItem.label.color}}" *ngIf="menuItem.label">
+        {{menuItem.label.value}}
+      </span>
+      <span fxFlex></span>
+      <span class="menu-badge bg-{{menuItem.badge.color}}" *ngIf="menuItem.badge">
+        {{menuItem.badge.value}}
+      </span>
+    </a>
+    <!-- level 1 -->
+    <a navAccordionToggle class="dform-sidemenu-toggle" href="javascript:void(0);" *ngIf="menuItem.type === 'sub'"
+      matRipple [matRippleDisabled]="!ripple">
+      <mat-icon class="{{menuItem.icon}} menu-icon"></mat-icon>
+      <span class="menu-name">{{menuItem.name}}</span>
+      <span class="menu-label bg-{{menuItem.label.color}}" *ngIf="menuItem.label">
+        {{menuItem.label.value}}
+      </span>
+      <span fxFlex></span>
+      <span class="menu-badge bg-{{menuItem.badge.color}}" *ngIf="menuItem.badge">
+        {{menuItem.badge.value}}
+      </span>
+      <mat-icon class="menu-caret mbb-icon ic-angle_right"></mat-icon>
+    </a>
+    <ul navAccordion class="dform-sidemenu submenu level-1" *ngIf="menuItem.type === 'sub'">
+      <li navAccordionItem class="dform-sidemenu-item" routerLinkActive="active"
+        *ngFor="let childLvl1 of menuItem.children" [group]="childLvl1.route" [type]="childLvl1.type">
+        <a class="dform-sidemenu-link" [routerLink]="childLvl1.route" *ngIf="childLvl1.type === 'link'" matRipple
+          [matRippleDisabled]="!ripple">
+          <span class="menu-name">{{childLvl1.name }}</span>
+        </a>
+        <a class="dform-sidemenu-link" href="javascript:void(0);" *ngIf="childLvl1.type === 'postDataLink'" matRipple
+        [matRippleDisabled]="!ripple" (click)="loadUrl(childLvl1.route)">
+        <span class="menu-name">{{childLvl1.name }}</span>
+        </a>
+        <a class="dform-sidemenu-link" [href]="childLvl1.route" *ngIf="childLvl1.type === 'extLink'" matRipple
+          [matRippleDisabled]="!ripple">
+          <span class="menu-name">{{childLvl1.name }}</span>
+        </a>
+        <a class="dform-sidemenu-link" [href]="childLvl1.route" target="_blank" *ngIf="childLvl1.type === 'extTabLink'"
+          matRipple [matRippleDisabled]="!ripple">
+          <span class="menu-name">{{childLvl1.name }}</span>
+        </a>
+        <!-- level 2 -->
+        <a navAccordionToggle class="dform-sidemenu-toggle" href="javascript:void(0);" *ngIf="childLvl1.type === 'sub'"
+          matRipple [matRippleDisabled]="!ripple">
+          <span class="menu-name">{{childLvl1.name }}</span>
+          <span fxFlex></span>
+          <mat-icon class="menu-caret mbb-icon ic-angle_right"></mat-icon>
+        </a>
+        <ul class="dform-sidemenu submenu level-2" *ngIf="childLvl1.type === 'sub'">
+          <li class="dform-sidemenu-item" routerLinkActive="active" *ngFor="let childLvl2 of childLvl1.children">
+            <a class="dform-sidemenu-link" [routerLink]="childLvl2.route" *ngIf="childLvl2.type === 'link'" matRipple
+              [matRippleDisabled]="!ripple">
+              <span class="menu-name">{{childLvl2.name }}</span>
+            </a>
+            <a class="dform-sidemenu-link" [href]="childLvl2.route" *ngIf="childLvl2.type === 'extLink'" matRipple
+              [matRippleDisabled]="!ripple">
+              <span class="menu-name">{{childLvl2.name }}</span>
+            </a>
+            <a class="dform-sidemenu-link" [href]="childLvl2.route" target="_blank"
+              *ngIf="childLvl2.type === 'extTabLink'" matRipple [matRippleDisabled]="!ripple">
+              <span class="menu-name">{{childLvl2.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>

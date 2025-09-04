@@ -1,0 +1,124 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Thêm mới người dùng</h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row">
+        <div class="pds-2" fxLayout="row" fxFlex="100">
+          <div class="div-search" fxLayout="row" fxFlex="85">
+            <form [formGroup]="searchUserForm" class="form-class-css">
+              <input class="custom-input-search" #searchUser formControlName="searchUser" matInput placeholder="Nhập tên đăng nhập"
+                class="mat-input-element form-control search-input-custom" type="text" id="searchUser"
+                (keyup.enter)="onSearchUser(searchUser.value)">
+            </form>
+          </div>
+          <div fxLayoutAlign="end center" fxFlex="15" fxLayout="row">
+            <button type="submit" class="btn btn-primary pds-6" style="height: 40px"
+              (click)="onSearchUser(searchUser.value)" fxFlex="85">
+              <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+              <span>Tìm kiếm</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <sm-text-control [item]="$userName" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$employeeCode" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$fullName" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$phoneNumber" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$email" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$aTitle" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control [item]="$unit" fxFlex="50" [form]="form"></sm-text-control>
+        <dform-form-group-slide-toggle fxFlex="30" class="mrl-2" [item]="$activeSlide" [form]="form"
+          fxLayoutAlign="start center"></dform-form-group-slide-toggle>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="enableAssignRole" class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Gắn vai trò' | uppercase}}</label>
+    </div>
+    <div class="pdu-4" fxLayout="row">
+      <div fxFlex="30">
+        <mat-tab-group (selectedTabChange)="searchWait($event)" [(selectedIndex)]="selectedIndex">
+          <mat-tab label="Tất cả"></mat-tab>
+          <mat-tab [label]="'Đã chọn (' + groupList.length + ')'"></mat-tab>
+        </mat-tab-group>
+
+      </div>
+      <div fxLayoutAlign="end center" style="z-index: 10000; margin-right: 17px; height: 55px;" fxFlex="70">
+        <div fxLayout="row" style="align-items: center" fxFlex="70">
+          <sm-select-control [item]="$selectedSearchValueRole" [form]="form" fxFlex="20"
+            style="margin-top: 11px; margin-left: -7px;"></sm-select-control>
+          <div class="div-search" fxLayout="row" fxFlex="50">
+            <form [formGroup]="searchRoleForm" class="form-class-css">
+              <input #searchRole formControlName="searchRole" matInput placeholder="Tìm kiếm"
+                class="mat-input-element form-control search-input-custom" type="text" id="searchRole"
+                (keyup.enter)="onSearchRole(searchRole.value)">
+            </form>
+          </div>
+          <div fxLayoutAlign="end center" fxFlex="30" fxLayout="row">
+            <button type="submit" class="btn btn-primary pds-6" style="height: 40px;"
+              (click)="onSearchRole(searchRole.value)" fxFlex="85">
+              <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+              <span>Tìm kiếm</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div [ngClass]="'table-css'">
+      <table class="dform-table table-info w-full" mat-table [(dataSource)]="dataSource" matSort [@.disabled]="true">
+        <ng-container matColumnDef="check">
+          <th mat-header-cell *matHeaderCellDef>
+            <!-- <mat-checkbox color="primary" [(ngModel)]="checked" (change)="onChange()" [disabled]="isChecker">
+            </mat-checkbox> -->
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox color="primary" [(ngModel)]="element.isChecked" (change)="onChangeRegister(element)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="stt">
+          <th mat-header-cell *matHeaderCellDef>STT</th>
+          <td mat-cell *matCellDef="let element;"> {{element.stt}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef>MÃ VAI TRÒ</th>
+          <td mat-cell *matCellDef="let element;">{{element.code}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef>LOẠI VAI TRÒ</th>
+          <td mat-cell *matCellDef="let element;"> {{element.type}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>TÊN VAI TRÒ</th>
+          <td mat-cell *matCellDef="let element;"> {{element.name}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsArr"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsArr;"></tr>
+      </table>
+      <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+      </app-no-data>
+    </div>
+    <div class="panel-footer">
+      <dform-pagination-role class="fullWidth" #pagePageRole showPageSelect [pageIndex]="pageIndex"
+        (page)="changePageIndex($event);" [totalItem]="this.options?.params?.service.toString() === '0' ? totalItem : pageIndex" [pageSize]="pageSize" [showPageSizeList]="true"
+        [pageSizeList]="[10, 20, 50, 100]">
+      </dform-pagination-role>
+    </div>
+  </div>
+
+  <div class="panel-bottom dform-child-content " style="margin-top: 7rem;">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+.break-line {
+    display: flex;
+    flex-direction: row;
+    hr.line-left {
+        width: 15%;
+        border-top: 1px solid $color-blue-primary;
+    }
+    hr.line-right {
+        width: 100%;
+        border-top: 1px solid $color-gray-400;
+    }
+}

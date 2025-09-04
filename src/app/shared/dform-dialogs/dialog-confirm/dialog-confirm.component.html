@@ -1,0 +1,19 @@
+<div class="dform-header d-flex mrt-3" style="justify-content: space-between; align-items: center;">
+  <div style="margin-left: 20px;min-width:25em;">
+    <label class="form-label" style="font-size: larger;">{{data.label}}</label>
+  </div>
+  <button mat-icon-button (click)="closeDialog()" class="button-close-df-confirm">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="pdu-0 custom-dialog-content" style="min-height: 5em;">
+  <p class="text-center" *ngIf="data?.message">{{data?.message || 'Message' | translate}}</p>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-center pdb-6 pdt-1" fxLayoutAlign="center">
+  <button class="btn btn-light-blue btn-md mrr-4" (click)="closeDialog()">
+    {{ data?.closeBtn | translate}}
+  </button>
+  <button class="btn btn-primary btn-md mrl-4" (click)="onUpdateConfirm()">
+    {{ data?.acceptBtn | translate }}
+  </button>
+</div>

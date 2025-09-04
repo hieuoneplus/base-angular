@@ -1,0 +1,40 @@
+@import '../style/variables';
+@import '../style/breakpoints';
+
+.dform-sidebar-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: $toolbar-height-desktop;
+  padding: 0 10px;
+  overflow: hidden;
+
+  @include bp-lt(small) {
+    & {
+      height: $toolbar-height-mobile;
+    }
+  }
+
+  // Colorful
+  .dform-header-white & {
+    background-color: white;
+  }
+}
+
+.dform-sidebar-main {
+  height: calc(100% - #{$toolbar-height-desktop});
+  overflow: auto;
+  padding: 35px 16px;
+
+  @include bp-lt(small) {
+    & {
+      height: calc(100% - #{$toolbar-height-mobile});
+    }
+  }
+  &.tableau-main{
+    padding: 35px 8px !important;
+  }
+}

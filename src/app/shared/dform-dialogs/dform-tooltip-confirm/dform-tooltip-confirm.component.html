@@ -1,0 +1,34 @@
+<div class="tooltipRefuse">
+    <div class="dform-title justify-content-start">
+        {{data?.title || 'Title' | translate}}
+    </div>
+    <div *ngIf="data?.description"
+         [class.error]="!confirm && isRequired">
+        <div class="form-input-row">
+            <textarea ref-textarea
+                      rows="10"
+                      cols="33"
+                      class="dialog-text-area"
+                      [(ngModel)]="confirm"
+                      [ngClass]="!confirm && isRequired ? 'error' : ''"
+                      [placeholder]="data?.description"
+                      maxlength="500"></textarea>
+        </div>
+        <div *ngIf="!confirm && isRequired"
+             class="form-remark fc-error">
+            {{data?.title || 'Title' | translate}} {{ 'validations.not-null' | translate}}
+        </div>
+    </div>
+    <div mat-dialog-actions
+         fxLayout="row">
+        <button fxLayoutAlign="end center"
+                class="btn btn-error btn-md mrl-1"
+                (click)="onCancelConfirm()">
+            {{ data?.closeBtn | translate}}
+        </button>
+        <button class="btn btn-primary btn-md mrl-1"
+                (click)="onUpdateConfirm()">
+            {{ data?.acceptBtn | translate }}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+@import 'src/styles-variables';
+
+.search-ctqt {
+  display: flow-root;
+}
+
+.title {
+  font-size: 24px !important;
+  font-family: Roboto-bold !important;
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+  margin-left: 24px !important;
+}
+
+.error-message {
+  //margin-top: 10px;
+  color: $color-sematic-error;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.table-css {
+  max-width: 100%;
+  overflow: auto;
+
+  ::ng-deep .mat-mdc-form-field-bottom-align:before {
+    display: none !important;
+  }
+
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 40px !important;
+  }
+  ::ng-deep .mat-mdc-form-field-flex {
+    margin-top: -7px !important;
+  }
+
+  .input-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-field {
+    //padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+
+    .table-input {
+      font-family: Roboto !important;
+      font-size: 12px;
+      height: 52px //Để căn chỉnh lại vị trí của input trên UAT, comment lại nếu muốn đụng CSS trên DEV
+    }
+
+    .table-input[disabled] {
+      cursor: default;
+    }
+  }
+
+  .form-field:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .icon-input {
+    font-size: 24px;
+    opacity: 0.2;
+  }
+
+  th:nth-child(1), td:nth-child(1) {
+    min-width: 1rem !important;
+    max-width: 1rem !important;
+    text-align: start !important;
+  }
+
+  th:nth-child(2), td:nth-child(2) {
+    min-width: 2rem !important;
+    max-width: 2rem !important;
+    text-align: start !important;
+  }
+
+  th:nth-child(3), td:nth-child(3) {
+    min-width: 5rem !important;
+    max-width: 5rem !important;
+    text-align: start !important;
+  }
+
+  th:nth-child(4), td:nth-child(4) {
+    min-width: 2rem !important;
+    max-width: 2rem !important;
+    text-align: center !important;
+  }
+
+  th:nth-child(5), td:nth-child(5) {
+    min-width: 3rem !important;
+    max-width: 3rem !important;
+    text-align: start !important;
+  }
+
+  th:nth-child(6), td:nth-child(6) {
+    min-width: 3rem !important;
+    max-width: 3rem !important;
+    text-align: start !important;
+  }
+
+  th:nth-child(7), td:nth-child(7) {
+    min-width: 1rem !important;
+    max-width: 1rem !important;
+    text-align: center !important;
+  }
+
+  td {
+    border-bottom: 1px solid rgb(230, 230, 230);
+  }
+  th {
+    text-transform: uppercase;
+  }
+}

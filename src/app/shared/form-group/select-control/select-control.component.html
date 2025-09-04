@@ -1,0 +1,45 @@
+<div class="pdl-2 pdr-2" [ngClass]="{'control-error': isValidControl(item.key)}">
+  <label class="form-label">{{item.label | translate}}
+    <mat-icon *ngIf="isValidControl(item.key) && item.label" class="mbb-icon ic-error sm fc-error mrl-1">
+    </mat-icon>
+    <span *ngIf="item.required && !isValidControl(item.key) && item.label" class="fc-error mrl-1">*</span>
+  </label>
+  <!-- CASE NG-SELECT -->
+  <!-- CASE NG-SELECT -->
+<div class="form-group" [formGroup]="form"
+[class.error]="isValidControl(item.key) || isValidCustom(item.key, item.customValidate)?.key || (isExist && item.paramData?.isTag)">
+<div class="form-input-row" *ngIf="!item.paramData?.isTag">
+    <ng-select #selectElement [items]="item.options" bindLabel="value" bindValue="key"
+        [searchable]="item.searchable === false ? false : true"
+        [readonly]="item.readOnly" (keydown)="makeChoice($event)" placeholder="{{item.placeholder | translate}}" [selectOnTab]="true"
+        (clear)="onClear()" [id]="item.key"  [multiple]="item.type == 'multiple'" [formControlName]="item.key" [closeOnSelect]="item.type !== 'multiple'" (blur)="onBlur()" (change)="onSelectChange($event)"
+        [ngClass]="{'ng-select-error': isValidControl(item.key, 'required') || isValidCustom(item.key, item.customValidate)?.key}">
+        <ng-template ng-option-tmp let-item="item">
+            <div [matTooltip]="item.value" style="white-space: pre-line;">{{item.value}}</div>
+        </ng-template>
+    </ng-select>
+</div>
+<div class="form-input-row" *ngIf="item.paramData?.isTag">
+    <ng-select #selectElement [addTag]="true" (search)="onSearch($event)" bindLabel="label"
+        [searchable]="item.searchable === false ? false : true"
+        [readonly]="item.readOnly"
+        placeholder="{{item.placeholder | translate}}" (clear)="onClear()" [id]="item.key"
+        [formControlName]="item.key" [multiple]="item.type == 'multiple'" [isOpen]="item.paramData.isOpen"
+        [maxSelectedItems]="item.paramData.maxSelectedItems" [selectOnTab]="true"
+        [ngClass]="{'ng-select-error': isValidControl(item.key, 'required') || isValidCustom(item.key, item.customValidate)?.key || isExist}">
+    </ng-select>
+</div>
+<div *ngIf="maxLengthView" class="max-length-info">
+    {{form.get(item.key)?.value?.toString().length + "/" + item.maxLength}}
+  </div>
+<div *ngIf="isValidControl(item.key, 'required')" class="form-remark">
+    {{'validations.required' | translate}}
+</div>
+<div *ngIf="isValidCustom(item.key, item.customValidate)?.key" class="form-remark">
+    {{isValidCustom(item.key, item.customValidate)?.value | translate}}
+</div>
+<div *ngIf="isExist && item.paramData?.isTag" class="form-remark">
+    {{'errorMultiEmailDuplicate' | translate}}
+</div>
+</div>
+</div>

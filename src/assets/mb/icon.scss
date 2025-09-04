@@ -1,0 +1,450 @@
+// GL
+.mbb-icon {
+    display: block;
+    @include bg-contain;
+    width: unset !important;
+    height: unset !important;
+
+    @include ie-only {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+
+    @for $i from 0 through 180 {
+        &.rotate-#{$i} {
+            @include transform(rotate(#{$i}deg));
+        }
+    }
+
+    // &::before {
+    //     color: $color-blue-primary;
+    // }
+
+    /*
+    // Sizes
+    */
+    $icon-sizes: (
+        xs: 10px,
+        sm: 16px,
+        md: 24px,
+        lg: 32px,
+        xl: 40px,
+        xxl: 50px
+    );
+
+    @each $size-name, $size in $icon-sizes {
+        &.#{$size-name} {
+            font-size: $size
+        }
+    }
+
+    &[class^="ic-"],
+    &[class*=" ic-"] {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: "icomoon" !important;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    &.ic-star:before {
+      content: "\e900";
+    }
+    &.ic-clock:before {
+      content: "\e901";
+    }
+    &.ic-bank:before {
+      content: "\e902";
+    }
+    &.ic-phone:before {
+      content: "\e903";
+    }
+    &.ic-add:before {
+      content: "\e904";
+    }
+    &.ic-add-path2:before {
+      content: "\e905";
+    }
+    &.ic-point .path1:before {
+      content: "\e906";
+      color: rgb(248, 158, 57) !important;
+    }
+    &.ic-point .path2:before {
+      content: "\e907";
+      margin-left: -1em;
+      color: rgb(246, 144, 52) !important;
+    }
+    &.ic-point .path3:before {
+      content: "\e908";
+      margin-left: -1em;
+      color: rgb(249, 187, 71) !important;
+    }
+    &.ic-point .path4:before {
+      content: "\e909";
+      margin-left: -1em;
+      color: rgb(251, 179, 66) !important;
+    }
+    &.ic-point .path5:before {
+      content: "\e90a";
+      margin-left: -1em;
+      color: rgb(252, 210, 93) !important;
+    }
+    &.ic-point .path6:before {
+      content: "\e90b";
+      margin-left: -1em;
+      color: rgb(248, 155, 57) !important;
+    }
+    &.ic-point .path7:before {
+      content: "\e90c";
+      margin-left: -1em;
+      color: rgb(251, 201, 85) !important;
+    }
+    &.ic-point .path8:before {
+      content: "\e90d";
+      margin-left: -1em;
+      color: rgb(249, 189, 74) !important;
+    }
+    &.ic-copy:before {
+      content: "\e90e";
+    }
+    &.ic-dotp_devices:before {
+      content: "\e90f";
+    }
+    &.ic-filter:before {
+      content: "\e910";
+    }
+    &.ic-platinum:before {
+      content: "\e911";
+    }
+    &.ic-sliver:before {
+      content: "\e912";
+    }
+    &.ic-gold:before {
+      content: "\e913";
+    }
+    &.ic-private:before {
+      content: "\e914";
+    }
+    &.ic-diamond:before {
+      content: "\e915";
+    }
+    &.ic-cancel_otp:before {
+      content: "\e916";
+    }
+    &.ic-user_status:before {
+      content: "\e917";
+    }
+    &.ic-unlock_ebanking:before {
+      content: "\e918";
+    }
+    &.ic-reset_password:before {
+      content: "\e919";
+    }
+    &.ic-otp:before {
+      content: "\e91a";
+    }
+    &.ic-ebanking:before {
+      content: "\e91b";
+    }
+    &.ic-sms:before {
+      content: "\e91c";
+    }
+    &.ic-open_account:before {
+      content: "\e91d";
+    }
+    &.ic-report:before {
+      content: "\e91e";
+    }
+    &.ic-card_service:before {
+      content: "\e91f";
+    }
+    &.ic-utilities:before {
+      content: "\e920";
+    }
+    &.ic-combo_family:before {
+      content: "\e921";
+    }
+    &.ic-service:before {
+      content: "\e922";
+    }
+    &.ic-upload_file:before {
+      content: "\e923";
+    }
+    &.ic-place:before {
+      content: "\e924";
+    }
+    &.ic-female:before {
+      content: "\e925";
+    }
+    &.ic-identify:before {
+      content: "\e926";
+    }
+    &.ic-user_2:before {
+      content: "\e927";
+    }
+    &.ic-user:before {
+      content: "\e928";
+    }
+    &.ic-birthday:before {
+      content: "\e929";
+    }
+    &.ic-download_file:before {
+      content: "\e92a";
+    }
+    &.ic-calendar:before {
+      content: "\e92b";
+    }
+    &.ic-upload:before {
+      content: "\e92c";
+    }
+    &.ic-download:before {
+      content: "\e92d";
+    }
+    &.ic-email:before {
+      content: "\e92e";
+    }
+    &.ic-male:before {
+      content: "\e92f";
+    }
+    &.ic-files:before {
+      content: "\e930";
+    }
+    &.ic-error_outline:before {
+      content: "\e931";
+    }
+    &.ic-clear:before {
+      content: "\e932";
+    }
+    &.ic-unchecked:before {
+      content: "\e933";
+    }
+    &.ic-badges:before {
+      content: "\e934";
+    }
+    &.ic-eye:before {
+      content: "\e935";
+    }
+    &.ic-checked:before {
+      content: "\e936";
+    }
+    &.ic-check_blue:before {
+      content: "\e937";
+    }
+    &.ic-task_list:before {
+      content: "\e938";
+    }
+    &.ic-edit:before {
+      content: "\e939";
+    }
+    &.ic-close_blue:before {
+      content: "\e93a";
+    }
+    &.ic-plus:before {
+      content: "\e93b";
+    }
+    &.ic-search:before {
+      content: "\e93c";
+    }
+    &.ic-menu_grid:before {
+      content: "\e93d";
+    }
+    &.ic-refresh:before {
+      content: "\e93e";
+    }
+    &.ic-exclaimation:before {
+      content: "\e93f";
+    }
+    &.ic-chevron_up:before {
+      content: "\e940";
+    }
+    &.ic-chevron_left:before {
+      content: "\e941";
+    }
+    &.ic-chevron_down:before {
+      content: "\e942";
+    }
+    &.ic-radio_unselected:before {
+      content: "\e943";
+    }
+    &.ic-unchecked_multiple:before {
+      content: "\e944";
+    }
+    &.ic-uncheck_2:before {
+      content: "\e945";
+    }
+    &.ic-uncheck:before {
+      content: "\e946";
+    }
+    &.ic-checked_multiple:before {
+      content: "\e947";
+    }
+    &.ic-caret_right:before {
+      content: "\e948";
+    }
+    &.ic-caret_left:before {
+      content: "\e949";
+    }
+    &.ic-caret_down:before {
+      content: "\e94a";
+    }
+    &.ic-caret_up:before {
+      content: "\e94b";
+    }
+    &.ic-angle_up:before {
+      content: "\e94c";
+    }
+    &.ic-angle_left:before {
+      content: "\e94d";
+    }
+    &.ic-angle_down:before {
+      content: "\e94e";
+    }
+    &.ic-angle_right:before {
+      content: "\e94f";
+    }
+    &.ic-chevron_right:before {
+      content: "\e950";
+    }
+    &.ic-minus:before {
+      content: "\e951";
+    }
+    &.ic-plus_2:before {
+      content: "\e952";
+    }
+    &.ic-sort:before {
+      content: "\e953";
+    }
+    &.ic-hamburger:before {
+      content: "\e954";
+    }
+    &.ic-notification:before {
+      content: "\e955";
+    }
+    &.ic-hidden_eye:before {
+      content: "\e956";
+    }
+    &.ic-delete:before {
+      content: "\e957";
+    }
+    &.ic-arrow-right2:before {
+      content: "\ea3c";
+    }
+    &.ic-hour-glass:before {
+      content: "\e979";
+    }
+    &.ic-undo:before {
+      content: "\e965";
+    }
+    &.ic-redo:before {
+      content: "\e966";
+    }
+    &.ic-undo2:before {
+      content: "\e967";
+    }
+    &.ic-redo2:before {
+      content: "\e968";
+    }
+    &.ic-enter:before {
+      content: "\ea13";
+    }
+    &.ic-exit:before {
+      content: "\ea14";
+    }
+    &.ic-print:before {
+      content: "\e958";
+    }
+    &.ic-error:before {
+      content: "\e959";
+    }
+    &.ic-reset_password1:before {
+      content: "\e95a";
+    }
+    &.ic-external_link:before {
+      content: "\e95b";
+    }
+    &.ic-logout:before {
+      content: "\e95c";
+    }
+    &.ic-settings:before {
+      content: "\e95d";
+    }
+    &.ic-company:before {
+      content: "\e95e";
+    }
+    &.ic-maintenance:before {
+      content: "\e95f";
+    }
+    &.ic-report1:before {
+      content: "\e960";
+    }
+    &.ic-status:before {
+      content: "\e961";
+    }
+    &.ic-derivative:before {
+      content: "\e962";
+    }
+    &.ic-exchange_interest:before {
+      content: "\e963";
+    }
+    &.ic-cancel:before {
+      content: "\e969";
+    }
+    &.ic-smartbank:before {
+      content: "\e96a";
+    }
+    &.ic-shift:before {
+      content: "\e96b";
+    }
+    &.ic-shift_list:before {
+      content: "\e96c";
+    }
+    &.ic-list_account:before {
+      content: "\e96d";
+    }
+    &.ic-digital_account:before {
+      content: "\e96e";
+    }
+    &.ic-image:before {
+      content: "\e96f";
+    }
+    &.ic-zoom-in:before {
+      content: "\e987";
+    }
+    &.ic-zoom-out:before {
+      content: "\e988";
+    }
+
+    /*
+    // Icon Colors
+    */
+    // @each $name,$color in $colors {
+    //     &.ic-cl-#{$name}:before {
+    //         color: $color !important;
+    //     }
+    // }
+
+    &.reverse {
+        @include transform(scaleX(-1));
+    }
+
+    &.spin {
+        animation-name: spin;
+        animation-duration: 2000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        transform: scaleX(-1);
+    }
+
+    &.spin:before {
+        transform: scaleX(-1);
+    }
+}

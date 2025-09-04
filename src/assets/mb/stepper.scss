@@ -1,0 +1,58 @@
+.mat-stepper-horizontal, .mat-stepper-vertical{
+    background: transparent;
+}
+mat-horizontal-stepper {
+    .mat-horizontal-content-container {
+        overflow: initial;
+        padding: 0px;
+        padding-top: 1rem;
+    }
+    mat-step-header {
+        &.mat-horizontal-stepper-header {
+            &:hover{
+                background-color: $color-neutral-white;
+            }
+            background-color: $color-neutral-white;
+            text-align: center;
+            height: 3rem;
+            justify-content: center;
+            .mat-step-icon-not-touched {
+                background-color: transparent;
+                color: opacity-color($color-gray-900, 0.38);
+                margin-right: 0px;
+            }
+            .mat-step-icon {
+                background-color: transparent;
+                margin-right: 0px;
+            }
+            &[aria-selected='true'],&[ng-reflect-state='edit'] {
+                background-color: $color-blue-primary;
+                .mat-step-label.mat-step-label-active {
+                    color: white;
+                }
+            }
+            @include border-radius(0.25rem);
+            @include shadow(0rem 0rem 0.5rem 0rem opacity-color($color-gray-900, 0.2));
+            @include query-lt-md {
+                .mat-step-icon-content::before {
+                    content: "0";
+                }
+                .mat-step-label {
+                    display: none;
+                }
+                padding: 0 1rem;
+            }
+            @include query-gt-md {
+                min-width: 5rem;
+                padding: 0rem 1.5rem;
+                .mat-step-icon-content::after {
+                    content: ".";
+                }
+            }
+            @include query-lg {
+                min-width: 8rem;
+                padding: 0rem 3rem;
+            }
+        }
+    }
+}

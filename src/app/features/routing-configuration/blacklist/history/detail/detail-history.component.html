@@ -1,0 +1,84 @@
+<div class="dform-header d-flex mrt-3" style="justify-content: space-between; align-items: center;">
+  <div style="margin-left: 20px;">
+    <label class="form-label" style="font-size: larger;">{{data.label}}</label>
+  </div>
+  <button mat-icon-button (click)="closeDialog()" class="button-close-df-confirm">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+  <div class="panel-body panel-padding">
+    <div fxLayout="row">
+      <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+        <div fxLayout="row">
+          <label fxFlex="50">Số tài khoản</label>
+          <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.accountNo}}</label>
+        </div>
+      </div>
+      <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+        <div fxLayout="row">
+          <label fxFlex="50">Mã ngân hàng</label>
+          <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.bankCode}}</label>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+        <div fxLayout="row">
+          <label fxFlex="50">Loại giao dịch</label>
+          <label class="content-info-custom" style="font-weight: bold;" [innerHtml]="getLabelTransactionTyppe(detailContent.transactionType)"></label>
+        </div>
+      </div>
+      <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+        <div fxLayout="row">
+          <label fxFlex="50">Loại tài khoản</label>
+          <label class="content-info-custom" style="font-weight: bold;" [innerHtml]="getLabelAccountTyppe(detailContent?.type)"></label>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+        <div fxLayout="row">
+          <label fxFlex="50">Trạng thái</label>
+          <mat-slide-toggle class="custom-disabled-toggle" [disabled]="true" color="primary" [checked]="detailContent?.active"></mat-slide-toggle>
+        </div>
+      </div>
+      <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+        <div fxLayout="row">
+          <label fxFlex="50">Loại thay đổi</label>
+          <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.action}}</label>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+        <div fxLayout="row">
+          <label fxFlex="50">Ngày sửa đổi</label>
+          <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.updatedAt | date : "dd/MM/yyyy HH:mm:ss"}}</label>
+        </div>
+      </div>
+      <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+        <div fxLayout="row">
+          <label fxFlex="50">Người sửa đổi</label>
+          <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.updatedBy}}</label>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxLayout="column" class="pds-2" style="width:100%; padding: 10px;">
+        <div class="text-container" fxLayout="row" style="margin-bottom: 20px;">
+          <label fxFlex="24.5">Lí do sửa đổi</label>
+          <label class="content-info-custom" fxFlex="75.5" style="font-weight: bold;">
+            {{detailContent?.reason}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-center" fxLayoutAlign="center">
+  <button class="btn btn-light-blue btn-md mrr-4" (click)="closeDialog()">
+    <!-- Accept Button -->
+    {{ data?.closeBtn | translate}}
+  </button>
+</div>

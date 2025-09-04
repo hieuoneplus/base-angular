@@ -1,0 +1,76 @@
+@import "src/assets/mb/common.scss";
+.paginator {
+  display: flex;
+  padding: 10px 10px !important;
+  width: 100%;
+  // border-top: 0.5px solid lightgray;
+
+  ::ng-deep {
+    mat-select .mat-select-value-text {
+      display: flex;
+      justify-content: space-around;
+    }
+    .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
+      min-width: 35px;
+    }
+  
+  }
+  .page-title{
+    padding-top: 0.65rem;
+    position: absolute;
+    left: 30px;
+  }
+  .page-popup{
+    padding-top: 0.65rem;
+    position: initial;
+    left: 30px;
+  }
+  button {
+    // color: gray;
+    // width: 30px;
+    // height: 30px;
+    font-family: Semibold;
+    padding: 0;
+    &:not(:last-child) {
+      margin-right: 5px;
+      padding: 0px 11px;
+    }
+  }
+
+  button.active {
+    // box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.2);
+    // border-radius: 50%;
+    background: $color-gray-100;
+    color: $color-blue-primary;
+    pointer-events: none;
+  }
+
+  #page-select {
+    width: 134px;
+  }
+
+  // @include query-lt-lg {
+  //   #page-items {
+  //     margin-left: 0 !important;
+  //     font-family: Semibold;
+  //   }
+  // }
+  .dform-select-custom, .dform-select-text {
+    border: 1px solid lightgray !important;
+    padding: 4px !important;
+    border-radius: 3px !important;
+    width: 70px !important;
+  }
+}
+.d-none{
+  display: none;
+}
+.Rectangle {
+  text-align: center;
+  width: 48px;
+  height: 40px;
+  border-radius: 5px;
+  padding: 0px 5px;
+  border: solid 1px #e0e0e0;
+  background-color: white;
+}

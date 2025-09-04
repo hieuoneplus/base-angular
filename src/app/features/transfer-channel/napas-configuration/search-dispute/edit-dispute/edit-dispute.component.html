@@ -1,0 +1,92 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chỉnh sửa yêu cầu tra soát
+  </h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin giao dịch gốc' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+
+      <div *ngIf="this.hasDataSource" fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tổ chức phát lệnh</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.acceptingInstitutionIdentificationCode}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/ số tài khoản gửi</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.fromAccountIdentification}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tổ chức nhận lệnh</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.receivingInstitutionIdentificationCode}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/ số tài khoản nhận</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.toAccountIdentification}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số tiền giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.settlementAmount | currencyMask}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">FT hạch toán T24</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.ft}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Nội dung giao dịch</label>
+          <label class="custom-css-word" style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.contentTransfers}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.transactionStatus}}</label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="this.hasDataSource" class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin tạo mới yêu cầu tra soát' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap" fx>
+        <sm-select-control [item]="$disputeTypeCode" fxFlex="50" [form]="form"></sm-select-control>
+        <div *ngIf="this.showFormDispute" class="show-dispute" fxLayout="row wrap" fxFlex="100">
+          <sm-select-control *ngIf="this.showClaimCode" [item]="$disputeClaimCode" fxFlex="50" [form]="form"></sm-select-control>
+          <sm-text-control *ngIf="this.showDisputeAmount" #amountDispute [item]="$disputeAmount" fxFlex="50" [form]="form" (input)="validateMoney($event, $disputeAmount.key)"></sm-text-control>
+          <div *ngIf="this.showDisputeAmount && !this.showClaimCode" fxFlex="50"></div>
+          <sm-text-control [item]="$disputeSubject" fxFlex="50" [form]="form"></sm-text-control>
+          <sm-text-control [item]="$disputeMessage" fxFlex="50" [form]="form"></sm-text-control>
+          <div fxFlex="50">
+            <div class="pds-2" fxLayout="column">
+              <label class="form-label">FileAttachment</label>
+              <div style="margin-top: 0.75rem;" fxLayout="row wrap">
+                <div class="content-file-attachment" draggable="true" appDrag (fileEvent)="dragFileInput($event)">
+                  <label class="label-select" *ngIf="!selectedFiles && !this.fileName" (click)="file.click()"><mat-icon class="mbb-icon ic-upload_file fc-primary mrr-0"></mat-icon>Chọn file tải lên</label>
+                  <input type="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" #file
+                    (change)="handleFileInput($event)" hidden>
+                </div>
+                <div fxLayoutAlign="row wrap" *ngIf="selectedFiles || this.fileName">
+                  <mat-icon class="mbb-icon ic-upload_file fc-primary mrr-1" (click)="file.click()"></mat-icon>
+                  <label class="label-select"
+                    [matTooltip]="selectedFiles ? selectedFiles.name : this.fileName" (click)="downLoadFile()">
+                    {{selectedFiles ? selectedFiles.name : this.fileName}}</label>
+                  <mat-icon class="mbb-icon ic-close_blue fc-primary mrr-0" (click)="destroyFile()"></mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

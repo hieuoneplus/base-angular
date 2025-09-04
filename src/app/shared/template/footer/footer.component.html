@@ -1,0 +1,14 @@
+<div class="panel footer-item" *ngIf="isShow" [style.width.px]="width">
+  <div class="panel-body">
+    <div class="footer-content" fxLayout="row" fxLayoutAlign="end center">
+      <div *ngIf="isShowSelection" class="mrl-4 btn-md left-btn btn-white-error btn-border-light-error">
+        <label class="select-title">Đã chọn </label><label class="select-number fc-primary">{{selectionNumber}}</label><label *ngIf="limitSelected" class="select-number fc-primary">/{{limitSelected}}</label>
+      </div>
+      <button *ngFor="let item of listButton | async" [disabled]="item.disable ? item.disable : false" class="btn mrl-4 btn-md {{item.classBtn}}" 
+        (click)="onClick(item.typeBtn)" #footerButton>
+        <mat-icon class="mbb-icon {{item.icon}}" *ngIf="item.icon"></mat-icon>
+        <span>{{ item.title }}</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+@charset "utf-8";
+// @font-face {
+//     font-family: Roboto;
+//     src: url('~assets/fonts/Roboto-Regular.ttf');
+//     font-weight: normal;
+// }
+
+// @font-face {
+//     font-family: Roboto;
+//     src: url('~assets/fonts/Roboto-Medium.ttf');
+//     font-weight: 600;
+// }
+
+// @font-face {
+//     font-family: Roboto;
+//     src: url('~assets/fonts/Roboto-Bold.ttf');
+//     font-weight: bold;
+// }
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('~assets/fonts/dform_icons.eot?7e22yj');
+    src: url('~assets/fonts/dform_icons.eot?7e22yj#iefix') format('embedded-opentype'),
+        url('~assets/fonts/dform_icons.ttf?7e22yj') format('truetype'),
+        url('~assets/fonts/dform_icons.woff?7e22yj') format('woff'),
+        url('~assets/fonts/dform_icons.svg?7e22yj#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* AVERTA */
+@font-face {
+    font-family: Roboto;
+    src: url('~assets/fonts/averta/Intelligent Design - AvertaStdCY-Regular_3.otf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Semibold;
+    src: url('~assets/fonts/averta/Intelligent Design - AvertaStdCY-Semibold_1.otf');
+    font-weight: normal;
+} 
+
+@font-face {
+    font-family: Roboto-bold;
+    src: url('~assets/fonts/averta/Intelligent Design - AvertaStdCY-Bold_1.otf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Extrabold;
+    src: url('~assets/fonts/averta/Intelligent Design - AvertaStdCY-Extrabold_1.otf');
+    font-weight: normal;
+} 
+/* AVERTA */
+@font-face {
+    font-family: RobotoItalic;
+    src: url('~assets/fonts/averta/Intelligent Design - AvertaStdCY-RegularItalic_1.otf');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Roboto-bold-Italic;
+    src: url('~assets/fonts/averta/Intelligent Design - AvertaStdCY-BoldItalic_1.otf');
+    font-weight: 600;
+}

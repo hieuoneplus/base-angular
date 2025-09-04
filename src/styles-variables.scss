@@ -1,0 +1,157 @@
+
+// Typography
+$font-size-base: 14;
+$font-family-sans-serif: 'Roboto' !default;
+$font-family-base: $font-family-sans-serif !default;
+
+// All Map
+$utilities: () !default;
+
+$color-gray-200: #eeeeee;
+$color-gray-500: #BDBDBD;
+$color-light-error: #ffdce1;
+$color-light-success: #d7f2db;
+$color-sematic-success-100: #28d97e;
+$color-light-primary: #141ed25e;
+$color-light-blue-100: #b3d3f5;
+$sematic-warning-100: #957a4c;
+
+
+$color-blue-primary: #141ed2;
+$color-blue-dark-blue: #24264e;
+$color-secondary-lotus-lavender: #b4a5fa;
+$color-secondary-mint-green: #9be6c8;
+$color-secondary-sky-blue: #a0d2ff;
+$color-neutral-black: #212121;
+$color-gray-900: #2e2e2e;
+$color-gray-800:#303030;
+$color-gray-700: #646464;
+$color-gray-600: #a1a1a1;
+$color-gray-400: #cccccc;
+$color-gray-300: #d8d8d8;
+$color-gray-100: #f7f7f7;
+$color-gray-50: #fcfcfc;
+$color-neutral-white: #ffffff;
+$color-sematic-success: #1fb266;
+$color-sematic-error: #eb2d4b;
+$color-sematic-disabled: #b2b8ed;
+$sematic-warning: #f1b627;
+$color-gray-custom: #9b9b9b;
+$color-light-blue: #ebf3ff;
+
+$colors:(
+    white: $color-neutral-white,
+    gray-50: $color-gray-50,
+    gray-100: $color-gray-100,
+    gray-200: $color-gray-200,
+    gray-300: $color-gray-300,
+    gray-400: $color-gray-400,
+    gray-500: $color-gray-500,
+    gray-600: $color-gray-600,
+    gray-700: $color-gray-700,
+    gray-900: $color-gray-900,
+    error: $color-sematic-error,
+    success: $color-sematic-success,
+    light-success: $color-light-success,
+    success-100: $color-sematic-success-100,
+    warning: $sematic-warning,
+    warning-100: $sematic-warning-100,
+    disabled: $color-sematic-disabled,
+    primary: $color-blue-primary,
+    dark-blue: $color-blue-dark-blue,
+    light-blue: $color-light-blue,
+    light-error: $color-light-error,
+    white-error: $color-neutral-white,
+    neutral-black: $color-neutral-black,
+);
+
+$colors-background:(
+    white: $color-blue-primary,
+    gray-50: $color-gray-900,
+    gray-100: $color-neutral-white,
+    gray-200: $color-neutral-white,
+    gray-300: $color-neutral-white,
+    gray-400: $color-neutral-white,
+    gray-500: $color-neutral-white,
+    gray-600: $color-neutral-white,
+    gray-700: $color-neutral-white,
+    gray-900: $color-neutral-white,
+    error: $color-neutral-white,
+    success: $color-neutral-white,
+    light-success: $color-blue-primary,
+    success-100: $color-neutral-white,
+    warning: $color-neutral-white,
+    warning-100: $color-neutral-white,
+    disabled: $color-neutral-white,
+    primary: $color-neutral-white,
+    dark-blue: $color-neutral-white,
+    light-blue: $color-blue-primary,
+    light-error: $color-sematic-error,
+    white-error: $color-sematic-error,
+);
+
+$colors-border:(
+    white:  $color-blue-primary,
+    light-blue: $color-blue-primary,
+    light-error: $color-sematic-error
+);
+
+// DEVICE WIDTH DEFINES
+$grid-breakpoints: ( xs: 0, sm: 576px, md: 750px, lg: 1025px, xl: 1366px);
+$breakpoints: (sm, md, lg, xl);
+$grid-media-queries: ( sm, gt-sm, lt-md, md, gt-md, lt-lg, lg);
+
+// Flex
+$flex-values: (row, column, row-reverse, column-reverse);
+$flex-justify-content: (flex-start, flex-end, center, space-between, space-around, initial, inherit);
+// Spacing 
+$spacings :( mr: (margin), mrl: (margin-left), mrr: (margin-right), mrt: (margin-top), mrb: (margin-bottom), mrs: (margin-left, margin-right), mru:(margin-top, margin-bottom), pd: (padding), pdt: (padding-top), pdb: (padding-bottom), pdl: (padding-left), pdr: (padding-right), pds: (padding-left, padding-right), pdu:(padding-top, padding-bottom));
+// Text Aligns
+$text-align: (center, left, right, justify);
+// Row margin-left,right
+$grid-gutter-width: 2rem;
+// Font Weight
+$font-weights: (normal:400, medium:600, bold:bold);
+// Font Sizes
+$font-sizes: (12: 10px, 14: 0.875rem, 16: 1rem, 18: 1.125rem, 20: 1.25rem, 25: 1.5rem, 50: 3.5rem);
+// Text upper case
+$text-cases: (uppercase,lowercase,capitalize);
+
+$flex-justify-content: (
+  'justify-content': (
+    property: justify-content,
+    class: justify-content,
+    values: (
+        start: flex-start,end: flex-end, center: center,between:  space-between,around: space-around,initial: initial,inherit: inherit
+    )
+  )
+);
+
+
+// COLOR
+$custom-collection: (
+    white: white,
+    black: #333333,
+    gray: #959595,
+    silver: #f7f7f7,
+    primary: #141ed2,
+    secondary: #2b34e0,
+    error: #ED1D24,
+    info: #a0d2ff,
+    success: #7ED600,
+    warning: #fdd131,
+    danger: #f0383e94,
+    contrast: (
+        white: #303030,
+        black: #FFFFFF,
+        gray:  #FFFFFF,
+        silver:  #FFFFFF,
+        primary:  #FFFFFF,
+        secondary:  #FFFFFF,
+        error:  #FFFFFF,
+        info:  #FFFFFF,
+        success:  #FFFFFF,
+        warning:  #FFFFFF,
+        danger:  #FFFFFF,
+    )
+);

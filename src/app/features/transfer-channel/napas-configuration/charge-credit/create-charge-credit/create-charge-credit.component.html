@@ -1,0 +1,196 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Thêm mới yêu cầu báo có
+  </h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <sm-text-control [item]="$disputeId" fxFlex="25" [form]="form"></sm-text-control>
+        <div fxFlex="25"></div>
+        <div fxFlex="25"></div>
+
+        <div fxFlex="25" fxLayout="row wrap" style="height: 40px; margin-top: 2.125rem;">
+          <button type="submit" fxFlex="75" class="btn btn-primary mrr-2" (click)="searchTransactionOrigin()">
+            <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+            <span>Tìm kiếm</span>
+          </button>
+          <button type="submit" fxFlex="20" class="btn btn-light-blue" (click)="resetFormSearch()">
+            <mat-icon class="mbb-icon ic-refresh mrl-2"></mat-icon>
+          </button>
+        </div>
+      </form>
+
+      <div *ngIf="this.dataTransactionDispute && this.dataTransactionOrigin" class="break-line pds-2 mru-4">
+        <hr class="line-right">
+      </div>
+
+      <div *ngIf="this.dataTransactionDispute && this.dataTransactionOrigin" fxLayout="row wrap">
+        <label class="label-css pds-2" fxFlex="100">{{'Thông tin giao dịch gốc' | uppercase}}</label>
+
+        <div fxLayout="row wrap" class="pds-2">
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Mã giao dịch gốc</label>
+            <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.transactionReferenceNumber}} </label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Số trace giao dịch</label>
+            <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.systemTraceAuditNumber}} </label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Ngày giao dịch</label>
+            <label style="font-weight: bold;" fxFlex="70"> {{this.convertToDateFormat(this.dataTransactionOrigin?.dateLocalTransaction)}} </label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Giờ giao dịch</label>
+            <label style="font-weight: bold;" fxFlex="70"> {{this.convertToTimeFormat(this.dataTransactionOrigin?.timeLocalTransaction)}} </label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">FT hạch toán T24</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.ft}}</label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Loại giao dịch</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.paymentCode}}</label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Số thẻ/ số tài khoản gửi</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.fromAccountIdentification}}</label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Tổ chức phát lệnh</label>
+            <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.acceptingInstitutionIdentificationCode}} </label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Số thẻ/ số tài khoản nhận</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.toAccountIdentification}}</label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Tổ chức nhận lệnh</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.receivingInstitutionIdentificationCode}}</label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Tên ngân hàng chuyển</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.senderName}}</label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Tên ngân hàng nhận</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.receiverName}}</label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Số tiền giao dịch</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.settlementAmount | currencyMask}} {{this.dataTransactionOrigin?.settlementCurrencyCode.toString() === '704' ? 'VND' : ''}}</label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Trạng thái giao dịch</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.transactionStatus}}</label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Nội dung giao dịch</label>
+            <label class="custom-css-word" style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.contentTransfers}}</label>
+          </div>
+  
+        </div>
+      </div>
+
+      <div *ngIf="this.dataTransactionDispute" class="break-line pds-2 mru-4">
+        <hr class="line-right">
+      </div>
+
+      <div *ngIf="this.dataTransactionDispute" fxLayout="row wrap">
+        <label class="label-css pds-2" fxFlex="100">{{'Thông tin yêu cầu tra soát gốc' | uppercase}}</label>
+
+        <div fxLayout="row wrap" class="pds-2">
+    
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Mã điện tra soát</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionDispute?.disputeId}}</label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Ngày tạo yêu cầu</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionDispute?.creationDateTime | date:'dd-MM-YY hh:mm:ss'}}</label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Mã tổ chức yêu cầu tra soát</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionDispute?.disputeAssigner}}</label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Tên tổ chức yêu cầu tra soát</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionDispute?.senderName}}</label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Mã tổ chức nhận yêu cầu tra soát</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionDispute?.disputeAssignee}}</label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Tên tổ chức nhận yêu cầu tra soát</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionDispute?.receiverName}}</label>
+          </div>
+  
+          <!-- <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Mã tra soát</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionDispute?.disputeId}}</label>
+          </div> -->
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Loại tra soát</label>
+            <label style="font-weight: bold;" fxFlex="70" [innerHtml]="getDisputeTypeCode(this.dataTransactionDispute?.disputeTypeCode)"></label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Mã yêu cầu thu hồi</label>
+            <label style="font-weight: bold;" fxFlex="70" [innerHtml]="getDisputeClaimCode(this.dataTransactionDispute?.disputeClaimCode)"></label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Số tiền tra soát</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionDispute?.disputeAmount | currencyMask}} {{this.dataTransactionDispute?.disputeCurrencyCode === '704' ? 'VND' : ''}}</label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Tiêu đề tra soát</label>
+            <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionDispute?.disputeSubject}}</label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Nội dung tra soát</label>
+            <label class="dispute-message-custom" style="font-weight: bold;" fxFlex="70">{{this.dataTransactionDispute?.disputeMessage}}</label>
+          </div>
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">FileAttachment</label>
+            <label [ngStyle]="{'font-weight': 'bold', 'cursor': dataTransactionDispute?.fileName ? 'pointer' : 'default'}" fxFlex="70" (click)="dataTransactionDispute?.fileName && downLoadFile()">{{dataTransactionDispute?.fileName}}</label>
+          </div>
+  
+          <div fxLayout="row" fxFlex="50" class="pdu-4">
+            <label fxFlex="30">Trạng thái tra soát</label>
+            <label style="font-weight: bold;" fxFlex="70" [innerHtml]="getDisputeStatus(this.dataTransactionDispute?.disputeStatus)"></label>
+          </div>
+  
+        </div>
+      </div>
+    
+    </div>
+  </div>
+
+  <div *ngIf="this.dataTransactionDispute && this.dataTransactionOrigin" class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin yêu cầu báo có' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <sm-text-control class="custom-vnd" #amountChargeCredit [item]="$amount" fxFlex="50" [form]="form" (input)="validateMoney($event, $amount.key)"></sm-text-control>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

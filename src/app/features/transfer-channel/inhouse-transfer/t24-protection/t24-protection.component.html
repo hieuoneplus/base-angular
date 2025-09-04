@@ -1,0 +1,84 @@
+<div class="main-container">
+  <h2 class="title-page">
+    Cấu hình tham số bảo vệ T24
+  </h2>
+  <div class="mrt-4 panel">
+    <div class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+      <div class="panel-heading justify-content-between bdt">
+        <label fxFlex="50">
+          {{'BẢNG CẤU HÌNH' | translate}}
+        </label>
+        <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+          <button fxFlex="25" class="btn btn-light-blue mrl-4" (click)="onClickHistory()" >
+            <mat-icon class="mbb-icon ic-calendar"></mat-icon>
+            <span>Xem lịch sử</span>
+          </button>
+          <button *ngIf="this.enableUpdate" fxFlex="25" class="btn btn-dark-blue mrl-4" (click)="onClickEdit()" >
+            <mat-icon class="mbb-icon ic-edit"></mat-icon>
+            <span>Chỉnh sửa</span>
+          </button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div [ngClass]="'table-css'">
+          <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+            <ng-container matColumnDef="channel">
+              <th mat-header-cell *matHeaderCellDef><div class="pdl-2 pdr-2">{{"MÃ KÊNH" | translate}}</div></th>
+              <td mat-cell *matCellDef="let element;">
+                <sm-text-control [matTooltip]="element.channel.value" [item]="element.channel" [form]="form"></sm-text-control>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="waitingTimeSecond">
+              <th mat-header-cell *matHeaderCellDef><div class="pdl-2 pdr-2">{{"THỜI GIAN TỐI ĐA ĐỢI LOCK TRÊN REDIS (GIÂY)" | translate}}</div></th>
+              <td mat-cell *matCellDef="let element;">
+                <sm-text-control [matTooltip]="element.waitingTimeSecond.value" [item]="element.waitingTimeSecond" [form]="form"></sm-text-control>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="leaseTimeSecond">
+              <th mat-header-cell *matHeaderCellDef><div class="pdl-2 pdr-2">{{"THỜI GIAN TỐI ĐA GIỮ LOCK TRÊN REDIS (GIÂY)" | translate}}</div></th>
+              <td mat-cell *matCellDef="let element;">
+                <sm-text-control [matTooltip]="element.leaseTimeSecond.value" [item]="element.leaseTimeSecond" [form]="form"></sm-text-control>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="ccuAccountThreshold">
+              <th mat-header-cell *matHeaderCellDef><div class="pdl-2 pdr-2">{{"SL REQUEST TỐI ĐA TRÊN 1 ACCOUNT (REQUEST)" | translate}}</div></th>
+              <td mat-cell *matCellDef="let element;">
+                <sm-text-control [matTooltip]="element.ccuAccountThreshold.value" [item]="element.ccuAccountThreshold" [form]="form"></sm-text-control>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="keyExpireTimeSecond">
+              <th mat-header-cell *matHeaderCellDef><div class="pdl-2 pdr-2">{{"THỜI GIAN TỒN TẠI 1 KEY TRÊN REDIS (GIÂY)" | translate}}</div></th>
+              <td mat-cell *matCellDef="let element;">
+                <sm-text-control [matTooltip]="element.keyExpireTimeSecond.value" [item]="element.keyExpireTimeSecond" [form]="form"></sm-text-control>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="channelDetail">
+              <th mat-header-cell *matHeaderCellDef><div class="pdl-2 pdr-2">{{"MÔ TẢ" | translate}}</div></th>
+              <td mat-cell *matCellDef="let element;">
+                <sm-text-control [matTooltip]="element.channelDetail.value" [item]="element.channelDetail" [form]="form"></sm-text-control>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="active">
+              <th mat-header-cell *matHeaderCellDef><div class="pdl-2 pdr-2">{{"TRẠNG THÁI" | translate}}</div></th>
+              <td mat-cell *matCellDef="let element;">
+                <mat-slide-toggle [disabled]="!enableUpdate || element.channel.value === 'DEFAULT'" color="primary" (change)="onClickChangeStatus($event, element)"
+                                  [ngClass]="{'custom-disabled-toggle': !enableUpdate || element.channel.value === 'DEFAULT'}" [checked]="element.active"> </mat-slide-toggle>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+          </app-no-data>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <dform-pagination-plus class="fullWidth" #pagePage showPageSelect [pageIndex]="pageIndex"
+                             (page)="onPageChange($event);" [totalItem]="totalItem" [pageSize]="pageSize" [showPageSizeList]="true"
+                             [pageSizeList]="pageSizeList">
+      </dform-pagination-plus>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,79 @@
+<div class="main-container">
+  <h2 class="title-page">
+    Cấu hình tài khoản tham số điện hoàn trả
+  </h2>
+  <div class="mrt-4">
+    <div class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+      <div class="panel-heading justify-content-between bdt">
+        <label fxFlex="50">
+          {{'BẢNG CẤU HÌNH' | translate}}
+        </label>
+        <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+          <button fxFlex="35" class="btn btn-light-blue btn-export mrl-4" (click)="exportExcel()">
+            <mat-icon class="mbb-icon ic-download mrr-0" [matTooltip]="'Xuất danh sách'"> </mat-icon>
+            <span>Xuất file</span>
+          </button>
+          <button fxFlex="25" class="btn btn-light-blue mrl-4" (click)="onClickHistory()" >
+            <mat-icon class="mbb-icon ic-calendar"></mat-icon>
+            <span>Xem lịch sử</span>
+          </button>
+          <button *ngIf="this.enableUpdate" fxFlex="25" class="btn btn-dark-blue mrl-4" (click)="onClickEdit()" >
+            <mat-icon class="mbb-icon ic-edit"></mat-icon>
+            <span>Chỉnh sửa</span>
+          </button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div [ngClass]="'table-css'">
+          <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+            <ng-container matColumnDef="priority">
+              <th mat-header-cell *matHeaderCellDef>{{"Độ ưu tiên" | translate}}</th>
+              <td mat-cell *matCellDef="let element;">
+                {{element.priority}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef>{{"Type" | translate}}</th>
+              <td mat-cell *matCellDef="let element;">
+                {{element.type}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="creditAccountNo">
+              <th mat-header-cell *matHeaderCellDef>{{"Tài khoản ghi có" | translate}}</th>
+              <td mat-cell *matCellDef="let element;">
+                {{element.creditAccountNo}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="auto">
+              <th mat-header-cell *matHeaderCellDef>{{"Tự động" | translate}}</th>
+              <td mat-cell *matCellDef="let element;">
+                <mat-slide-toggle disabled color="primary" [checked]="element.auto"> </mat-slide-toggle>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="parameter">
+              <th mat-header-cell *matHeaderCellDef>{{"Tham số" | translate}}</th>
+              <td mat-cell *matCellDef="let element;">
+                {{element.parameter}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="processingUnit">
+              <th mat-header-cell *matHeaderCellDef>{{"Đơn vị xử lý" | translate}}</th>
+              <td mat-cell *matCellDef="let element;">
+                {{element.processingUnit}}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+          </app-no-data>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-bottom dform-child-content">
+<!--    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>-->
+  </div>
+</div>
+

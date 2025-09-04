@@ -1,0 +1,50 @@
+<div>
+  <h2 class="title-page">
+    Chỉnh sửa cấu hình dấu hiệu tài khoản thu hộ định danh
+  </h2>
+  <div class="panel mrt-4 dform-child-content">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        BẢNG CẤU HÌNH DẤU HIỆU TÀI KHOẢN THU HỘ ĐỊNH DANH
+      </label>
+      <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
+        <button fxFlex="35" class="btn btn-light-blue mrl-4" (click)="onClickHistory()">
+          <mat-icon class="mbb-icon ic-calendar"></mat-icon>
+          <span>Xem lịch sử</span>
+        </button>
+        <button fxFlex="35" class="btn btn-dark-blue mrl-4" (click)="addFormRow()">
+          <mat-icon class="mbb-icon ic-edit"></mat-icon>
+          <span>Thêm trường</span>
+        </button>
+      </div>
+    </div>
+    <div class="panel-body panel-padding">
+      <form [formGroup]="mFormGroup">
+        <ng-container formArrayName="rows">
+          <div *ngFor="let control of dynamicRows.controls; let i=index;" [formGroupName]="i">
+            <div class="form-group" style="display: flex; flex-direction: column;" [class.error]="isValidFormControl(i)">
+              <div class="form-input-row ">
+                <input #inputElement matInput class="form-control" type="text" formControlName="text" (input)="onInputChange($event)">
+                <button mat-icon-button (click)="removeFormRow(i)" [matTooltip]="'Xóa' | translate">
+                  <mat-icon class=" mbb-icon ic-delete fc-error mrr-0">
+                  </mat-icon>
+                </button>
+              </div>
+              <div class="form-remark">
+                {{isValidFormControl(i,'required')}}
+              </div>
+            </div>
+            <div class=" break-line">
+              <hr class="line-right">
+            </div>
+          </div>
+        </ng-container>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="panel-bottom dform-child-content" style="margin-top: 50px;">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+// GL
+@function pxtorem($px) {
+    @return #{$px/$font-size-base}rem;
+}
+
+@function opacity-color($color, $opacity) {
+    @return rgba($color, $opacity);
+}
+
+@function spacing-loop($i){
+    @if $i != 0{
+        @return #{$i*0.25}rem;
+    }@else{
+        @return 0;
+    }
+}

@@ -1,0 +1,224 @@
+@charset "utf-8";
+@mixin query-sm {
+  @media screen and (max-width: map-get($grid-breakpoints, sm)) {
+    @content;
+  }
+}
+
+@mixin query-gt-sm {
+  @media screen and (min-width: map-get($grid-breakpoints, sm) + 1) {
+    @content;
+  }
+}
+
+@mixin query-md {
+  @media screen and (min-width: map-get($grid-breakpoints, md)) and (max-width: map-get($grid-breakpoints, lg) - 1) {
+    @content;
+  }
+}
+
+@mixin query-lt-md {
+  @media screen and (max-width: map-get($grid-breakpoints, md) - 1) {
+    @content;
+  }
+}
+
+@mixin query-gt-md {
+  @media screen and (min-width: map-get($grid-breakpoints, md)) {
+    @content;
+  }
+}
+
+@mixin query-lg {
+  @media screen and (min-width: map-get($grid-breakpoints, lg)) {
+    @content;
+  }
+}
+
+@mixin query-lt-lg {
+  @media screen and (max-width: map-get($grid-breakpoints, lg) - 1) {
+    @content;
+  }
+}
+
+@mixin query-lt-xl {
+  @media screen and (max-width: map-get($grid-breakpoints, xl)) {
+    @content;
+  }
+}
+
+@mixin query-xl {
+  @media screen and (min-width: map-get($grid-breakpoints, lg)) and (max-width: map-get($grid-breakpoints, xl)) {
+    @content;
+  }
+}
+
+@mixin query-gt-xl {
+  @media screen and (min-width: map-get($grid-breakpoints, xl) + 1) {
+    @content;
+  }
+}
+
+@mixin create-responsives-style($breakpoint) {
+  @if $breakpoint == sm {
+    @include query-gt-sm {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @include query-gt-md {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @include query-lg {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @include query-gt-xl {
+      @content;
+    }
+  }
+}
+
+// // Chỉ dùng cho Điện thoại
+// @mixin media-mobile{
+//     @media  screen and (max-width: map-get($grid-breakpoints, md)){
+//         @content;
+//     }
+// }
+// // Chỉ dùng cho Máy tính bảng
+// @mixin media-tablet{
+//     @media screen and (min-width: map-get($grid-breakpoints, md)) and (max-width: map-get($grid-breakpoints, lg)) {
+//         @content;
+//       }
+// }
+// // Chỉ dùng  cho Máy tính để bàn
+// @mixin media-desktop{
+//     @media screen and (min-width: map-get($grid-breakpoints, lg)){
+//         @content;
+//     }
+// }
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin transition($attr, $duration, $type) {
+  -webkit-transition: $attr $duration $type;
+  -moz-transition: $attr $duration $type;
+  -ms-transition: $attr $duration $type;
+  transition: $attr $duration $type;
+}
+
+@mixin transform($content) {
+  -webkit-transform: $content;
+  -moz-transform: $content;
+  -ms-transform: $content;
+  transform: $content;
+}
+
+@mixin box-sizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin bg-thumb {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@mixin bg-contain {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+//FONT
+@mixin h1 {
+  font-size: pxtorem(20) px;
+  font-weight: bold;
+}
+
+@mixin h2 {
+  font-size: pxtorem(18) px;
+  font-weight: 600;
+}
+
+@mixin h3 {
+  font-size: pxtorem(16) px;
+  font-weight: normal;
+}
+
+@mixin h4 {
+  font-size: pxtorem(14) px;
+  font-weight: normal;
+}
+
+@mixin alignCenter {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+}
+
+@mixin shadow($content) {
+  -moz-box-shadow: $content;
+  -webkit-box-shadow: $content;
+  -ms-box-shadow: $content;
+  box-shadow: $content;
+}
+
+@mixin ie-only {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+@mixin from-icon-assets($name) {
+  background-image: url(/assets/images/icons/#{$name}.svg);
+}
+
+@mixin flexWidth($grow, $shrink, $basis) {
+  flex: $grow $shrink $basis;
+  -ms-flex: $grow $shrink $basis;
+  max-width: $basis;
+}
+
+// Scrollbar
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $hover-color,
+  $background-color
+) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color !important;
+    border-radius: $size;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $hover-color !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+  
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}

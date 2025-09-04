@@ -1,0 +1,18 @@
+.scrollable {
+  position: relative;
+
+  > .scroll-content {
+    min-height: 10rem;
+    @include alignCenter;
+    overflow: auto;
+    z-index: 1;
+  }
+  > .scroll-background {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: opacity-color($color-gray-900, 0.4);
+    right: calc(0.4rem - 1px);
+    z-index: 0;
+  }
+}

@@ -1,0 +1,30 @@
+<div class="pdl-2 pdr-2"
+     [ngClass]="{'control-error': isValidControl(item.key)}" style="display: flex">
+  <label class="form-label">{{item.label | translate}}
+    <mat-icon *ngIf="isValidControl(item.key)"
+              class="mbb-icon ic-error sm fc-error mrl-1">
+    </mat-icon>
+    <span *ngIf="item.required && !isValidControl(item.key)"
+          class="fc-error mrl-1">*</span>
+  </label>
+  <!-- CASE TIME INPUT -->
+  <div class="form-group"
+       [formGroup]="form"
+       [class.error]="isValidControl(item.key) || isValidCustom(item.key, item.customValidate)?.key" style="width: 100%">
+    <div class="form-input-row">
+      <input #inputElement
+             class="form-control input-date"
+             autocomplete="false"
+             [formControlName]="item.key"
+             [placeholder]="item.placeholder | translate"
+             (keydown)="onKeydown($event)"
+             [value]="formattedTime"
+      />
+      <span *ngIf="formattedTime !== placeholder" class="clear-btn" (click)="clearTime()">×</span>
+    </div>
+    <div *ngIf="isValidCustom(item.key, item.customValidate)?.key"
+         class="form-remark">
+      {{isValidCustom(item.key, item.customValidate)?.value | translate}}
+    </div>
+  </div>
+</div>

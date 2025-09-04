@@ -1,0 +1,67 @@
+<div class="search-ctqt">
+  <h2 class="title-page">
+    Cấu hình bật/tắt luồng hạch toán GD BĐB vào T24
+    <mat-icon  class=" mbb-icon ic-error_outline fc-primary mrr-0" [matTooltip]="'Đây là tính năng phục vụ cấu hình bật, tắt chủ động luồng hạch toán của giao dịch bất đồng bộ vào T24' | translate">
+    </mat-icon>
+  </h2>
+
+  <div class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">
+        DANH SÁCH
+      </label>
+    </div>
+    <div class="panel-body">
+      <div [ngClass]="'table-css'">
+        <table class="dform-table table-info w-full" mat-table [dataSource]="dataSource" matSort [@.disabled]="true">
+
+          <ng-container matColumnDef="stt">
+            <th mat-header-cell *matHeaderCellDef>STT</th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="channel">
+            <th mat-header-cell *matHeaderCellDef>TÊN KÊNH CHUYỂN TIỀN</th>
+            <td mat-cell *matCellDef="let element;">{{element.transferChannel}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>TRẠNG THÁI</th>
+            <td mat-cell *matCellDef="let element;">
+              <mat-slide-toggle
+                (change)="onClickChangeStatus($event, element)"
+                color="primary"
+                [checked]="element.active"
+                [disabled]="!enableUpdate"> 
+              </mat-slide-toggle>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="timeConfig">
+            <th mat-header-cell *matHeaderCellDef>THỜI ĐIỂM BẬT LẠI TRẠNG THÁI HẠCH TOÁN</th>
+            <td mat-cell *matCellDef="let element;">{{
+                element.reopenTime ? convertTime(element.reopenTime) : '-----'
+              }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef>HÀNH ĐỘNG</th>
+            <td mat-cell *matCellDef="let element;">
+              <button *ngIf="enableUpdate && !element.active" mat-icon-button (click)="onClickEdit(element)">
+                <mat-icon class=" mbb-icon ic-calendar fc-primary mrr-0" [matTooltip]="'Chỉnh sửa thời điểm bật lại trạng thái' | translate">
+                </mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+        </app-no-data>
+      </div>
+    </div>
+<!--    <dform-footer *ngIf="isChecker" [listButton]="listButton" [isShowSelection]="true" [selection]="selectionObs"-->
+<!--                  [limitSelected]="limitSelected" (eventClick)="onClickBtn($event)"></dform-footer>-->
+  </div>
+</div>

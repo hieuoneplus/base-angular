@@ -1,0 +1,21 @@
+<div class="pdl-2 pdr-2"
+     [ngClass]="{'control-error': isValidControl(item.key)}">
+    <label class="form-label">{{item.label | translate}}
+        <mat-icon *ngIf="isValidControl(item.key)"
+                  class="mbb-icon ic-error sm fc-error mrl-1">
+        </mat-icon>
+        <span *ngIf="item.required && !isValidControl(item.key)"
+              class="fc-error mrl-1">*</span>
+    </label>
+    <!-- CASE RADIO -->
+    <div [formGroup]="form"
+         class="p-b-16 form-group">
+        <mat-radio-group color="primary"
+                         [formControlName]="item.key"
+                         aria-label="Select an option"
+                         fxLayout="row">
+            <mat-radio-button *ngFor="let opt of item.options"
+                              [value]="opt.key">{{opt.value}}</mat-radio-button>
+        </mat-radio-group>
+    </div>
+</div>

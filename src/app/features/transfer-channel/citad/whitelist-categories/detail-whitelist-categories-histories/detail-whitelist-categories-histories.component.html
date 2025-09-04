@@ -1,0 +1,99 @@
+<div class="dilog-message-error pds-3">
+  <div class="title-message-error">
+    Chi tiết lịch sử thay đổi
+  </div>
+  <button mat-icon-button (click)="closeDialog()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="pds-3 pdu-6">
+  <div class="pds-2" fxLayout="row wrap">
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">ID</label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.id}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Category</label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.category}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">WhitelistCategoryID</label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.whitelistCategoryId}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Code</label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.code}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Action</label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.action}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Sub product</label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.subProduct}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Sub product required</label>
+        <label class="content-message-error-detail"> {{ whitelistHistoryDetail?.subProductRequired  ? "Yêu cầu" : "Không yêu cầu" }}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Trạng thái</label>
+        <mat-slide-toggle [disabled]="true" color="primary" [checked]="whitelistHistoryDetail?.active"> </mat-slide-toggle>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Người tạo</label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.createdBy}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Thời gian tạo</label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.createdAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Người sửa đổi</label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.updatedBy}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Thời gian sửa đổi</label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-message-error-detail" fxFlex="33">Lý do sửa đổi </label>
+        <label class="content-message-error-detail">{{this.whitelistHistoryDetail?.reason}}</label>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  <div mat-dialog-actions class="" fxLayout="row" fxLayoutAlign="center">
+    <button class="btn btn-light-blue btn-xs" (click)="closeDialog()">
+      Đóng
+    </button>
+  </div>

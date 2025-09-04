@@ -1,0 +1,154 @@
+<div class="search-ctqt">
+  <h1 class="title-page">{{'Chi tiết thông tin giao dịch' }}
+  </h1>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin điện chuyển tiền thanh toán' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div *ngIf="this.hasDataSource" fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã giao dịch từ kênh</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.transactionId}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.transactionReferenceNumber}} </label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.transactionStatus}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái w4</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.w4Status}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Chiều giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.direction === 'SEND' ? 'Giao dịch chiều MB phát lệnh' : 'Giao dịch chiều MB nhận lệnh'}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Ngày giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.convertToDateFormat(this.dataTransactionOrigin?.dateLocalTransaction)}} </label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Giờ giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.convertToTimeFormat(this.dataTransactionOrigin?.timeLocalTransaction)}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Loại giao dịch</label>
+          <label *ngIf="element?.paymentCode ==='91'" style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.paymentCode}}-Chuyển tiền</label>
+          <label *ngIf="element?.paymentCode ==='50'" style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.paymentCode}}-Thanh toán</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số trace giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.systemTraceAuditNumber}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">FT</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.ft}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Ngày TQT</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.convertToDateFormat(this.dataTransactionOrigin?.dateSettlement)}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã giao dịch W4 wallet</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.way4WalletReferenceNumber}} </label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái Napas</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.napasStatus}} </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin TCPL' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div *ngIf="this.hasDataSource" fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Ngân hàng chuyển</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.acceptingInstitutionIdentificationCode}} - {{this.dataTransactionOrigin?.senderName}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/TK chuyển</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.fromAccountIdentification}} </label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số tiền giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.settlementAmount | currencyMask}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Loại tiền giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.settlementCurrencyCode.toString() === '704' ? 'VNĐ' : ''}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="100" class="pdu-4">
+          <label fxFlex="15">Thông tin ngân hàng chuyển</label>
+          <label style="font-weight: bold;" fxFlex="85">{{this.dataTransactionOrigin?.additionalDataPrivate}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="100" class="pdu-4">
+          <label fxFlex="15">Nội dung chuyển tiền</label>
+          <label class="transaction-content" style="font-weight: bold;" fxFlex="85"> {{this.dataTransactionOrigin?.contentTransfers}} </label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin TCNL' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div *ngIf="this.hasDataSource" fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Ngân hàng nhận</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.receivingInstitutionIdentificationCode}} - {{this.dataTransactionOrigin?.receiverName}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/TK nhận</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.toAccountIdentification}} </label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Họ tên người nhận</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.informationCardOrAccountBeneciary}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin khác' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div *ngIf="this.hasDataSource" fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Điểm đánh giá độ tin cậy của TK đích</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.authorizationIdentificationResponse}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Kênh khởi tạo giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.userDefinedField}} </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

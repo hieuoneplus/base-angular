@@ -1,0 +1,36 @@
+.dialog-text-area {
+    border-color: #d8d8d8;
+    padding: 0.3rem;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+}
+
+.button-close-df-confirm {
+    margin-top: 0px !important;
+    color: #000000 !important;
+}
+
+.max-length-info {
+    display: flex;
+    justify-content: end;
+    opacity: 0.5;
+    font-size: 12px;
+  }
+
+.warning-message {
+    display: flex;
+    align-items: center;
+    background-color: #FFF8F4;
+    border: 1px solid #FFCAAB;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+
+    .icon-warning {
+        display: flex;
+        align-items: center;
+        color: rgb(255 123 44);
+        margin-right: 8px;
+        font-size: 18px
+    }
+}

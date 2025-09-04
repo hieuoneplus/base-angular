@@ -1,0 +1,180 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chi tiết lịch sử thay đổi
+    <mat-icon  class=" mbb-icon ic-error_outline fc-primary mrr-0" [matTooltip]="'Đây là tính năng phục vụ cấu hình tài khoản đặc biệt' | translate">
+    </mat-icon>
+  </h1>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin phê duyệt' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Trạng thái phê duyệt</label>
+            <div [innerHTML]="getLabel(detailContent?.approvalStatus)"></div>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Loại thay đổi</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.action}}</label>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Ngày sửa đổi</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.updatedAt | date : "dd/MM/yyyy HH:mm"}}</label>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Người sửa đổi</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.updatedBy}}</label>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Lí do</label>
+            <label fxFlex="80" class="content-info-custom" style="font-weight: bold;">{{detailContent?.reason}}</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Loại tài khoản</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.name}}</label>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Dấu hiệu nhận biết</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.regex}}</label>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Số tài khoản chuyên thu</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.partnerAccount}}</label>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Phân loại tài khoản</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.partnerType}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">URL truy vấn tên</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.getNameUrl}}</label>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">URL báo có</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.confirmUrl}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Protocol</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.protocol}}</label>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Kênh</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{detailContent?.channel}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Số tiền tối thiểu</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{convertMoney(detailContent?.minTransLimit)}}</label>
+          </div>
+        </div>
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row">
+            <label fxFlex="20">Số tiền tối đa</label>
+            <label class="content-info-custom" style="font-weight: bold;">{{convertMoney(detailContent?.maxTransLimit)}}</label>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxLayout="column" class="pds-2" style="width:100%; padding: 10px;">
+          <div class="text-container" fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="10">PUBLIC_KEY phía đối tác</label>
+            <label class="content-info-custom" fxFlex="85" style="font-weight: bold;">
+              {{detailContent?.partnerPublicKey}}
+            </label>
+          </div>
+          <div class="text-container" fxLayout="row" style="margin-bottom: 20px;">
+            <label fxFlex="10">PRIVATE_KEY tại MB</label>
+            <label class="content-info-custom" fxFlex="85" style="font-weight: bold;">
+              {{detailContent?.mbPrivateKey}}
+            </label>
+
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxLayout="column" style="width:50%;">
+          <div fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: 20px;">
+            <label fxFlex="20">Cho phép Retry</label>
+            <div fxFlex style="display: flex; align-items: center;">
+              <input type="checkbox" [disabled]="true" [checked]="isRetryConfirm" />
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="column" class="pds-2" style="width:50%; padding: 10px;">
+          <div fxLayout="row" fxLayoutAlign="start center" style="margin-bottom: 20px;">
+            <label fxFlex="20">Trạng thái</label>
+            <div fxFlex style="display: flex; align-items: center;">
+              <mat-icon
+                [ngClass]="detailContent?.active ? 'mbb-icon ic-unchecked fc-success mrr-1' : 'mbb-icon ic-unchecked fc-gray-600 mrr-1'"
+                style="font-size: 10px; margin-right: 4px;"
+              ></mat-icon>
+              <span>{{ detailContent?.active ? 'Đang hoạt động' : 'Dừng hoạt động' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-bottom dform-child-content button-footer" >
+    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+  </div>
+
+</div>

@@ -1,0 +1,70 @@
+<mat-toolbar class="dform-toolbar">
+  <!-- <button mat-icon-button (click)="toggleSidenav.emit()">
+    <mat-icon class="mbb-icon ic-menu_grid"></mat-icon>
+  </button> -->
+
+  <!-- <dform-search-header></dform-search-header> -->
+
+  <span fxFlex></span>
+
+  <!-- <app-task-list fxHide.lt-sm></app-task-list> -->
+
+  <!-- <app-notification fxHide.lt-sm></app-notification> -->
+
+  <app-user></app-user>
+
+  <!-- <app-translate></app-translate> -->
+
+</mat-toolbar>
+
+<button mat-button (click)="onOpened(opened)" class="btn-opened-sidenav btn-bg-primary fw-bold mrl-4">
+  <mat-icon class="mbb-icon ic-menu_grid fs-24"></mat-icon>
+  <span>Tất cả dịch vụ</span>
+</button>
+<div [ngClass]="opened ? 'hasBackdrop' : ''" (click)="onOpened(opened)"></div>
+<mat-sidenav #sidenav class="dform-sidenav-header" [mode]="'over'" [opened]="opened">
+  <button mat-button (click)="onOpened(opened)" class="btn-bg-primary mrl-4 mrb-8 mrt-4 fw-bold">
+    <mat-icon class="mbb-icon ic-menu_grid fs-24"></mat-icon>
+    <span>Tất cả dịch vụ</span>
+  </button>
+  <a mat-menu-item class="user-mode-item" fxLayout="row" fxLayoutAlign="space-between start" (click)="useMode(1)">
+    <img src="assets/images/dform.svg" alt="" />
+    <div class="mode-text mrl-8" fxLayout="column" fxLayoutAlign="center start">
+      <span class="dform-mode-titile">SMART CHANNEL</span>
+      <span class="dform-mode-content">HTDK dịch vụ một cửa</span>
+    </div>
+    <mat-icon class="mbb-icon dform-mode-icon ic-external_link"></mat-icon>
+  </a>
+  <a mat-menu-item class="user-mode-item" fxLayout="row" fxLayoutAlign="space-between start" (click)="useMode(2)">
+    <img src="assets/images/b-office.svg" alt="" />
+    <div class="mode-text mrl-8" fxLayout="column" fxLayoutAlign="center start">
+      <span class="dform-mode-titile">BACKOFFICE</span>
+      <span class="dform-mode-content">HTDK dịch vụ một cửa</span>
+    </div>
+    <mat-icon class="mbb-icon dform-mode-icon ic-external_link"></mat-icon>
+  </a>
+  <a mat-menu-item class="user-mode-item" fxLayout="row" fxLayoutAlign="space-between start" (click)="useMode(4)">
+    <img src="assets/images/b-office.svg" alt="" />
+    <div class="mode-text mrl-8" fxLayout="column" fxLayoutAlign="center start">
+      <span class="dform-mode-titile">RETAIL</span>
+      <span class="dform-mode-content">HTDK dịch vụ một cửa</span>
+    </div>
+    <mat-icon class="mbb-icon dform-mode-icon ic-external_link"></mat-icon>
+  </a>
+  <a mat-menu-item class="user-mode-item"  href="javascript:void(0);"  (click)="loadUrl()" fxLayout="row" fxLayoutAlign="space-between start" (click)="useMode(false)">
+    <img src="assets/images/dform.png" alt="" />
+    <div class="mode-text" fxLayout="column" fxLayoutAlign="center start">
+      <span class="dform-mode-titile">THẺ</span>
+      <span class="dform-mode-content">HTDK dịch vụ thẻ</span>
+    </div>
+    <mat-icon class="mbb-icon dform-mode-icon ic-external_link"></mat-icon>
+  </a>
+  <a mat-menu-item class="user-mode-item" fxLayout="row" fxLayoutAlign="space-between start" (click)="useMode(3)">
+    <img src="assets/images/tableau.svg" alt="" />
+    <div class="mode-text mrl-8" fxLayout="column" fxLayoutAlign="center start">
+      <span class="dform-mode-titile">TABLEAU</span>
+      <span class="dform-mode-content">HT báo cáo toàn trình</span>
+    </div>
+    <mat-icon class="mbb-icon dform-mode-icon ic-external_link"></mat-icon>
+  </a>
+</mat-sidenav>

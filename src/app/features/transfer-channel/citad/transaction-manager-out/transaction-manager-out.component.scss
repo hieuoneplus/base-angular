@@ -1,0 +1,23 @@
+.table-css {
+    max-width: 100%;
+    overflow: auto;
+    td {
+      border-bottom: 1px solid rgb(230, 230, 230);
+    }
+    th {
+      text-transform: uppercase;
+    }
+    th:nth-child(11), td:nth-child(11) {
+      max-width: 10rem !important;
+    }
+    th:nth-child(14), td:nth-child(14) {
+      max-width: 7rem !important;
+    }
+}
+.title {
+  font-size: 24px !important;
+  font-family: Roboto-bold !important;
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+  // margin-left: 24px !important;
+}

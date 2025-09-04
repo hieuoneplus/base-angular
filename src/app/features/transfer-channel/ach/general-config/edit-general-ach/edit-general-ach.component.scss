@@ -1,0 +1,32 @@
+.search-ctqt {
+  display: flow-root;
+}
+
+.title {
+  font-size: 24px !important;
+  font-family: Roboto-bold;
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+  margin-left: 24px !important;
+}
+
+.label-item {
+  font-size: 14px !important;
+  font-family: Roboto-bold;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.div-search form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.div-search .search-input-custom {
+  min-width: 80% !important;
+}
+
+.label-status {
+  font-weight: bold;
+}

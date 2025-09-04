@@ -1,0 +1,131 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Chi tiết yêu cầu hoàn trả
+  </h1>
+
+  <div class="panel mrt-4" >
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin phê duyệt' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Người tạo</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionRefund?.createdBy}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Người phê duyệt</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionRefund?.updatedBy}} </label>
+        </div>
+
+        <div *ngIf="this.dataTransactionRefund?.status === 'REJECTED'" fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Lý do</label>
+          <label style="font-weight: bold;" class="custom-css-reason" fxFlex="70">{{this.dataTransactionRefund?.reason}}</label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin giao dịch gốc' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div *ngIf="this.hasDataSource" fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tổ chức phát lệnh</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionOrigin?.acceptingInstitutionIdentificationCode}} - {{this.dataTransactionOrigin?.senderName}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/ số tài khoản gửi</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.fromAccountIdentification}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Tổ chức nhận lệnh</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.receivingInstitutionIdentificationCode}} - {{this.dataTransactionOrigin?.receiverName}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số thẻ/ số tài khoản nhận</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.toAccountIdentification}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số tiền giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.settlementAmount | currencyMask}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">FT hạch toán T24</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.ft}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Nội dung giao dịch</label>
+          <label class="custom-css-word" style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.contentTransfers}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionOrigin?.transactionStatus}}</label>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="this.dataTransactionRefund" class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin tạo mới yêu cầu hoàn trả' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <div *ngIf="this.hasDataSource" fxLayout="row wrap" class="pds-2">
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã xử lý giao dịch</label>
+          <label style="font-weight: bold;" fxFlex="70"> {{this.dataTransactionRefund?.processingCode}} </label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số TK/Thẻ nguồn</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionRefund?.senderAcc}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Giá trị hoàn trả</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionRefund?.transactionAmount | currencyMask}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Số TK/Thẻ đích</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionRefund?.receiverAcc }}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Loại tiền tệ</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionRefund?.currencyCode === '704' ? 'VND' : ''}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Nội dung hoàn trả</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionRefund?.contentTransfers}}</label>
+        </div>
+
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Mã yêu cầu hoàn trả</label>
+          <label class="custom-css-word" style="font-weight: bold;" fxFlex="70">{{this.dataTransactionRefund?.disputeId}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Yêu cầu hạch toán</label>
+          <label style="font-weight: bold;" fxFlex="70">{{this.dataTransactionRefund?.transactionAccountingType.toString() ==='true' ? 'Giao dịch hoàn trả có yêu cầu hạch toán' : 'Giao dịch hoàn trả chỉ yêu cầu báo có'}}</label>
+        </div>
+        <div fxLayout="row" fxFlex="50" class="pdu-4">
+          <label fxFlex="30">Trạng thái hoàn trả</label>
+          <label style="font-weight: bold;" fxFlex="70" [innerHtml]="getLabel(this.dataTransactionRefund.status)"></label>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel panel-bottom dform-child-content">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickBtn($event)"></dform-footer>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="search-ctqt">
+  <h1 class="title-page">Thêm mới tài khoản trung gian
+    <mat-icon  class=" mbb-icon ic-error_outline fc-primary mrr-0" [matTooltip]="'Đây là tính năng phục vụ cấu hình tài khoản' | translate">
+    </mat-icon>
+  </h1>
+  <div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+      <label fxFlex="50">{{'Thông tin chung' | uppercase}}</label>
+    </div>
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <sm-select-control [item]="$functionCode" fxFlex="50" [form]="form"></sm-select-control>
+        <sm-text-control maxLengthView="true" [item]="$accountNumber" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control maxLengthView="true" [item]="$accountName" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-select-control [item]="$accountType" fxFlex="50" [form]="form"></sm-select-control>
+        <sm-text-control maxLengthView="true" [item]="$currency" fxFlex="50" [form]="form"></sm-text-control>
+        <sm-text-control maxLengthView="true" [item]="$description" fxFlex="50" [form]="form"></sm-text-control>
+        <dform-form-group-slide-toggle fxFlex="30" class="mrl-2" [item]="$isActive" [form]="form"
+                                       fxLayoutAlign="start center"></dform-form-group-slide-toggle>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel-bottom button-footer mrt-15">
+    <dform-footer [listButton]="listButton" (eventClick)="onClickActionBtn($event)"></dform-footer>
+  </div>
+</div>

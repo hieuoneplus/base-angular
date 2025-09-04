@@ -1,0 +1,27 @@
+
+
+.parcel-box{
+  width: 247px;
+  height: 160px;
+  margin-right: 16px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 10px;
+  .parcel-box-img{
+      margin-top: 46px;
+      margin-bottom: 12px;
+  }
+  .parcel-box-title{
+      font-family: Roboto-bold;
+
+  }
+}
+.parcel-box:hover {
+  box-shadow: 0 6px 16px -6px #222
+}

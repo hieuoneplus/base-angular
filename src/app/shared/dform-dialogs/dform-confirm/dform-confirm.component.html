@@ -1,0 +1,48 @@
+<div class="dform-header d-flex mrt-3" style="justify-content: space-between; align-items: center;">
+  <div style="margin-left: 20px;">
+    <label class="form-label" style="font-size: larger;">{{data.label}}</label>
+  </div>
+  <button mat-icon-button (click)="closeDialog()" class="button-close-df-confirm">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content class="pdu-0" [ngStyle]="{'min-height': data?.description ? '145px' : '40px'}">
+  <div class="warning-message" *ngIf="data.warning">
+    <mat-icon class="icon-warning">warning</mat-icon>
+    <p style="color: #2e2e2e; margin: 0; font-size: 14px">
+      {{data.warning}}
+    </p>
+  </div>
+  <div class="dform-title" *ngIf="data.title">
+    <label class="form-label">{{data.title}}
+      <span class="fc-error mrl-1">*</span>
+    </label>
+  </div>
+  <!-- Detail -->
+  <div style="margin-top: 5px;">
+    <p class="text-center fs-20" *ngIf="data?.message">{{data?.message || 'Message' | translate}}</p>
+    <p class="text-center fs-20" *ngIf="data?.innerHTML" [innerHTML]="data?.innerHTML"></p>
+  </div>
+  <div *ngIf="data?.description" class="form-group" [class.error]="!confirm && isRequired">
+    <div class="form-input-row" style="flex-direction: column;">
+      <textarea ref-textarea rows="3" cols="70" class="dialog-text-area" [(ngModel)]="confirm"
+                [placeholder]="data?.description" maxlength="{{ data?.maxLength ? data?.maxLength : 2000 }}" (ngModelChange)="ngModelChange()"></textarea>
+      <div class="max-length-info">
+        {{ this.confirm ? this.confirm!.length : 0 }} / {{data?.maxLength ? data?.maxLength : 2000}}
+      </div>
+    </div>
+    <div *ngIf="!confirm && isRequired" class="form-remark">
+      {{data?.description || 'Title' | translate}} {{ 'validations.not-null' | translate}}
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-center pdb-6 pdt-1" fxLayoutAlign="center">
+  <button class="btn btn-light-blue btn-md mrr-4" (click)="closeDialog()">
+    <!-- Accept Button -->
+    {{ data?.closeBtn | translate}}
+  </button>
+  <button class="btn btn-primary btn-md mrl-4" (click)="onUpdateConfirm()">
+    <!-- Error Button -->
+    {{ data?.acceptBtn | translate }}
+  </button>
+</div>

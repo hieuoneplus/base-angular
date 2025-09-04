@@ -1,0 +1,32 @@
+@import "src/assets/mb/common.scss";
+
+.no-items-default{
+  .no-register {
+    color: $color-gray-600;
+  }
+  .title-no-account {
+    font-size: 1.25rem;
+  }
+  .item-btn-icon {
+    color: $color-blue-primary;
+    cursor: pointer;
+  }
+}
+.no-items{
+  height: 100%;
+}
+.bank-statements, .e-banking{
+  margin: 0px !important;
+  .title-no-account{
+    font-size: 20px !important;
+  }
+  .btn{
+    padding: 11px 32px !important;
+    background-color: $color-blue-dark-blue;
+    font-size: 14px !important;
+    margin-top: 26px !important;
+  }
+  .btn:hover{
+    background-color: $color-neutral-white;
+  }
+}

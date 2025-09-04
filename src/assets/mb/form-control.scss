@@ -1,0 +1,21 @@
+.control-error {
+    .form-label {
+      >.ic-error {
+        display: inline-block !important;
+      }
+      >span {
+        display: none;
+      }
+    }
+  }
+  
+  .form-label {
+    .ic-error {
+      display: none;
+    }
+  
+    span {
+      display: inline-block;
+    }
+  }
+  

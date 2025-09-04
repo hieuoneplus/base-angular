@@ -1,0 +1,28 @@
+<div class="dform-container-wrap" [ngClass]="{'dform-sidenav-collapsed': options.sidenavCollapsed && options.navPos !=='top',
+                 'dform-navbar-side': options.navPos==='side',
+                 'dform-navbar-top': options.navPos==='top',
+                 'dform-header-above': options.headerPos==='above',
+                 'dform-header-fixed': options.headerPos==='fixed',
+                 'dform-header-white': options.theme==='light'}" [dir]="options.dir">
+  <!-- <app-header #header class="dform-header" *ngIf="options.showHeader && options.headerPos ==='above'"
+    (toggleSidenav)="sidenav.toggle()" (toggleCollapsed)="toggleCollapsed()" (toggleMenu)="toggleMenuChange($event)">
+  </app-header> -->
+
+  <mat-sidenav-container class="dform-container" autosize autoFocus>
+    <mat-sidenav #sidenav class="dform-sidenav"
+      [ngClass]="{'emb-sidenav': options.menuMode == 2, 'smart-sidenav': options.menuMode == 1}"
+      [mode]="isOver ? 'over' : 'side'" [opened]="options.navPos==='side' && options.sidenavOpened && !isOver"
+      (openedChange)="sidenavOpenedChange($event)" (closedStart)="sidenavCloseStart()">
+      <app-sidebar>
+      </app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content #content class="dform-content-wrap" id="dform-cutomer" (scroll)="onWindowScroll($event);">
+      <div
+        [ngClass]="{'dform-content': options.menuMode == 1 || options.menuMode == 3,'emb-content': options.menuMode == 2 || options.menuMode == 4}">
+        <page-header *ngIf="options.menuMode == 1" fxHide.lt-sm [isSubMenu]="true" style="background-color: crimson;"></page-header>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

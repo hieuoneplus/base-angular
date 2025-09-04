@@ -1,0 +1,140 @@
+<div class="dilog-history pds-5">
+  <div class="title-history">
+    Chi tiết lịch sử thay đổi
+  </div>
+  <button mat-icon-button (click)="closeDialog()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="pds-3 pdu-6">
+  <div class="pds-2" fxLayout="row wrap">
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-history-detail">ID</label>
+        <label class="content-history-detail">{{this.dataHistoryConfig?.id}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-history-detail">Config ID</label>
+        <label class="content-history-detail">{{this.dataHistoryConfig?.configId}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-history-detail">KEY</label>
+        <label class="content-history-detail">{{this.dataHistoryConfig?.key}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-history-detail">Loại thay đổi</label>
+        <label class="content-history-detail">{{this.dataHistoryConfig?.action}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-history-detail">Người tạo</label>
+        <label class="content-history-detail">{{this.dataHistoryConfig?.createdBy}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-history-detail">Thời gian tạo</label>
+        <label class="content-history-detail">{{this.dataHistoryConfig?.createdAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-history-detail">Người sửa đổi</label>
+        <label class="content-history-detail">{{this.dataHistoryConfig?.updatedBy}}</label>
+      </div>
+    </div>
+    <div fxFlex="50">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-history-detail">Thời gian sửa đổi</label>
+        <label class="content-history-detail">{{this.dataHistoryConfig?.updatedAt | date: 'dd/MM/yyyy HH:mm'}}</label>
+      </div>
+    </div>
+    <div fxFlex="100">
+      <div fxLayout="row" class="mrb-4">
+        <label class="label-history-detail" style="width: 145px;">Lý do sửa đổi</label>
+        <div class="content-history-detail-reson" fxFlex="70">{{this.dataHistoryConfig?.reason | json}}</div>
+      </div>
+    </div>
+    <div fxFlex="100">
+      <div fxLayout="row" class="mrb-4">
+        <label class="content-history-detail-content" style="width: 145px;">Nội dung sửa đổi</label>
+        <div class="box-history-detail-content-scroll" fxLayout="column"
+          *ngIf="dataHistoryConfig && dataHistoryConfig.value.$type == abbreviationType" fxFlex="70">
+          <span class="mrb-4 history-detail-content-scroll" *ngFor="let item of detailHistoryConfigObjectEntry"
+            style="display: block; font-weight: bold; word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">
+            {{ item.key + ':'}}
+            <span class="mrl-4" style="font-weight: normal;" *ngFor="let value of item.values"> <br /> -
+              {{value}}</span>
+          </span>
+        </div>
+        <div class="box-history-detail-content-scroll" fxLayout="column" fxFlex="70"
+          *ngIf="dataHistoryConfig && dataHistoryConfig.value.$type == accountParameter">
+          <span class="mrb-4 history-detail-content-scroll" *ngFor="let item of detailHistoryConfigObjectEntry"
+            style="display: block; font-weight: bold; word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">
+            <div fxLayout="row">
+              <span fxFlex="25">{{ 'Độ ưu tiên' + ':' | translate}}</span>
+              <span fxFlex="75" class="mrl-4" style="font-weight: normal;">{{item.values.priority}} <br /> </span>
+            </div>
+            <div fxLayout="row">
+              <span fxFlex="25">{{ 'Type' + ':'}}</span>
+              <span fxFlex="75" class="mrl-4" style="font-weight: normal;">{{item.values.type}} <br /> </span>
+            </div>
+            <div fxLayout="row">
+              <span fxFlex="25">{{ 'Tài khoản ghi có' + ':' | translate}}</span>
+              <span fxFlex="75" class="mrl-4" style="font-weight: normal;">{{item.values.creditAccountNo}} <br /></span>
+            </div>
+            <div fxLayout="row">
+              <span fxFlex="25">{{ 'Tự động' + ':' | translate}}</span>
+              <span fxFlex="75" class="mrl-4" style="font-weight: normal;">{{item.values.auto}} <br /></span>
+            </div>
+            <div fxLayout="row">
+              <span fxFlex="25">{{ 'Tham số' + ':' | translate}}</span>
+              <span fxFlex="75" class="mrl-4" style="font-weight: normal;">{{item.values.parameter}} <br /></span>
+            </div>
+            <div fxLayout="row">
+              <span fxFlex="25">{{ 'Đơn vị xử lý' + ':'}}</span>
+              <span fxFlex="75" class="mrl-4" style="font-weight: normal;">{{item.values.processingUnit}} <br /></span>
+            </div>
+          </span>
+        </div>
+        <div class="box-history-detail-content-scroll" fxLayout="column"
+          *ngIf="dataHistoryConfig && dataHistoryConfig.value.$type !== abbreviationType && dataHistoryConfig.value.$type !== accountParameter  && dataHistoryConfig.value.$type !== credit_account && dataHistoryConfig.value.$type !== transactionReplacement"
+          fxFlex="70">
+          <span class="history-detail-content-scroll" *ngFor="let item of detailHistoryConfigObjectEntry"
+            style="display: block; font-weight: bold; word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">
+            {{ item[1] }}
+          </span>
+        </div>
+        <div class="box-history-detail-content-scroll" fxLayout="column"
+             *ngIf="dataHistoryConfig && dataHistoryConfig.value.$type == transactionReplacement" fxFlex="70">
+
+            <pre>{{detailHistoryConfigObjectEntry}}</pre>
+
+        </div>
+
+        <div class="box-history-detail-content-scroll" fxLayout="column"
+          *ngIf="dataHistoryConfig && dataHistoryConfig.value.$type === credit_account" fxFlex="70">
+          <span class="mrb-4 history-detail-content-scroll" *ngFor="let item of detailHistoryConfigObjectEntry" style="display: block; word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">
+            <span fxFlex="40">{{this.dataHistoryConfig.key+ ' '}}</span>
+            <span fxFlex="10" style="font-weight: normal;">{{ item.value + ' '}}</span>
+            <span fxFlex="30" style="font-weight: normal;">{{item.content}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions class="" fxLayout="row" fxLayoutAlign="center">
+  <button class="btn btn-light-blue btn-xs" (click)="closeDialog()">
+    Đóng
+  </button>
+</div>

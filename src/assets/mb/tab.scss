@@ -1,0 +1,27 @@
+mat-tab-body {
+    .mat-tab-body-content {
+        overflow: hidden;
+    }
+}
+.mat-tab-list {
+    .mat-tab-labels {
+        padding-left: 24px;
+        padding-right: 24px;
+        height: 68px;
+        .mat-tab-label{
+            padding: 25px 35px;
+            height: 100%;
+            .mat-tab-label-content{
+                font-family: Roboto-bold;
+                font-size: 14px;
+                color: $color-gray-800;
+                text-transform: uppercase;
+            }
+        }
+       
+    }
+}
+
+.mat-tab-body-content{
+    padding: 21px 17px;
+}

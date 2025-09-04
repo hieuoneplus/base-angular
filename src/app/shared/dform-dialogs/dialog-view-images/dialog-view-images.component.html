@@ -1,0 +1,66 @@
+<div class="panel dialog-image-view">
+    <div class="panel-heading bdt justify-content-between" fxLayout="row">
+        <div class="header-heading" fxFlex="90">
+            {{data?.title || 'Title' | translate | uppercase}}
+        </div>
+        <div fxFlex="10">
+            <button class="btn-close" mat-icon-button (click)="onCloseCancel()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="d-flex justify-content-center panel-body-content" fxLayout="row" fxLayoutAlign="center center"
+            *ngIf="listImage.length > 1">
+            <div fxFlex="20" class="list-image">
+                <div class="image-item d-flex justify-content-center" *ngFor="let item of listImage; let i = index"
+                    [ngClass]="'image-' + i" (click)="onActiveItem(i)">
+                    <img [src]="item" [ngClass]="i == activeItem ? 'active' : ''">
+                </div>
+            </div>
+            <div class="detail-image">
+                <div class="image-current multi">
+                    <div class="d-flex justify-content-center" style="width: 100%;height: 100%;align-items: center;">
+                        <img mainImage class="main-image" [src]="activeImage">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center tool-icon">
+                    <mat-icon class="mbb-icon ic-chevron_left md mrs-4 chevron-icon" matTooltip="Tiếp theo"
+                        (click)="prevActiveImage()"></mat-icon>
+                    <mat-icon class="mbb-icon ic-zoom-in sm mrs-4" matTooltip="Phóng to" (click)="onZoomIn()">
+                    </mat-icon>
+                    <mat-icon class="mbb-icon ic-zoom-out sm mrs-4" matTooltip="Thu nhỏ" (click)="onZoomOut()">
+                    </mat-icon>
+                    <mat-icon class="mbb-icon ic-image sm mrs-4" matTooltip="Xem toàn màn hình"
+                        (click)="viewFullScreen()"></mat-icon>
+                    <mat-icon class="mbb-icon ic-undo sm mrs-4" matTooltip="Xoay trái" (click)="onRotateLeft()">
+                    </mat-icon>
+                    <mat-icon class="mbb-icon ic-redo sm mrs-4" matTooltip="Xoay phải" (click)="onRotateRight()">
+                    </mat-icon>
+                    <mat-icon class="mbb-icon ic-chevron_right md mrs-4 chevron-icon" matTooltip="Quay lại"
+                        (click)="nextActiveImage()"></mat-icon>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center detail-image" *ngIf="listImage.length == 1">
+            <div fxLayout="column" fxLayoutAlign="center center" class="content-detail-image">
+                <div class="justify-content-center d-flex image-current single" fxLayoutAlign="center center">
+                    <img class="main-image" [src]="activeImage">
+                </div>
+                <div class="d-flex justify-content-center tool-icon">
+                    <mat-icon class="mbb-icon ic-zoom-in sm mrs-4" matTooltip="Phóng to" (click)="onZoomIn()">
+                    </mat-icon>
+                    <mat-icon class="mbb-icon ic-zoom-out sm mrs-4" matTooltip="Thu nhỏ" (click)="onZoomOut()">
+                    </mat-icon>
+                    <mat-icon class="mbb-icon ic-image sm mrs-4" matTooltip="Xem toàn màn hình"
+                        (click)="viewFullScreen()">
+                    </mat-icon>
+                    <mat-icon class="mbb-icon ic-undo sm mrs-4" matTooltip="Xoay trái" (click)="onRotateLeft()">
+                    </mat-icon>
+                    <mat-icon class="mbb-icon ic-redo sm mrs-4" matTooltip="Xoay phải" (click)="onRotateRight()">
+                    </mat-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

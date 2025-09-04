@@ -1,0 +1,15 @@
+<div class="search-ctqt">
+  <h2 class="title-page">
+    ACH
+  </h2>
+  <div class="mrt-4">
+    <div class="config-content">
+      <div *ngFor="let config of permittedConfig" class="config-box" (click)="handleNavigate(config.pageUrl)">
+        <div fxlayoutalign="center center" class="config-box-content">
+          <mat-icon class="content-icon mbb-icon lg">{{config.icon}}</mat-icon>
+          <span>{{config.configName}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
