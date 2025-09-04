@@ -11,12 +11,14 @@ export const environment = {
   base_url: 'http://localhost:4200',
   urlPmpBe: 'http://localhost:8080',
   urlBilateralBE: 'http://localhost:8080',
-
-  keycloak: {
-    issuer: 'https://keycloak-internal.mbbank.com.vn/auth/',
-    realm: 'internal',
-    client: '',
-    relationShip: '',
-    realmManagement: 'realm-management'
-  },
+  google: {
+    clientId: '676677615076-l0k6eb1mpn41ebpo7p98c3lkklppu3nb.apps.googleusercontent.com',
+  }
+  // keycloak: {
+  //   issuer: 'https://keycloak-internal.mbbank.com.vn/auth/',
+  //   realm: 'internal',
+  //   client: '',
+  //   relationShip: '',
+  //   realmManagement: 'realm-management'
+  // },
 };

@@ -32,6 +32,7 @@
     "@ng-select/ng-select": "^10.0.3",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "angular-oauth2-oidc": "^20.0.2",
     "jquery": "^3.6.0",
     "json-bigint": "^1.0.0",
     "keycloak-angular": "^13.0.0",

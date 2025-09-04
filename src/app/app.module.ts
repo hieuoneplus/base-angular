@@ -19,6 +19,7 @@ import { initializer } from './keycloak-initializer'
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptor } from './features/auth/auth.interceptor';
 import { BigIntInterceptor } from './shared/utils/BigInt.interceptor';
+import {OAuthModule, OAuthService} from "angular-oauth2-oidc";
 
 export function TranslateLangServiceFactory(translateLangService: TranslateLangService) {
   return () => translateLangService.load();
@@ -79,7 +80,8 @@ const routes: Routes = [
         useFactory: TranslateHttpLoaderFactory,
         deps: [HttpClient],
       },
-    })
+    }),
+    OAuthModule.forRoot()
   ],
   declarations: [
     AppComponent
@@ -95,7 +97,7 @@ const routes: Routes = [
     {
       provide: APP_INITIALIZER,
       useFactory: initializer,
-      deps: [KeycloakService, Router],
+      deps: [OAuthService],
       multi: true
     },
     {
