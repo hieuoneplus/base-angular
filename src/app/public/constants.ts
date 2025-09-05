@@ -165,7 +165,7 @@ export const PATH = {
     GET_USER_BY_NAME: 'admin-portal/v1/users/hcm/', //admin-portal/v1/users/{username}
     PUT_USERS: 'admin-portal/v1/users/',
     POST_USERS: 'admin-portal/v1/users',
-    PERMISSIONS: 'admin-portal/v1/users/permissions',
+    PERMISSIONS: 'admin-portal/v1/permissions',
     ME: 'admin-portal/v1/users/me',
   },
   ROLE: {

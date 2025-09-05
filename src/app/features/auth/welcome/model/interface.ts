@@ -6,7 +6,7 @@ export interface IPageable<T> {
   }
 
   export interface ILoginResponse {
-    sort?: string,
+    token?: string,
     username?: string,
     expiresIn?: number
   }

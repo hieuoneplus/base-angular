@@ -75,10 +75,8 @@ export class HttpClientService {
   httpCall<T>(verb: Verbs, options: HttpOptions): Observable<T> {
     const token = this.localStore.getData(LocalStoreEnum.Token_Jwt);
     const userName = this.localStore.getData(LocalStoreEnum.USER_NAME);
-
     // Initialize headers
     options.headers = options.headers ?? {};
-    
     // Always add client message ID and transaction ID
     options.headers = {
       ...options.headers,
@@ -95,7 +93,6 @@ export class HttpClientService {
         userName,
       };
     }
-
     // Debug logging for login requests
     if (options.path?.includes('login')) {
       console.log('Login request details:', {

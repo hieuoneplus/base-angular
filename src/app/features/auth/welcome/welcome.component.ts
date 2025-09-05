@@ -1,5 +1,5 @@
 import {OAuthService} from "angular-oauth2-oidc";
-import {ComponentAbstract, MessageSeverity} from "@shared-sm";
+import {ComponentAbstract, LocalStoreEnum, MessageSeverity} from "@shared-sm";
 import {Component, Injector} from "@angular/core";
 import {AuthService} from "../service/AuthService";
 import {PASSWORD, USERNAME} from "./model/constant";
@@ -7,6 +7,8 @@ import {DFORM_CONFIRM_STATUS, TOAST_DEFAULT_CONFIG} from "../../../public/consta
 import {finalize, takeUntil} from "rxjs/operators";
 import ErrorUtils from "../../../shared/utils/ErrorUtils";
 import {ILoginRequest} from "./model/interface";
+import {environment} from "@env/environment";
+import {AppMenus, MenuService} from "../../../shared/services/menu.service";
 
 @Component({
   selector: 'app-welcome-component',
@@ -16,7 +18,7 @@ import {ILoginRequest} from "./model/interface";
 export class WelcomeComponent extends ComponentAbstract {
   $username = USERNAME();
   $password = PASSWORD();
-  
+
   hidePassword = true;
   isLoading = false;
 
@@ -40,13 +42,13 @@ export class WelcomeComponent extends ComponentAbstract {
         username: values.username,
         password: values.password
       };
-      
+
       console.log('Login request body:', body);
       console.log('API URL:', 'http://localhost:8888/admin-portal/v1/login');
-      
+
       this.isLoading = true;
       this.indicator.showActivityIndicator();
-      
+
       this.authService
               .login(body)
               .pipe(
@@ -64,16 +66,12 @@ export class WelcomeComponent extends ComponentAbstract {
                     data: res?.data,
                     error: res?.error
                   });
-                  
+
                   // Gọi API thành công và có data trả về
                   if (res && res.status === 200) {
-                    this.toastr.showToastr(
-                      'Đăng nhập thành công',
-                      'Thông báo!',
-                      MessageSeverity.success,
-                      TOAST_DEFAULT_CONFIG
-                    );
-                    this.goTo('/pmp_admin');
+                    localStorage.setItem(LocalStoreEnum.Token_Jwt, res.data.token);
+                    localStorage.setItem(LocalStoreEnum.USER_NAME, res.data.username);
+                    this.getUserInfo();
                   } else {
                     // Handle unexpected response status
                     console.warn('Unexpected response status:', res?.status);
@@ -93,9 +91,9 @@ export class WelcomeComponent extends ComponentAbstract {
                     error: error?.error,
                     message: error?.message
                   });
-                  
+
                   let errorMessage = 'Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại.';
-                  
+
                   try {
                     const messageError = ErrorUtils.getErrorMessage(error);
                     if (messageError && messageError.length > 0) {
@@ -114,7 +112,7 @@ export class WelcomeComponent extends ComponentAbstract {
                       errorMessage = 'Không thể kết nối đến máy chủ. Vui lòng kiểm tra kết nối mạng.';
                     }
                   }
-                  
+
                   this.toastr.showToastr(
                     errorMessage,
                     'Lỗi đăng nhập',
@@ -134,5 +132,55 @@ export class WelcomeComponent extends ComponentAbstract {
   }
   register() {
     this.oauthService.initLoginFlow(); // lúc này mới gọi Google login
+  }
+
+  getUserInfo() {
+    // xử lý lưu token mới của pmp_admin và get role và mapping thành menu hiển thị
+    localStorage.removeItem(LocalStoreEnum.Menu_List);
+    this.indicator.showActivityIndicator();
+    this.authService.getUserPermissions().pipe(
+      takeUntil(this.ngUnsubscribe),
+      finalize(() => this.indicator.hideActivityIndicator())
+    ).subscribe((res) => {
+      if (res && res.status == 200) {
+        const permissions = res.data;
+        let menuObList = JSON.stringify(MenuService.getMenusByPermissions(permissions));
+
+        console.log("MY MENU PERMISSIONS", menuObList);
+
+        if (environment.showAllMenu) {
+          menuObList = JSON.stringify(AppMenus);
+        }
+
+        // const sessionState = this.decodeJWT(this.localStore.getData(LocalStoreEnum.Token_Jwt))?.payload?.session_state;
+
+        localStorage.setItem(LocalStoreEnum.pmp_permissions, JSON.stringify(permissions));
+        localStorage.setItem(LocalStoreEnum.Menu_List, menuObList);
+        // localStorage.setItem(LocalStoreEnum.pmp_verified_otp, sessionState);
+        // this.getBilateralUser();
+
+        this.router.navigateByUrl('pmp_admin/admin/profile');
+        this.toastr.showToastr(
+          `Đăng nhập thành công`,
+          'Thông báo!',
+          MessageSeverity.success,
+          TOAST_DEFAULT_CONFIG
+        );
+      } else {
+        this.toastr.showToastr(
+          `Đăng nhập không thành công`,
+          'Thông báo!',
+          MessageSeverity.error,
+          TOAST_DEFAULT_CONFIG
+        );
+      }
+    }, (error) => {
+      this.toastr.showToastr(
+        `Đăng nhập không thành công`,
+        'Thông báo!',
+        MessageSeverity.error,
+        TOAST_DEFAULT_CONFIG
+      );
+    });
   }
 }

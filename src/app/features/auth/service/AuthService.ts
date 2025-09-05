@@ -41,6 +41,7 @@ export class AuthService {
     const option: HttpOptions = {
       url: environment.urlPmpBe,
       path: PATH.USER.PERMISSIONS,
+      isAuthentication: true
     }
     return this.httpClientService.get(option);
   }
