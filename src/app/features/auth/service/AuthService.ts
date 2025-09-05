@@ -57,7 +57,8 @@ export class AuthService {
     const option: HttpOptions = {
       url: environment.urlPmpBe,
       path: PATH.AUTH.LOGIN,
-      body: request
+      body: request,
+      isAuthentication: false  // Don't add auth headers for login
     }
     return this.httpClientService.post(option);
   }

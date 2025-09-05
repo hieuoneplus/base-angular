@@ -76,12 +76,37 @@ export class HttpClientService {
     const token = this.localStore.getData(LocalStoreEnum.Token_Jwt);
     const userName = this.localStore.getData(LocalStoreEnum.USER_NAME);
 
+    // Initialize headers
+    options.headers = options.headers ?? {};
+    
+    // Always add client message ID and transaction ID
     options.headers = {
+      ...options.headers,
       clientMessageId: `${UUID.UUID()}`,
       transactionId: `${UUID.UUID()}`,
-      Authorization: `Bearer ${token}`,
-      userName,
     };
+
+    // Only add authentication headers if isAuthentication is true (default)
+    options.isAuthentication = options.isAuthentication ?? true;
+    if (options.isAuthentication) {
+      options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${token}`,
+        userName,
+      };
+    }
+
+    // Debug logging for login requests
+    if (options.path?.includes('login')) {
+      console.log('Login request details:', {
+        url: `${options.url ?? URL_BASE}/${options.path}`,
+        method: verb,
+        headers: options.headers,
+        body: options.body,
+        isAuthentication: options.isAuthentication
+      });
+    }
+
     return this.http.request<T>(verb, `${options.url ?? URL_BASE}/${options.path}`, {
       body: options.body,
       headers: options.headers,

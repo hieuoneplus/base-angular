@@ -3,26 +3,64 @@ const INVALID_PARAMETERS_CODE = '-4000'
 export default class ErrorUtils {
 
     public static getErrorMessage(errorResponse) {
-        const obj = errorResponse.error;
-        if (obj) {
-          if(obj.status === 403) return
-          const error = JSON.parse(obj);
-          if (error.soaErrorCode) {
-            const message = errorMessages[error.soaErrorCode];
-            if (message) {
-              return [message];
-            } else {
-              // lấy message lỗi input param
-              // if (error.soaErrorCode && error.soaErrorCode.endsWith(INVALID_PARAMETERS_CODE) && error.errors && error.errors.length > 0) {
-              //     const errorsParams = error.errors;
-              //     return errorsParams.map(e => { return `${e.field}: ${e.description}` });
-              // }
-              return error.soaErrorDesc ? [error.soaErrorDesc] : ['Lỗi hệ thống']
+        try {
+            const obj = errorResponse?.error;
+            
+            // Handle case where error is already an object
+            if (obj && typeof obj === 'object') {
+                if (obj.status === 403) return ['Người dùng không có quyền truy cập'];
+                
+                // Check if it's already parsed or needs parsing
+                let error = obj;
+                if (typeof obj === 'string') {
+                    try {
+                        error = JSON.parse(obj);
+                    } catch (parseError) {
+                        console.warn('Failed to parse error response:', parseError);
+                        return [obj || 'Lỗi hệ thống'];
+                    }
+                }
+                
+                if (error?.soaErrorCode) {
+                    const message = errorMessages[error.soaErrorCode];
+                    if (message) {
+                        return [message];
+                    } else {
+                        return error.soaErrorDesc ? [error.soaErrorDesc] : ['Lỗi hệ thống'];
+                    }
+                } else if (error?.message) {
+                    return [error.message];
+                } else if (error?.error) {
+                    return [error.error];
+                } else {
+                    return error.soaErrorDesc ? [error.soaErrorDesc] : ['Lỗi hệ thống'];
+                }
+            } 
+            // Handle case where error is a string
+            else if (typeof obj === 'string') {
+                try {
+                    const parsedError = JSON.parse(obj);
+                    return this.getErrorMessage({ error: parsedError });
+                } catch {
+                    return [obj];
+                }
             }
-          } else {
-            return error.soaErrorDesc ? [error.soaErrorDesc] : ['Lỗi hệ thống'];
-          }
-        } else {
+            // Handle case where error is null/undefined but we have status
+            else if (errorResponse?.status) {
+                if (errorResponse.status === 401) {
+                    return ['Tên đăng nhập hoặc mật khẩu không đúng'];
+                } else if (errorResponse.status === 403) {
+                    return ['Người dùng không có quyền truy cập'];
+                } else if (errorResponse.status === 500) {
+                    return ['Lỗi máy chủ. Vui lòng thử lại sau'];
+                } else if (errorResponse.status === 0) {
+                    return ['Không thể kết nối đến máy chủ'];
+                }
+            }
+            
+            return ['Lỗi hệ thống'];
+        } catch (error) {
+            console.error('Error in getErrorMessage:', error);
             return ['Lỗi hệ thống'];
         }
     }

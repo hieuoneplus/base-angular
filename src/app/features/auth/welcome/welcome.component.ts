@@ -41,6 +41,9 @@ export class WelcomeComponent extends ComponentAbstract {
         password: values.password
       };
       
+      console.log('Login request body:', body);
+      console.log('API URL:', 'http://localhost:8888/admin-portal/v1/login');
+      
       this.isLoading = true;
       this.indicator.showActivityIndicator();
       
@@ -55,7 +58,13 @@ export class WelcomeComponent extends ComponentAbstract {
               )
               .subscribe(
                 (res) => {
-                  console.log('RESPONSE', res);
+                  console.log('LOGIN RESPONSE', res);
+                  console.log('Response details:', {
+                    status: res?.status,
+                    data: res?.data,
+                    error: res?.error
+                  });
+                  
                   // Gọi API thành công và có data trả về
                   if (res && res.status === 200) {
                     this.toastr.showToastr(
@@ -65,14 +74,50 @@ export class WelcomeComponent extends ComponentAbstract {
                       TOAST_DEFAULT_CONFIG
                     );
                     this.goTo('/pmp_admin');
+                  } else {
+                    // Handle unexpected response status
+                    console.warn('Unexpected response status:', res?.status);
+                    this.toastr.showToastr(
+                      'Phản hồi không mong đợi từ máy chủ',
+                      'Cảnh báo',
+                      MessageSeverity.warning,
+                      TOAST_DEFAULT_CONFIG
+                    );
                   }
                 },
                 (error) => {
                   console.log('ERROR', error);
-                  const messageError = ErrorUtils.getErrorMessage(error);
+                  console.log('Error details:', {
+                    status: error?.status,
+                    statusText: error?.statusText,
+                    error: error?.error,
+                    message: error?.message
+                  });
+                  
+                  let errorMessage = 'Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại.';
+                  
+                  try {
+                    const messageError = ErrorUtils.getErrorMessage(error);
+                    if (messageError && messageError.length > 0) {
+                      errorMessage = messageError.join('\n');
+                    }
+                  } catch (parseError) {
+                    console.error('Error parsing error message:', parseError);
+                    // Fallback error messages based on HTTP status
+                    if (error?.status === 401) {
+                      errorMessage = 'Tên đăng nhập hoặc mật khẩu không đúng.';
+                    } else if (error?.status === 403) {
+                      errorMessage = 'Tài khoản không có quyền truy cập.';
+                    } else if (error?.status === 500) {
+                      errorMessage = 'Lỗi máy chủ. Vui lòng thử lại sau.';
+                    } else if (error?.status === 0) {
+                      errorMessage = 'Không thể kết nối đến máy chủ. Vui lòng kiểm tra kết nối mạng.';
+                    }
+                  }
+                  
                   this.toastr.showToastr(
-                    messageError.join('\n'),
-                    'Thông báo!',
+                    errorMessage,
+                    'Lỗi đăng nhập',
                     MessageSeverity.error,
                     TOAST_DEFAULT_CONFIG
                   );
