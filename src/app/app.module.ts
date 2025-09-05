@@ -31,9 +31,9 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
 }
 
 const routes: Routes = [
-  { path: '', redirectTo: 'pmp_admin/auth', pathMatch: 'full' },
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   {
-    path: 'pmp_admin/auth',
+    path: 'welcome',
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
   },
   {
@@ -81,7 +81,12 @@ const routes: Routes = [
         deps: [HttpClient],
       },
     }),
-    OAuthModule.forRoot()
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['http://localhost:8080'],
+        sendAccessToken: true,
+      },
+    }),
   ],
   declarations: [
     AppComponent
@@ -94,12 +99,12 @@ const routes: Routes = [
       multi: true,
     },
     materialProviders,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializer,
-      deps: [OAuthService],
-      multi: true
-    },
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializer,
+    //   deps: [OAuthService],
+    //   multi: true
+    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

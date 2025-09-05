@@ -2,6 +2,8 @@ import { Component, OnInit, Injector, OnDestroy, HostListener } from '@angular/c
 import { Router } from '@angular/router';
 import { ActivityIndicatorSingletonService, LocalStoreEnum, HttpClientService, LocalStoreManagerService } from '@shared-sm';
 import { environment } from '@env/environment';
+import {OAuthService} from "angular-oauth2-oidc";
+import {authConfig} from "./auth.config";
 
 declare const require: any;
 
@@ -26,69 +28,21 @@ export class AppComponent implements OnInit, OnDestroy {
     // }
   }
   ngVersion = require('../../package.json').dependencies['@angular/core'];
-  constructor(private router: Router) {
-    // this.addStyle();
-  }
+  constructor(private oauthService: OAuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    console.log("UAT = ", environment.uat);
-    const url = location.href?.replace(location.origin, '');
-    const pmp_verified_otp = localStorage.getItem(LocalStoreEnum.pmp_verified_otp);
-    console.log("app.component: GOTO - OTP", url, pmp_verified_otp);
-    if (url.includes(environment.key)) {
-      // cần check thêm nếu chưa login OTP
-      const sessionState = this.decodeJWT(localStorage.getItem(LocalStoreEnum.Token_Jwt))?.payload?.session_state;
+  async ngOnInit() {
+    // 1. Cấu hình OAuth2 (Google)
+    this.oauthService.configure(authConfig);
+    // 2. Thử lấy token từ URL fragment hoặc localStorage
+    await this.oauthService.loadDiscoveryDocumentAndTryLogin();
 
-      if (!pmp_verified_otp) {
-        this.router.navigateByUrl('/pmp_admin/auth/login-otp');
-      } else if (sessionState !== pmp_verified_otp) {
-        localStorage.removeItem(LocalStoreEnum.pmp_verified_otp);
-        window.postMessage({ key: 'sc-navigation', url: 'login' }, '*');
-      }
-      else {
-        this.router.navigateByUrl(url);
-      }
-    } else
-      this.router.navigateByUrl(url);
-    // if (checkLoadMFE()) {
-    //   // Khi loading vào ứng dụng nó sẽ trỏ đến url
-    //   const url = location.href?.replace(location.origin, '');
-    //   const pmp_verified_otp = localStorage.getItem(LocalStoreEnum.pmp_verified_otp);
-    //   console.log("app.component: GOTO - OTP", url, pmp_verified_otp);
-
-    //   if (url.includes(environment.key)) {// cần check thêm nếu chưa login OTP
-    //     if (!pmp_verified_otp) {
-    //       this.router.navigateByUrl('/pmp_admin/auth/login-otp');
-    //     }
-    //     else {
-    //       this.router.navigateByUrl(url);
-    //     }
-    //   } else
-    //     this.router.navigateByUrl(url);
-
-    //   // // Đoạn code window.addEventListener này mục đích để gửi menu sang ứng dụng tích hợp
-    //   // // Nếu ứng dụng tự quản lý hợp menu thì không cần đoạn code này
-    //   // window.addEventListener('message', (event) => {
-    //   //   const urlNavigation = location.href?.replace(location.origin, '');
-    //   //   if (event && event.data == environment.key) {
-    //   //     this.router.navigateByUrl(urlNavigation);
-    //   //   }
-    //   // });
-    // } else {
-    //   const url = location.href?.replace(environment.base_url, '');
-    //   const pmp_verified_otp = localStorage.getItem(LocalStoreEnum.pmp_verified_otp);
-    //   console.log("app.component: GOTO - OTP", url, pmp_verified_otp);
-
-    //   if (url.includes(environment.key)) {// cần check thêm nếu chưa login OTP
-    //     if (!pmp_verified_otp) {
-    //       this.router.navigateByUrl('/pmp_admin/auth/login-otp');
-    //     }
-    //     else {
-    //       this.router.navigateByUrl('/pmp_admin/admin/profile');
-    //     }
-    //   } else
-    //     this.router.navigateByUrl(url);
-    // }
+    // 3. Nếu đã login thì đi thẳng vào home
+    if (this.oauthService.hasValidAccessToken()) {
+      this.router.navigate(['/pmp_admin']);
+    } else {
+      // 4. Nếu chưa login thì ở lại màn welcome
+      this.router.navigate(['/welcome']);
+    }
   }
 
   ngOnDestroy(): void {

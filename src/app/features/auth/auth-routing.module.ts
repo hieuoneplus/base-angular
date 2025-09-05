@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginOTPComponent } from './login-otp/login-otp.component';
 import { AuthService } from './service/AuthService';
+import {WelcomeComponent} from "./welcome/welcome.component";
 const routes: Routes = [
   {
     path: '',
-    component: AuthLayoutComponent,
+    // component: AuthLayoutComponent,
     children: [
-      { path: '', redirectTo: 'login-otp', pathMatch: 'full' },
+      // { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       {
-        path: 'login-otp', component: LoginOTPComponent, data: { title: 'Login', titleI18n: 'login' }
+        path: '', component: WelcomeComponent, data: { title: 'Welcome', titleI18n: 'Welcome' }
       }
     ],
   }

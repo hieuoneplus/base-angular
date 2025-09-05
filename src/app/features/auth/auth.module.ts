@@ -13,8 +13,9 @@ import { ActivityIndicatorModule } from './../../shared/activity-indicator/activ
 import { AuthLayoutComponent } from './auth-layout.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginOTPComponent } from './login-otp/login-otp.component';
+import {WelcomeComponent} from "./welcome/welcome.component";
 
-const COMPONENTS = [AuthLayoutComponent, LoginOTPComponent];
+const COMPONENTS = [AuthLayoutComponent, LoginOTPComponent, WelcomeComponent];
 const COMPONENTS_DYNAMIC = [];
 
 @NgModule({
@@ -32,7 +33,9 @@ const COMPONENTS_DYNAMIC = [];
     FormsModule,
     FlexLayoutModule,
     ActivityIndicatorModule,
-    AuthRoutingModule],
+    AuthRoutingModule,
+
+  ],
   declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
   entryComponents: COMPONENTS_DYNAMIC,
   providers: []
