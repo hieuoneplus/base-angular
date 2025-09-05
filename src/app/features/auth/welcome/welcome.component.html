@@ -1,29 +1,88 @@
-<div class="search-ctqt">
-<div class="welcome">
-  <h1>Xin chào 👋</h1>
-  <p>Chào mừng bạn đến với ứng dụng của chúng tôi.</p>
-  <div class="panel mrt-4">
-    <div class="panel-body panel-padding">
-      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
-        <div fxFlex="100" style="display: flex; flex-direction: column">
-          <sm-text-control maxLengthView="true" [item]="$username" fxFlex="20" [form]="form"></sm-text-control>
-        </div>
-        <div fxFlex="100" style="display: flex; flex-direction: column">
-          <sm-text-control maxLengthView="true" [item]="$password" fxFlex="20" [form]="form"></sm-text-control>
-        </div>
-      </form>
-    </div>
-    <div fxFlex="50" fxLayout="row" fxLayoutAlign="center">
-      <button fxFlex="35" class="btn btn-dark-blue mrl-4" (click)="login()" >
-<!--        <mat-icon class="mbb-icon ic-plus"></mat-icon>-->
-        <span>Đăng nhập</span>
-      </button>
-      <button fxFlex="35" class="btn btn-dark-blue mrl-4" (click)="register()" >
-<!--        <mat-icon class="mbb-icon ic-plus"></mat-icon>-->
-        <span>Đăng ký</span>
-      </button>
+<div class="welcome-container">
+  <div class="welcome-background">
+    <div class="welcome-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
     </div>
   </div>
-
-</div>
+  
+  <div class="welcome-content">
+    <div class="welcome-card">
+      <div class="welcome-header">
+        <div class="welcome-icon">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <h1 class="welcome-title">Xin chào! 👋</h1>
+        <p class="welcome-subtitle">Chào mừng bạn đến với hệ thống quản lý</p>
+      </div>
+      
+      <div class="welcome-form">
+        <form [formGroup]="form" class="login-form">
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Tên đăng nhập</mat-label>
+              <input matInput 
+                     formControlName="username" 
+                     placeholder="Nhập tên đăng nhập"
+                     autocomplete="username">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-error *ngIf="form.get('username')?.hasError('required')">
+                Vui lòng nhập tên đăng nhập
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Mật khẩu</mat-label>
+              <input matInput 
+                     [type]="hidePassword ? 'password' : 'text'"
+                     formControlName="password" 
+                     placeholder="Nhập mật khẩu"
+                     autocomplete="current-password">
+              <button mat-icon-button 
+                      matSuffix 
+                      (click)="hidePassword = !hidePassword"
+                      [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="form.get('password')?.hasError('required')">
+                Vui lòng nhập mật khẩu
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-actions">
+            <button mat-raised-button 
+                    color="primary" 
+                    class="login-button"
+                    (click)="login()"
+                    [disabled]="!form.valid || isLoading">
+              <mat-icon *ngIf="!isLoading">login</mat-icon>
+              <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+              <span>{{isLoading ? 'Đang đăng nhập...' : 'Đăng nhập'}}</span>
+            </button>
+            
+            <button mat-stroked-button 
+                    color="primary" 
+                    class="register-button"
+                    (click)="register()"
+                    [disabled]="isLoading">
+              <mat-icon>person_add</mat-icon>
+              <span>Đăng ký với Google</span>
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="welcome-footer">
+        <p class="help-text">
+          <mat-icon>help_outline</mat-icon>
+          Cần hỗ trợ? Liên hệ quản trị viên hệ thống
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

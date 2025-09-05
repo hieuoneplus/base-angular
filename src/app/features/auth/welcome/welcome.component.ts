@@ -16,6 +16,9 @@ import {ILoginRequest} from "./model/interface";
 export class WelcomeComponent extends ComponentAbstract {
   $username = USERNAME();
   $password = PASSWORD();
+  
+  hidePassword = true;
+  isLoading = false;
 
   constructor(private oauthService: OAuthService,
               protected injector: Injector,
@@ -37,12 +40,18 @@ export class WelcomeComponent extends ComponentAbstract {
         username: values.username,
         password: values.password
       };
+      
+      this.isLoading = true;
       this.indicator.showActivityIndicator();
+      
       this.authService
               .login(body)
               .pipe(
                 takeUntil(this.ngUnsubscribe),
-                finalize(() => this.indicator.hideActivityIndicator())
+                finalize(() => {
+                  this.indicator.hideActivityIndicator();
+                  this.isLoading = false;
+                })
               )
               .subscribe(
                 (res) => {
