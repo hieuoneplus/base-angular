@@ -14,6 +14,7 @@ import { AuthLayoutComponent } from './auth-layout.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginOTPComponent } from './login-otp/login-otp.component';
 import {WelcomeComponent} from "./welcome/welcome.component";
+import {FormGroupDformModule} from "@shared-sm";
 
 const COMPONENTS = [AuthLayoutComponent, LoginOTPComponent, WelcomeComponent];
 const COMPONENTS_DYNAMIC = [];
@@ -34,6 +35,7 @@ const COMPONENTS_DYNAMIC = [];
     FlexLayoutModule,
     ActivityIndicatorModule,
     AuthRoutingModule,
+    FormGroupDformModule,
 
   ],
   declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],

@@ -1,5 +1,29 @@
+<div class="search-ctqt">
 <div class="welcome">
   <h1>Xin chào 👋</h1>
   <p>Chào mừng bạn đến với ứng dụng của chúng tôi.</p>
-  <button (click)="login()">Login with Google</button>
+  <div class="panel mrt-4">
+    <div class="panel-body panel-padding">
+      <form class="mrt-4" [formGroup]="form" fxLayout="row wrap">
+        <div fxFlex="100" style="display: flex; flex-direction: column">
+          <sm-text-control maxLengthView="true" [item]="$username" fxFlex="20" [form]="form"></sm-text-control>
+        </div>
+        <div fxFlex="100" style="display: flex; flex-direction: column">
+          <sm-text-control maxLengthView="true" [item]="$password" fxFlex="20" [form]="form"></sm-text-control>
+        </div>
+      </form>
+    </div>
+    <div fxFlex="50" fxLayout="row" fxLayoutAlign="center">
+      <button fxFlex="35" class="btn btn-dark-blue mrl-4" (click)="login()" >
+<!--        <mat-icon class="mbb-icon ic-plus"></mat-icon>-->
+        <span>Đăng nhập</span>
+      </button>
+      <button fxFlex="35" class="btn btn-dark-blue mrl-4" (click)="register()" >
+<!--        <mat-icon class="mbb-icon ic-plus"></mat-icon>-->
+        <span>Đăng ký</span>
+      </button>
+    </div>
+  </div>
+
+</div>
 </div>

@@ -153,6 +153,9 @@ export const BUTTON_EDIT = {
 };
 
 export const PATH = {
+  AUTH: {
+    LOGIN: 'admin-portal/v1/login',
+  },
   OTP: {
     SEND: 'admin-portal/v1/otp/send',
     VERIFY: 'admin-portal/v1/otp/verify'

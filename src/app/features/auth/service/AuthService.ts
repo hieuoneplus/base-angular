@@ -4,6 +4,7 @@ import { HttpClientService, HttpOptions, HttpResponse } from '@shared-sm';
 import { Observable } from 'rxjs';
 import { PATH, PATH_BILATERAL } from 'src/app/public/constants';
 import { IUserPermissions, ISendOtp, IVerifyOtpInput, IVerifyOtpOutput, IUserBilateral } from '../../model/auth';
+import {ILoginRequest, ILoginResponse} from "../welcome/model/interface";
 
 
 @Injectable({
@@ -50,5 +51,14 @@ export class AuthService {
       path: PATH_BILATERAL.USER.GET,
     }
     return this.httpClientService.get(option);
+  }
+
+  login(request: ILoginRequest): Observable<HttpResponse<ILoginResponse>> {
+    const option: HttpOptions = {
+      url: environment.urlPmpBe,
+      path: PATH.AUTH.LOGIN,
+      body: request
+    }
+    return this.httpClientService.post(option);
   }
 }
