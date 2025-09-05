@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginOTPComponent } from './login-otp/login-otp.component';
 import { AuthService } from './service/AuthService';
 import {WelcomeComponent} from "./welcome/welcome.component";
+import {RegisterComponent} from "./register/register.component";
 const routes: Routes = [
   {
     path: '',
@@ -12,6 +13,9 @@ const routes: Routes = [
       // { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       {
         path: '', component: WelcomeComponent, data: { title: 'Welcome', titleI18n: 'Welcome' }
+      },
+      {
+        path: 'register', component: RegisterComponent, data: { title: 'Register', titleI18n: 'Register' }
       }
     ],
   }

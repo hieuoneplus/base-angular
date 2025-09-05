@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { PATH, PATH_BILATERAL } from 'src/app/public/constants';
 import { IUserPermissions, ISendOtp, IVerifyOtpInput, IVerifyOtpOutput, IUserBilateral } from '../../model/auth';
 import {ILoginRequest, ILoginResponse} from "../welcome/model/interface";
+import { IRegisterRequest, IRegisterResponse } from "../register/model/interface";
 
 
 @Injectable({
@@ -14,6 +15,7 @@ export class AuthService {
 
   constructor(
     private httpClientService: HttpClientService,
+    
   ) { }
 
   sendOtp(): Observable<HttpResponse<ISendOtp>> {
@@ -60,6 +62,16 @@ export class AuthService {
       path: PATH.AUTH.LOGIN,
       body: request,
       isAuthentication: false  // Don't add auth headers for login
+    }
+    return this.httpClientService.post(option);
+  }
+
+  register(request: IRegisterRequest): Observable<HttpResponse<IRegisterResponse>> {
+    const option: HttpOptions = {
+      url: environment.urlPmpBe,
+      path: PATH.AUTH.REGISTER,
+      body: request,
+      isAuthentication: false  // Don't add auth headers for register
     }
     return this.httpClientService.post(option);
   }

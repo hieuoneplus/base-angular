@@ -155,6 +155,7 @@ export const BUTTON_EDIT = {
 export const PATH = {
   AUTH: {
     LOGIN: 'admin-portal/v1/login',
+    REGISTER: 'admin-portal/v1/register',
   },
   OTP: {
     SEND: 'admin-portal/v1/otp/send',
@@ -165,7 +166,7 @@ export const PATH = {
     GET_USER_BY_NAME: 'admin-portal/v1/users/hcm/', //admin-portal/v1/users/{username}
     PUT_USERS: 'admin-portal/v1/users/',
     POST_USERS: 'admin-portal/v1/users',
-    PERMISSIONS: 'admin-portal/v1/permissions',
+    PERMISSIONS: 'admin-portal/v1/users/permissions',
     ME: 'admin-portal/v1/users/me',
   },
   ROLE: {

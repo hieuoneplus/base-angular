@@ -7,6 +7,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ActivityIndicatorModule } from './../../shared/activity-indicator/activityIndicator.module';
@@ -14,9 +16,10 @@ import { AuthLayoutComponent } from './auth-layout.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginOTPComponent } from './login-otp/login-otp.component';
 import {WelcomeComponent} from "./welcome/welcome.component";
+import {RegisterComponent} from "./register/register.component";
 import {FormGroupDformModule} from "@shared-sm";
 
-const COMPONENTS = [AuthLayoutComponent, LoginOTPComponent, WelcomeComponent];
+const COMPONENTS = [AuthLayoutComponent, LoginOTPComponent, WelcomeComponent, RegisterComponent];
 const COMPONENTS_DYNAMIC = [];
 
 @NgModule({
@@ -28,7 +31,8 @@ const COMPONENTS_DYNAMIC = [];
     MatIconModule,
     MatRadioModule,
     MatInputModule,
-    MatRadioModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     MatCheckboxModule,
     FormsModule,

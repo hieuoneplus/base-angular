@@ -131,7 +131,7 @@ export class WelcomeComponent extends ComponentAbstract {
     }
   }
   register() {
-    this.oauthService.initLoginFlow(); // lúc này mới gọi Google login
+    this.goTo('/welcome/register');
   }
 
   getUserInfo() {
