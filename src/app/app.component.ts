@@ -36,10 +36,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // 3. Nếu đã login thì đi thẳng vào home
     if (!token) {
-      this.router.navigate(['/pmp_admin/admin/profile']);
+      this.router.navigate(['/welcome']);
+     
     } else {
       // 4. Nếu chưa login thì ở lại màn welcome
-      this.router.navigate(['/welcome']);
+      this.router.navigate(['/pmp_admin/admin/profile']);
     }
   }
 

@@ -7,4 +7,41 @@
       </li>
     </ol>
   </nav>
+  
+  <div class="user-profile-section">
+    <div class="user-profile-container">
+      <button mat-button class="user-profile-btn" (click)="toggleUserMenu()" matTooltip="Tài khoản người dùng">
+        <div class="user-profile-content">
+          <div class="user-avatar">
+            <span class="user-initials">{{ getUserInitials() }}</span>
+          </div>
+          <div class="user-info">
+            <span class="user-name">{{ userName }}</span>
+          </div>
+        </div>
+      </button>
+      
+      <!-- User Dropdown Menu -->
+      <div class="user-dropdown-menu" [class.open]="isUserMenuOpen">
+        <div class="dropdown-content">
+          <div class="user-profile-info">
+            <div class="user-avatar-large">
+              <span class="user-initials-large">{{ getUserInitials() }}</span>
+            </div>
+            <div class="user-details">
+              <span class="user-name-large">{{ userName }}</span>
+              <span class="user-role">Quản trị viên</span>
+            </div>
+          </div>
+          
+          <div class="dropdown-divider"></div>
+          
+          <button mat-button class="logout-option" (click)="logout()">
+            <mat-icon class="logout-icon">logout</mat-icon>
+            <span class="logout-text">Đăng xuất</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
