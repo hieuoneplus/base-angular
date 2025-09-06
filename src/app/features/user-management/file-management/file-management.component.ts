@@ -16,6 +16,7 @@ import {
 import {HttpResponse} from "@angular/common/http";
 import {FileService} from "../service/FileService";
 import { FilePreviewDialogComponent } from './file-preview-dialog.component';
+import { FileUploadDialogComponent } from './file-upload-dialog.component';
 
 @Component({
   selector: 'app-file',
@@ -245,6 +246,23 @@ export class FileManagementComponent extends ComponentAbstract {
       // Clean up the object URL when dialog is closed
       if (fileUrl) {
         window.URL.revokeObjectURL(fileUrl);
+      }
+    });
+  }
+
+  openUploadDialog() {
+    const dialogRef = this.dialog.open(FileUploadDialogComponent, {
+      width: '600px',
+      maxWidth: '90vw',
+      maxHeight: '80vh',
+      disableClose: false,
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        // Refresh the file list after successful upload
+        this.search();
       }
     });
   }

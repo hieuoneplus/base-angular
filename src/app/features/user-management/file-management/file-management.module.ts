@@ -12,6 +12,7 @@ import { ThemeModule } from 'src/app/theme/theme.module';
 import { FileManagementComponent } from './file-management.component';
 import { FileManagementRoutingModule } from './file-management-routing.module';
 import { FilePreviewDialogComponent } from './file-preview-dialog.component';
+import { FileUploadDialogComponent } from './file-upload-dialog.component';
 import {MaterialModule} from "../../../shared/material.module";
 
 
@@ -19,6 +20,7 @@ import {MaterialModule} from "../../../shared/material.module";
   declarations: [
     FileManagementComponent,
     FilePreviewDialogComponent,
+    FileUploadDialogComponent,
   ],
   imports: [
     CommonModule,

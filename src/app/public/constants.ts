@@ -168,7 +168,8 @@ export const PATH = {
     POST_USERS: 'admin-portal/v1/users',
     PERMISSIONS: 'admin-portal/v1/users/permissions',
     ME: 'admin-portal/v1/users/me',
-    FILE: 'admin-portal/v1/files'
+    FILE: 'admin-portal/v1/files',
+    UPLOAD_FILE: 'admin-portal/v1/files/upload'
   },
   ROLE: {
     ROLES: 'admin-portal/v1/roles',

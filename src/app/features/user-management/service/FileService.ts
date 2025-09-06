@@ -32,4 +32,16 @@ export class FileService {
     }
     return this.httpClientService.get(option);
   }
+
+  uploadFile(file: File): Observable<HttpResponse<any>> {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    const option: HttpOptions = {
+      url: environment.urlPmpBe,
+      path: PATH.USER.UPLOAD_FILE,
+      body: formData
+    }
+    return this.httpClientService.post(option);
+  }
 }

@@ -233,8 +233,12 @@ export class RefundBatchComponent extends ComponentAbstract {
     const lengthListFile = event.target.files.length;
     if (lengthListFile) {
       const fileName = (<File>event.target.files[0])?.name;
-      if (!fileName.toLowerCase().includes('.xlsx') && !fileName.toLowerCase().includes('.xls')) {
-        this.toastr.showToastr('Vui lòng chọn đúng định đạng File xlsx hoặc xls', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
+      // Support more file types for user management file upload
+      const allowedExtensions = ['.xlsx', '.xls', '.pdf', '.doc', '.docx', '.txt', '.csv'];
+      const hasValidExtension = allowedExtensions.some(ext => fileName.toLowerCase().includes(ext));
+      
+      if (!hasValidExtension) {
+        this.toastr.showToastr('Vui lòng chọn đúng định dạng file (xlsx, xls, pdf, doc, docx, txt, csv)', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
         return;
       }
       this.percent = 0;
@@ -245,13 +249,17 @@ export class RefundBatchComponent extends ComponentAbstract {
   dragFileInput(files: FileHandle[]): void {
     const file = [files[0].file];
     if (file && file.length > 1) {
-      this.toastr.showToastr('Chỉ cho phép chọn một file định dạng xlsx hoặc xls', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
+      this.toastr.showToastr('Chỉ cho phép chọn một file', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
       return;
     }
     if (file && file.length == 1) {
       const fileName = file[0].name;
-      if (!fileName.toLowerCase().includes('.xlsx') && !fileName.toLowerCase().includes('.xls')) {
-        this.toastr.showToastr('Vui lòng chọn đúng định đạng file xlsx hoặc xls', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
+      // Support more file types for user management file upload
+      const allowedExtensions = ['.xlsx', '.xls', '.pdf', '.doc', '.docx', '.txt', '.csv'];
+      const hasValidExtension = allowedExtensions.some(ext => fileName.toLowerCase().includes(ext));
+      
+      if (!hasValidExtension) {
+        this.toastr.showToastr('Vui lòng chọn đúng định dạng file (xlsx, xls, pdf, doc, docx, txt, csv)', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
         return;
       }
       this.percent = 0;
@@ -271,31 +279,27 @@ export class RefundBatchComponent extends ComponentAbstract {
       return;
     }
 
-    const fileName = this.selectedFiles?.name || '';
     this.indicator.showActivityIndicator();
     this.start_process_upload();
-    const formData = new FormData();
-    
-    if (this.selectedFiles) {
-      formData.append('file', this.selectedFiles, fileName);
-    }
 
-    this.refundService.importTransactionRefundBatch(formData).pipe(
+    // Use the new file upload API for user management
+    this.refundService.uploadFile(this.selectedFiles).pipe(
       takeUntil(this.ngUnsubscribe),
       finalize(() => this.indicator.hideActivityIndicator())
     ).subscribe((res: any) => {
       this.end_process_upload(100);
       if (res && res.status === 200) {
-        this.toastr.showToastr('Upload thành công', 'Thông báo!', MessageSeverity.success, TOAST_DEFAULT_CONFIG);
-        this.destroyFile()
-        this.search()
+        this.toastr.showToastr('Upload file thành công', 'Thông báo!', MessageSeverity.success, TOAST_DEFAULT_CONFIG);
+        this.destroyFile();
+        // Optionally refresh data or perform other actions after successful upload
+        this.search();
       } else {
         this.end_process_upload(0);
-        this.toastr.showToastr(res.soaErrorDesc || 'Upload không thành công', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
+        this.toastr.showToastr(res.soaErrorDesc || 'Upload file không thành công', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
       }
     }, error => {
       this.createBatchError(0);
-      this.toastr.showToastr( error?.error?.soaErrorDesc || 'Upload không thành công', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
+      this.toastr.showToastr(error?.error?.soaErrorDesc || 'Upload file không thành công', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
     });
   }
 

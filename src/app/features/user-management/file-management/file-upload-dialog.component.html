@@ -1,0 +1,75 @@
+<div class="file-upload-dialog">
+  <div class="dialog-header">
+    <h2 class="dialog-title">
+      <mat-icon class="mbb-icon ic-upload mrr-2"></mat-icon>
+      Upload File
+    </h2>
+    <button mat-icon-button (click)="onCancel()" class="close-btn">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="dialog-content">
+    <div class="upload-section">
+      <!-- File Input Area -->
+      <div class="file-input-container" 
+           appDrag 
+           (fileEvent)="dragFileInput($event)"
+           [class.drag-over]="false">
+        
+        <div class="file-input-area" (click)="myInputVariable.nativeElement.click()">
+          <mat-icon class="upload-icon">cloud_upload</mat-icon>
+          <p class="upload-text">Kéo thả file vào đây hoặc click để chọn file</p>
+          <p class="upload-hint">Hỗ trợ: xlsx, xls, pdf, doc, docx, txt, csv, jpg, jpeg, png, gif</p>
+        </div>
+        
+        <input #file 
+               type="file" 
+               class="file-input" 
+               (change)="handleFileInput($event)"
+               accept=".xlsx,.xls,.pdf,.doc,.docx,.txt,.csv,.jpg,.jpeg,.png,.gif">
+      </div>
+
+      <!-- Selected File Info -->
+      <div *ngIf="selectedFiles" class="selected-file-info">
+        <div class="file-info">
+          <mat-icon class="file-icon">description</mat-icon>
+          <div class="file-details">
+            <p class="file-name">{{ selectedFiles.name }}</p>
+            <p class="file-size">{{ (selectedFiles.size / 1024 / 1024).toFixed(2) }} MB</p>
+          </div>
+          <button mat-icon-button (click)="destroyFile()" class="remove-file-btn">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div *ngIf="percent > 0" class="progress-section">
+        <div class="progress-info">
+          <span>Đang upload...</span>
+          <span>{{ percent }}%</span>
+        </div>
+        <mat-progress-bar 
+          mode="determinate" 
+          [value]="percent" 
+          class="upload-progress">
+        </mat-progress-bar>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-actions">
+    <button mat-button (click)="onCancel()" class="btn btn-light-blue">
+      <mat-icon class="mbb-icon ic-cancel mrl-2"></mat-icon>
+      Hủy
+    </button>
+    <button mat-button 
+            (click)="handleUploadFile()" 
+            [disabled]="!selectedFiles || percent > 0"
+            class="btn btn-primary">
+      <mat-icon class="mbb-icon ic-upload mrl-2"></mat-icon>
+      Upload
+    </button>
+  </div>
+</div>
