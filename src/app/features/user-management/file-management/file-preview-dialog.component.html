@@ -1,0 +1,47 @@
+<div class="file-preview-dialog">
+  <div class="file-preview-header">
+    <div class="file-info">
+      <mat-icon class="file-icon">{{ getFileIcon() }}</mat-icon>
+      <span class="file-name">{{ data.fileName }}</span>
+    </div>
+    <div class="file-actions">
+      <button mat-icon-button (click)="downloadFile()" matTooltip="Tải xuống">
+        <mat-icon>download</mat-icon>
+      </button>
+      <button mat-icon-button (click)="closeDialog()" matTooltip="Đóng">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="file-preview-content">
+    <!-- PDF Preview -->
+    <div *ngIf="isPdfFile" class="pdf-preview">
+      <iframe [src]="safeFileUrl" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+
+    <!-- Image Preview -->
+    <div *ngIf="isImageFile" class="image-preview">
+      <img [src]="data.fileUrl" [alt]="data.fileName" class="preview-image">
+    </div>
+
+    <!-- Text File Preview -->
+    <div *ngIf="isTextFile" class="text-preview">
+      <pre class="text-content">{{ fileContent }}</pre>
+    </div>
+
+    <!-- Unsupported File Type -->
+    <div *ngIf="isUnsupportedFile" class="unsupported-preview">
+      <div class="unsupported-content">
+        <mat-icon class="unsupported-icon">description</mat-icon>
+        <h3>Không thể xem trước loại file này</h3>
+        <p>Loại file <strong>{{ data.fileName }}</strong> không được hỗ trợ xem trước.</p>
+        <p>Vui lòng tải xuống để xem nội dung file.</p>
+        <button mat-raised-button color="primary" (click)="downloadFile()">
+          <mat-icon>download</mat-icon>
+          Tải xuống file
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

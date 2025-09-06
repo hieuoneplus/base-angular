@@ -6,16 +6,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ThemeModule } from 'src/app/theme/theme.module';
 
 import { FileManagementComponent } from './file-management.component';
 import { FileManagementRoutingModule } from './file-management-routing.module';
+import { FilePreviewDialogComponent } from './file-preview-dialog.component';
 import {MaterialModule} from "../../../shared/material.module";
 
 
 @NgModule({
   declarations: [
     FileManagementComponent,
+    FilePreviewDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +30,7 @@ import {MaterialModule} from "../../../shared/material.module";
     MatTableModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatDialogModule,
     MaterialModule,
   ],
 })

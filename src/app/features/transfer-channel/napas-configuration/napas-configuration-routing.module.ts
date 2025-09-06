@@ -38,11 +38,6 @@ const routes: Routes = [
   //   // canActivate: [AuthGuard],
   //   loadChildren: () => import('./additional-accounting/additional-accounting.module').then(m => m.AdditionalAccountingModule),
   // },
-  {
-    path: 'file-management',
-    // canActivate: [AuthGuard],
-    loadChildren: () => import('./file-management/file-management.module').then(m => m.FileManagementModule),
-  },
 
 ]
 

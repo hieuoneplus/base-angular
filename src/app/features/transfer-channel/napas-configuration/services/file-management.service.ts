@@ -23,6 +23,15 @@ export class FileManagementService {
     return this.httpClientService.download(Verbs.GET, options);
   }
 
+  previewFile(idFile: string) {
+    const options: HttpOptions = {
+      url: environment.urlPmpBe,
+      path: PATH.NAPAS.IBFT_RECONCILE.OUT.FLAG_REPORT.DOWNLOAD_FILE + `/${idFile}`,
+      responseType: 'blob',
+    };
+    return this.httpClientService.download(Verbs.GET, options);
+  }
+
   queryFile(body : IParamsFileSearch, params: any): Observable<HttpResponse<PaginationFileBaseDto<ListFileResponse>>> {
     const option: HttpOptions = {
       url: environment.urlPmpBe,

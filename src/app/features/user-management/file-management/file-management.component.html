@@ -81,8 +81,12 @@
           <ng-container matColumnDef="actions" stickyEnd>
             <th mat-header-cell *matHeaderCellDef>HÀNH ĐỘNG</th>
             <td mat-cell *matCellDef="let element;">
+              <button *ngIf="enableView" mat-icon-button (click)="previewFile(element)" class="mrr-1">
+                <mat-icon class="mbb-icon ic-visibility fc-primary" [matTooltip]="'Xem trước' | translate">
+                </mat-icon>
+              </button>
               <button *ngIf="enableView" mat-icon-button (click)="downloadFile(element)">
-                <mat-icon class=" mbb-icon ic-download_file fc-primary mrr-0" [matTooltip]="'Download' | translate">
+                <mat-icon class="mbb-icon ic-download_file fc-primary" [matTooltip]="'Download' | translate">
                 </mat-icon>
               </button>
             </td>

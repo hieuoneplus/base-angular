@@ -1,6 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ComponentAbstract, MessageSeverity } from '@shared-sm';
+import { ComponentAbstract, MessageSeverity, DformDialogService } from '@shared-sm';
 import * as moment from 'moment';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { TOAST_DEFAULT_CONFIG } from 'src/app/public/constants';
@@ -33,6 +33,7 @@ export class FileManagementComponent extends ComponentAbstract {
   constructor(
     protected injector: Injector,
     private fileManagementService: FileManagementService,
+    private dialog: DformDialogService
   ) {
     super(injector)
   }
@@ -174,6 +175,74 @@ export class FileManagementComponent extends ComponentAbstract {
         );
       }
     })
+  }
+
+  previewFile(element) {
+    this.indicator.showActivityIndicator();
+    this.fileManagementService.previewFile(element.id).pipe(
+      finalize(() => {
+        this.indicator.hideActivityIndicator();
+      }),
+      takeUntil(this.ngUnsubscribe)
+    ).subscribe({
+      next: (res) => {
+        if (res instanceof HttpResponse) {
+          const blob = new Blob([res.body], { type: res.headers.get('Content-Type') });
+          const fileUrl = window.URL.createObjectURL(blob);
+          const fileType = this.getFileType(element.mineType || res.headers.get('Content-Type'));
+          
+          this.openFilePreviewDialog(element.fileName, fileUrl, fileType, blob);
+        }
+      },
+      error: (err) => {
+        const messageError = ErrorUtils.getErrorMessage(err);
+        this.toastr.showToastr(
+          messageError.join('\n'),
+          'Thông báo!',
+          MessageSeverity.error,
+          TOAST_DEFAULT_CONFIG
+        );
+      }
+    });
+  }
+
+  private getFileType(mimeType: string): string {
+    if (!mimeType) return 'unknown';
+    
+    if (mimeType.includes('pdf')) return 'pdf';
+    if (mimeType.includes('image/')) return 'image';
+    if (mimeType.includes('text/')) return 'text';
+    if (mimeType.includes('application/json')) return 'json';
+    if (mimeType.includes('application/xml') || mimeType.includes('text/xml')) return 'xml';
+    if (mimeType.includes('application/vnd.ms-excel') || mimeType.includes('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')) return 'excel';
+    if (mimeType.includes('application/vnd.ms-powerpoint') || mimeType.includes('application/vnd.openxmlformats-officedocument.presentationml.presentation')) return 'powerpoint';
+    if (mimeType.includes('application/msword') || mimeType.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document')) return 'word';
+    
+    return 'unknown';
+  }
+
+  private openFilePreviewDialog(fileName: string, fileUrl: string, fileType: string, blob: Blob) {
+    const dialogRef = this.dialog.open({
+      title: `Xem trước: ${fileName}`,
+      message: '',
+      width: '90vw',
+      height: '90vh',
+      maxWidth: '1200px',
+      maxHeight: '800px',
+      data: {
+        fileName: fileName,
+        fileUrl: fileUrl,
+        fileType: fileType,
+        blob: blob
+      }
+    }, FilePreviewDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Clean up the object URL when dialog is closed
+      if (fileUrl) {
+        window.URL.revokeObjectURL(fileUrl);
+      }
+    });
   }
 
 }

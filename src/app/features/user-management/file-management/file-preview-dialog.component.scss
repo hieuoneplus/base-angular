@@ -1,0 +1,218 @@
+@import 'src/styles-variables.scss';
+
+.file-preview-dialog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 90vh;
+  background: $color-neutral-white;
+  border-radius: 8px;
+  overflow: hidden;
+
+  .file-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, $color-light-blue 0%, rgba(20, 30, 210, 0.05) 100%);
+    border-bottom: 1px solid $color-gray-200;
+    flex-shrink: 0;
+
+    .file-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+
+      .file-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+        color: $color-blue-primary;
+        flex-shrink: 0;
+      }
+
+      .file-name {
+        font-size: 16px;
+        font-weight: 600;
+        font-family: 'Semibold', sans-serif;
+        color: $color-gray-900;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .file-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+
+      button {
+        color: $color-gray-600;
+        
+        &:hover {
+          color: $color-blue-primary;
+          background-color: rgba(20, 30, 210, 0.1);
+        }
+      }
+    }
+  }
+
+  .file-preview-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+
+    .pdf-preview {
+      flex: 1;
+      height: 100%;
+      
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    }
+
+    .image-preview {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: $color-gray-50;
+      overflow: auto;
+
+      .preview-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    .text-preview {
+      flex: 1;
+      overflow: auto;
+      padding: 20px;
+      background: $color-neutral-white;
+
+      .text-content {
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        color: $color-gray-900;
+        background: $color-gray-50;
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid $color-gray-200;
+        margin: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-x: auto;
+      }
+    }
+
+    .unsupported-preview {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: $color-gray-50;
+
+      .unsupported-content {
+        text-align: center;
+        max-width: 400px;
+
+        .unsupported-icon {
+          font-size: 64px;
+          width: 64px;
+          height: 64px;
+          color: $color-gray-400;
+          margin-bottom: 16px;
+        }
+
+        h3 {
+          font-size: 20px;
+          font-weight: 600;
+          font-family: 'Semibold', sans-serif;
+          color: $color-gray-700;
+          margin: 0 0 12px 0;
+        }
+
+        p {
+          font-size: 14px;
+          color: $color-gray-600;
+          margin: 0 0 8px 0;
+          line-height: 1.5;
+
+          strong {
+            color: $color-gray-800;
+          }
+        }
+
+        button {
+          margin-top: 20px;
+          padding: 12px 24px;
+          font-weight: 600;
+          border-radius: 8px;
+          
+          mat-icon {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .file-preview-dialog {
+    .file-preview-header {
+      padding: 12px 16px;
+      
+      .file-info {
+        gap: 8px;
+        
+        .file-name {
+          font-size: 14px;
+        }
+      }
+    }
+    
+    .file-preview-content {
+      .text-preview {
+        padding: 16px;
+        
+        .text-content {
+          font-size: 12px;
+          padding: 12px;
+        }
+      }
+      
+      .unsupported-preview {
+        padding: 20px;
+        
+        .unsupported-content {
+          .unsupported-icon {
+            font-size: 48px;
+            width: 48px;
+            height: 48px;
+          }
+          
+          h3 {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}
