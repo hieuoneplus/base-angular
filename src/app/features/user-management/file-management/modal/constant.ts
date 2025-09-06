@@ -1,7 +1,8 @@
-import { DateTimeItem, TextboxItem } from "@shared-sm";
+import { DateTimeItem, TextboxItem, DropdownItem } from "@shared-sm";
 
 export const COLUMS: string[] = [
     'stt',
+    'select',
     'id',
     'fileName',
     'status',
@@ -46,3 +47,18 @@ export const STATUS_FORM = [
   { key: 'FAILED', value: 'Xử lý lỗi', class: 'wf-status-reject' },
   { key: 'D', value: 'Hủy', class: 'wf-status-reject' },
 ];
+
+export const FILE_VIEW_FORM = [
+  { key: 'Owner', value: 'File của tôi', class: '' },
+  { key: 'Seener', value: 'File được chia sẻ', class: '' },
+];
+
+export const FILE_VIEW = () =>
+    new DropdownItem({
+        key: 'fileView',
+        label: 'Loại file',
+        placeholder: 'Chọn loại file',
+        value: 'Owner',
+        options: FILE_VIEW_FORM,
+        reset: false
+    });

@@ -13,9 +13,10 @@
     </div>
     <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap" (ngSubmit)="search()">
 
-      <sm-text-control [item]="$fileName" fxFlex="25" [form]="form"></sm-text-control>
-      <sm-date-control [item]="$creationDateTime" fxFlex="25" [form]="form"></sm-date-control>
-      <sm-date-control [item]="$toCreationDateTime" fxFlex="25" [form]="form"></sm-date-control>
+      <sm-text-control [item]="$fileName" fxFlex="20" [form]="form"></sm-text-control>
+      <sm-date-control [item]="$creationDateTime" fxFlex="20" [form]="form"></sm-date-control>
+      <sm-date-control [item]="$toCreationDateTime" fxFlex="20" [form]="form"></sm-date-control>
+      <sm-dropdown-control [item]="$fileView" fxFlex="20" [form]="form" (change)="onFileViewChange()"></sm-dropdown-control>
 
       <div class="mrr-2" fxLayoutAlign="end center">
         <button [disabled]="this.form.invalid" type="submit" fxFlex="25" class="btn btn-primary mrr-2">
@@ -45,6 +46,21 @@
           <ng-container matColumnDef="stt">
             <th mat-header-cell *matHeaderCellDef>STT</th>
             <td mat-cell *matCellDef="let element;"> {{element.stt}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="select" *ngIf="isOwnerView">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(element) : null; updateSelectedFiles()"
+                            [checked]="selection.isSelected(element)">
+              </mat-checkbox>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="id">
@@ -92,11 +108,14 @@
                 <mat-icon class="mbb-icon ic-download_file fc-primary" [matTooltip]="'Download' | translate">
                 </mat-icon>
               </button>
+              <button *ngIf="isOwnerView" mat-icon-button (click)="openShareDialogForFile(element)" class="share-btn">
+                <mat-icon [matTooltip]="'Chia sẻ file' | translate">person_add</mat-icon>
+              </button>
             </td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+          <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
         </table>
         <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
         </app-no-data>

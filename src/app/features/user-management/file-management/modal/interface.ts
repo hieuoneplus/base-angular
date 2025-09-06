@@ -22,6 +22,12 @@ export interface IParamsFileSearch {
   fileName?: string,
   toDate?: string,
   endDate?: string,
+  fileView?: string,
   page?: number,
   size?: number
+}
+
+export interface IShareFileRequest {
+  username: string,
+  fileIds: string[]
 }

@@ -1,5 +1,6 @@
 import { Component, Injector } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
 import { ComponentAbstract, MessageSeverity } from '@shared-sm';
 import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
@@ -11,12 +12,13 @@ import {
   COLUMS,
   CREATION_DATE_TIME,
   TO_CREATION_DATE_TIME,
-  FILE_NAME, STATUS_FORM
+  FILE_NAME, STATUS_FORM, FILE_VIEW
 } from './modal/constant';
 import {HttpResponse} from "@angular/common/http";
 import {FileService} from "../service/FileService";
 import { FilePreviewDialogComponent } from './file-preview-dialog.component';
 import { FileUploadDialogComponent } from './file-upload-dialog.component';
+import { FileShareDialogComponent } from './file-share-dialog.component';
 
 @Component({
   selector: 'app-file',
@@ -26,12 +28,19 @@ import { FileUploadDialogComponent } from './file-upload-dialog.component';
 export class FileManagementComponent extends ComponentAbstract {
 
   displayedColumns = COLUMS;
+  getDisplayedColumns(): string[] {
+    return this.isOwnerView ? COLUMS : COLUMS.filter(col => col !== 'select');
+  }
 
   $fileName = FILE_NAME();
   $creationDateTime = CREATION_DATE_TIME();
   $toCreationDateTime = TO_CREATION_DATE_TIME();
+  $fileView = FILE_VIEW();
   hasDataSource = false;
-  requestParams: any
+  requestParams: any;
+  selectedFiles: any[] = [];
+  isOwnerView = true;
+  selection = new SelectionModel<any>(true, []);
 
   constructor(
     protected injector: Injector,
@@ -47,7 +56,12 @@ export class FileManagementComponent extends ComponentAbstract {
       this.$fileName,
       this.$creationDateTime,
       this.$toCreationDateTime,
+      this.$fileView,
     ]);
+    
+    // Initialize FileView state
+    this.isOwnerView = this.form.get('fileView')?.value === 'Owner';
+    
     this.search();
   }
 
@@ -262,6 +276,56 @@ export class FileManagementComponent extends ComponentAbstract {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         // Refresh the file list after successful upload
+        this.search();
+      }
+    });
+  }
+
+  onFileViewChange(): void {
+    const fileViewValue = this.form.get('fileView')?.value;
+    this.isOwnerView = fileViewValue === 'Owner';
+    this.selectedFiles = []; // Clear selection when switching view
+    this.selection.clear(); // Clear selection model
+  }
+
+  onFileSelectionChange(selectedFiles: any[]): void {
+    this.selectedFiles = selectedFiles;
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+    
+    this.updateSelectedFiles();
+  }
+
+  updateSelectedFiles() {
+    this.selectedFiles = this.selection.selected;
+  }
+
+
+  openShareDialogForFile(file: any): void {
+    const dialogRef = this.dialog.open(FileShareDialogComponent, {
+      width: '500px',
+      maxWidth: '90vw',
+      disableClose: false,
+      autoFocus: false,
+      data: {
+        selectedFileIds: [file.id],
+        selectedFileNames: [file.fileName]
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        // Refresh the file list after successful share
         this.search();
       }
     });

@@ -4,7 +4,7 @@ import { environment } from '@env/environment';
 import { HttpClientService, HttpOptions, HttpResponse, Verbs } from '@shared-sm';
 import { Observable } from 'rxjs';
 import { PATH } from 'src/app/public/constants';
-import {IParamsFileSearch, ListFileResponse, PaginationFileBaseDto} from '../file-management/modal/interface';
+import {IParamsFileSearch, ListFileResponse, PaginationFileBaseDto, IShareFileRequest} from '../file-management/modal/interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,9 +24,12 @@ export class FileService {
   }
 
   queryFile(body : IParamsFileSearch, params: any): Observable<HttpResponse<PaginationFileBaseDto<ListFileResponse>>> {
+    // Determine which API to use based on fileView
+    const apiPath = body.fileView === 'Seener' ? PATH.USER.SHARE_FILE : PATH.USER.FILE;
+    
     const option: HttpOptions = {
       url: environment.urlPmpBe,
-      path: PATH.USER.FILE,
+      path: apiPath,
       body: body,
       params
     }
@@ -41,6 +44,15 @@ export class FileService {
       url: environment.urlPmpBe,
       path: PATH.USER.UPLOAD_FILE,
       body: formData
+    }
+    return this.httpClientService.post(option);
+  }
+
+  shareFile(shareRequest: IShareFileRequest): Observable<HttpResponse<any>> {
+    const option: HttpOptions = {
+      url: environment.urlPmpBe,
+      path: PATH.USER.SHARE_FILE_TO_USER,
+      body: shareRequest
     }
     return this.httpClientService.post(option);
   }

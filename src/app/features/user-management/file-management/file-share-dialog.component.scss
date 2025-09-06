@@ -1,0 +1,48 @@
+.file-share-dialog {
+  .selected-files {
+    .file-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 8px;
+
+      .file-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .file-icon {
+          margin-right: 8px;
+          color: #666;
+        }
+
+        span {
+          flex: 1;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+
+    button {
+      min-width: 100px;
+    }
+  }
+}

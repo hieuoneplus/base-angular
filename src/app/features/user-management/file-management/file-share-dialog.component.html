@@ -1,0 +1,32 @@
+<div class="file-share-dialog">
+  <h2 mat-dialog-title>Chia sẻ file</h2>
+  
+  <div mat-dialog-content>
+    <div class="selected-files mb-3">
+      <h4>File được chọn:</h4>
+      <ul class="file-list">
+        <li *ngFor="let fileName of selectedFileNames" class="file-item">
+          <mat-icon class="file-icon">description</mat-icon>
+          <span>{{ fileName }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <form [formGroup]="form">
+      <sm-text-control [item]="$username" [form]="form"></sm-text-control>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="onCancel()" class="btn btn-light-blue">
+      <mat-icon class="mbb-icon ic-close mrl-2"></mat-icon>
+      Hủy
+    </button>
+    <button mat-button (click)="onShare()" 
+            [disabled]="form.invalid || selectedFileIds.length === 0" 
+            class="btn btn-primary">
+      <mat-icon class="mbb-icon ic-share mrl-2"></mat-icon>
+      Chia sẻ
+    </button>
+  </div>
+</div>
