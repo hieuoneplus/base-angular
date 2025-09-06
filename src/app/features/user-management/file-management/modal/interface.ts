@@ -1,21 +1,23 @@
 export interface PaginationFileBaseDto<T> {
     files: T[];
-    pageNumber?: number;
+    page?: number;
     pageSize?: number;
     total?: number;
 }
 
 export interface ListFileResponse {
-    stt?: number
-    id?: string,
-    referenceId?: string,
-    fileName?: string,
-    mimeType?: string,
-    encodeType?: string,
-    charSet?: string,
-    fileUrl?: string,
-    createdAt?: string,
-    updatedAt?: string,
+    stt?: number;
+    id?: string;
+    fileName?: string;
+    fileUrl?: string;
+    fileExtension?: string;
+    status?: string;
+    fileInfo?: string;
+    userName?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    contentType?: string;
+    textDetect?: string;
 }
 
 export interface IParamsFileSearch {

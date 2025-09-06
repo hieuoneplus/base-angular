@@ -6,6 +6,7 @@ export const COLUMS: string[] = [
     'id',
     'fileName',
     'status',
+    'fileInfo',
     'createdAt',
     'updatedAt',
     'fileUrl',
