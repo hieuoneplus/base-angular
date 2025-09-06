@@ -17,7 +17,7 @@ export class FileService {
   downLoadFile(idFile: string) {
     const options: HttpOptions = {
       url: environment.urlPmpBe,
-      path: PATH.NAPAS.IBFT_RECONCILE.OUT.FLAG_REPORT.DOWNLOAD_FILE + `/${idFile}`,
+      path: PATH.USER.DOWNLOAD_FILE + `/${idFile}`,
       responseType: 'blob',
     };
     return this.httpClientService.download(Verbs.GET, options);
