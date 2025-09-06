@@ -41,11 +41,11 @@ export class FileUploadDialogComponent extends ComponentAbstract implements OnIn
     if (lengthListFile) {
       const fileName = (<File>event.target.files[0])?.name;
       // Support multiple file types for file management upload
-      const allowedExtensions = ['.xlsx', '.xls', '.pdf', '.doc', '.docx', '.txt', '.csv', '.jpg', '.jpeg', '.png', '.gif'];
+      const allowedExtensions = ['.pdf', '.docx'];
       const hasValidExtension = allowedExtensions.some(ext => fileName.toLowerCase().includes(ext));
-      
+
       if (!hasValidExtension) {
-        this.toastr.showToastr('Vui lòng chọn đúng định dạng file (xlsx, xls, pdf, doc, docx, txt, csv, jpg, jpeg, png, gif)', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
+        this.toastr.showToastr('Vui lòng chọn đúng định dạng file (pdf, docx)', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
         return;
       }
       this.percent = 0;
@@ -62,11 +62,11 @@ export class FileUploadDialogComponent extends ComponentAbstract implements OnIn
     if (file && file.length == 1) {
       const fileName = file[0].name;
       // Support multiple file types for file management upload
-      const allowedExtensions = ['.xlsx', '.xls', '.pdf', '.doc', '.docx', '.txt', '.csv', '.jpg', '.jpeg', '.png', '.gif'];
+      const allowedExtensions = ['.pdf', '.docx'];
       const hasValidExtension = allowedExtensions.some(ext => fileName.toLowerCase().includes(ext));
-      
+
       if (!hasValidExtension) {
-        this.toastr.showToastr('Vui lòng chọn đúng định dạng file (xlsx, xls, pdf, doc, docx, txt, csv, jpg, jpeg, png, gif)', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
+        this.toastr.showToastr('Vui lòng chọn đúng định dạng file (pdf, docx)', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
         return;
       }
       this.percent = 0;
@@ -85,7 +85,7 @@ export class FileUploadDialogComponent extends ComponentAbstract implements OnIn
       this.toastr.showToastr('Bạn chưa chọn file', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
       return;
     }
-
+    debugger
     this.indicator.showActivityIndicator();
     this.start_process_upload();
 
