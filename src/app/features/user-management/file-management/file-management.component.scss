@@ -102,6 +102,21 @@
   button[mat-icon-button]:hover {
     cursor: pointer;
   }
+
+  .preview-btn {
+    color: #141ed2 !important;
+    
+    &:hover {
+      background-color: rgba(20, 30, 210, 0.1) !important;
+    }
+  }
+
+  .preview-icon {
+    color: #141ed2 !important;
+    font-size: 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
   
   .icon-send {
     display: flex;

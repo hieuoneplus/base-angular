@@ -33,14 +33,14 @@ export class AppComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     // 1. Cấu hình OAuth2 (Google)
     const token = localStorage.getItem(LocalStoreEnum.Token_Jwt);
-
+    const url = location.href?.replace(location.origin, '');
     // 3. Nếu đã login thì đi thẳng vào home
     if (!token) {
       this.router.navigate(['/welcome']);
-     
+
     } else {
       // 4. Nếu chưa login thì ở lại màn welcome
-      this.router.navigate(['/pmp_admin/admin/profile']);
+      this.router.navigateByUrl(url);
     }
   }
 
