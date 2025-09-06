@@ -1,0 +1,48 @@
+<div class="file-info-dialog">
+  <div mat-dialog-title class="dialog-header">
+    <h2>Chi tiết dữ liệu nhạy cảm</h2>
+    <div class="file-name">{{fileName}}</div>
+  </div>
+  
+  <div mat-dialog-content class="dialog-content">
+    <div class="summary-info">
+      <div class="total-count">
+        <mat-icon class="warning-icon">warning</mat-icon>
+        <span>Tổng cộng: <strong>{{getTotalCount()}}</strong> mục dữ liệu nhạy cảm được phát hiện</span>
+      </div>
+    </div>
+
+    <div class="sensitive-data-list" *ngIf="sensitiveDataItems.length > 0">
+      <div class="list-header">
+        <h3>Danh sách dữ liệu nhạy cảm:</h3>
+      </div>
+      
+      <div class="data-items">
+        <div 
+          *ngFor="let item of sensitiveDataItems; trackBy: trackByIndex" 
+          class="data-item"
+          [attr.id]="item.id">
+          <div class="item-header">
+            <span class="item-number">{{item.index}}.</span>
+            <span class="item-position">{{item.position}}</span>
+          </div>
+          <div class="item-content">
+            <span class="sensitive-data">{{item.sensitiveData}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-data" *ngIf="sensitiveDataItems.length === 0">
+      <mat-icon class="no-data-icon">info</mat-icon>
+      <span>Không có dữ liệu nhạy cảm được phát hiện</span>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="onClose()" class="btn btn-primary">
+      <mat-icon class="mbb-icon ic-close mrl-2"></mat-icon>
+      Đóng
+    </button>
+  </div>
+</div>

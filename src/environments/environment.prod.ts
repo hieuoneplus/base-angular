@@ -6,11 +6,11 @@ export const environment = {
   byPassOtp: false,
   showAllMenu: false,
   base_path: 'pmp_admin/',
-  origin: 'http://localhost:4200',
+  origin: 'https://your-production-domain.com',
 
-  base_url: 'http://localhost:4200',
-  urlPmpBe: 'http://localhost:8887',
-  urlBilateralBE: 'http://localhost:8080',
+  base_url: 'https://your-production-domain.com',
+  urlPmpBe: 'https://your-api-domain.com',
+  urlBilateralBE: 'https://your-bilateral-api-domain.com',
   google: {
     clientId: '676677615076-l0k6eb1mpn41ebpo7p98c3lkklppu3nb.apps.googleusercontent.com',
   }

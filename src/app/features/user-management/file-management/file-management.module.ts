@@ -14,6 +14,7 @@ import { FileManagementRoutingModule } from './file-management-routing.module';
 import { FilePreviewDialogComponent } from './file-preview-dialog.component';
 import { FileUploadDialogComponent } from './file-upload-dialog.component';
 import { FileShareDialogComponent } from './file-share-dialog.component';
+import { FileInfoDialogComponent } from './file-info-dialog.component';
 import {MaterialModule} from "../../../shared/material.module";
 
 
@@ -23,6 +24,7 @@ import {MaterialModule} from "../../../shared/material.module";
     FilePreviewDialogComponent,
     FileUploadDialogComponent,
     FileShareDialogComponent,
+    FileInfoDialogComponent,
   ],
   imports: [
     CommonModule,

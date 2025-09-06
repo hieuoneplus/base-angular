@@ -193,8 +193,24 @@
     word-wrap: break-word;
     
     .file-info-content {
+      &.clickable {
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-radius: 6px;
+        padding: 4px;
+        
+        &:hover {
+          background-color: #f0f8ff;
+          transform: translateY(-1px);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+      }
+      
       .file-info-header {
         margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         
         .file-info-count {
           font-size: 11px;
@@ -205,6 +221,17 @@
           border-radius: 3px;
           border: 1px solid #f5c6cb;
         }
+        
+        .click-icon {
+          font-size: 16px;
+          color: #007bff;
+          opacity: 0.7;
+          transition: opacity 0.2s ease;
+        }
+      }
+      
+      &:hover .file-info-header .click-icon {
+        opacity: 1;
       }
       
       .file-info-details {
@@ -221,7 +248,7 @@
           border: 1px solid #e9ecef;
           max-height: 120px;
           overflow-y: auto;
-          cursor: help;
+          cursor: pointer;
         }
       }
     }

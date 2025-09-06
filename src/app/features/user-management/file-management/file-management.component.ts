@@ -19,6 +19,7 @@ import {FileService} from "../service/FileService";
 import { FilePreviewDialogComponent } from './file-preview-dialog.component';
 import { FileUploadDialogComponent } from './file-upload-dialog.component';
 import { FileShareDialogComponent } from './file-share-dialog.component';
+import { FileInfoDialogComponent } from './file-info-dialog.component';
 
 @Component({
   selector: 'app-file',
@@ -405,6 +406,30 @@ export class FileManagementComponent extends ComponentAbstract {
         this.selectedFiles = [];
         this.selection.clear();
         this.search();
+      }
+    });
+  }
+
+  openFileInfoDialog(file: any): void {
+    if (!file.fileInfo) {
+      this.toastr.showToastr(
+        'File này không có thông tin dữ liệu nhạy cảm.',
+        'Thông báo!',
+        MessageSeverity.info,
+        TOAST_DEFAULT_CONFIG
+      );
+      return;
+    }
+
+    const dialogRef = this.dialog.open(FileInfoDialogComponent, {
+      width: '800px',
+      maxWidth: '90vw',
+      maxHeight: '80vh',
+      disableClose: false,
+      autoFocus: false,
+      data: {
+        fileName: file.fileName,
+        fileInfo: file.fileInfo
       }
     });
   }
