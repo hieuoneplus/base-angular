@@ -57,7 +57,7 @@
     <div class="panel-heading justify-content-between bdt">
       <label fxFlex="50"> DANH SÁCH </label>
       <div fxFlex="50" fxLayout="row" fxLayoutAlign="end center">
-       
+
         <button
         *ngIf="enableInsert"
           fxFlex="35"
@@ -101,7 +101,6 @@
               [innerHtml]="getLabel(element.status)"
               class="df-min-10">
             {{element.status}}
-               <!-- element.status != 'ACTIVE' ? (element.status != 'INACTIVE' ? "Xóa vĩnh viễn" : "Dừng hoạt động") : 'Đang hoạt động' }} </td> -->
           </ng-container>
 
           <ng-container matColumnDef="actions" stickyEnd>

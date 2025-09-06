@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedSMModule } from '@shared-sm';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,19 +7,20 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { ThemeModule } from 'src/app/theme/theme.module';
-import { MaterialModule } from '../../shared/material.module';
 
-import { UserManagementRoutingModule } from './user-management-routing.module';
-import { MyProfileComponent } from './profile/my-profile.component';
-import {FileManagementModule} from "./file-management/file-management.module";
+import { FileManagementComponent } from './file-management.component';
+import { FileManagementRoutingModule } from './file-management-routing.module';
+import {MaterialModule} from "../../../shared/material.module";
+
+
 @NgModule({
   declarations: [
-    MyProfileComponent
+    FileManagementComponent,
   ],
   imports: [
-    ThemeModule,
     CommonModule,
-    UserManagementRoutingModule,
+    FileManagementRoutingModule,
+    ThemeModule,
     TranslateModule,
     SharedSMModule,
     MatIconModule,
@@ -28,8 +28,6 @@ import {FileManagementModule} from "./file-management/file-management.module";
     MatCheckboxModule,
     MatTooltipModule,
     MaterialModule,
-    FileManagementModule
-  ]
+  ],
 })
-export class UserManagementModule {
-}
+export class FileManagementModule { }

@@ -6,6 +6,7 @@ export enum ModuleKeys {
   role = 'role',
   permission = 'permission',
   profile = 'profile',
+  file = 'file',
 
   // cấu hình các kênh chuyển tiền
   ach_tktg_config = 'ach-tktg-config',
@@ -60,7 +61,7 @@ export enum ModuleKeys {
   napas_ibft_reconcile_transaction_flag = 'napas-ibft-reconcile-transaction-flag',
   napas_ibft_reconcile_return = 'napas-ibft-reconcile-return',
   napas_ibft_reconcile_additional_accounting = 'napas-ibft-reconcile-additional-accounting',
-  napas_ibft_reconcile_flag_report = 'napas-ibft-reconcile-flag-report',
+  napas_ibft_reconcile_flag_report = 'file',
 
   routing_integration_channel='routing-integration-channel',
   city = 'city',

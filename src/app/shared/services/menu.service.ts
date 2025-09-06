@@ -98,6 +98,19 @@ export const AppMenus = [
     module: [ModuleKeys.user],
   },
   {
+    id: 3,
+    route: 'pmp_admin/admin/file',
+    name: 'Quản lý file nội bộ',
+    parentId: 1, // MENU CẤP 2
+    position: 3,
+    icon: null,
+    active: true,
+    activeService: true,
+    type: 'FUNCTION',
+    typeLink: 'angularLink',
+    module: [ModuleKeys.file],
+  },
+  {
     id: 3000,
     route: 'pmp_admin/admin/users/edit',
     name: 'Chỉnh sửa người dùng',

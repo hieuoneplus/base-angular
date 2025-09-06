@@ -12,7 +12,12 @@ const routes: Routes = [
     path: 'roles',
     loadChildren: () => import('./role/role.module').then(m => m.RoleModule),
   },
-  { path: 'profile', component: MyProfileComponent, data: { title: 'Thông tin cá nhân' } },
+  {
+    path: 'profile', component: MyProfileComponent, data: { title: 'Thông tin cá nhân' }
+  },
+  {
+    path: 'file', loadChildren: () => import('./file-management/file-management.module').then(m => m.FileManagementModule),
+  }
 ]
 
 @NgModule({
