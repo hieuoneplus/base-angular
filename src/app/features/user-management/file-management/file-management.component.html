@@ -16,7 +16,7 @@
       <sm-text-control [item]="$fileName" fxFlex="20" [form]="form"></sm-text-control>
       <sm-date-control [item]="$creationDateTime" fxFlex="20" [form]="form"></sm-date-control>
       <sm-date-control [item]="$toCreationDateTime" fxFlex="20" [form]="form"></sm-date-control>
-      <sm-dropdown-control [item]="$fileView" fxFlex="20" [form]="form" (change)="onFileViewChange()"></sm-dropdown-control>
+      <sm-select-control [item]="$fileView" fxFlex="20" [form]="form" (change)="onFileViewChange()"></sm-select-control>
 
       <div class="mrr-2" fxLayoutAlign="end center">
         <button [disabled]="this.form.invalid" type="submit" fxFlex="25" class="btn btn-primary mrr-2">

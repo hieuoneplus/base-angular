@@ -1,6 +1,12 @@
 .search-ctqt {
     display: flow-root;
   }
+
+  .panel.batch-search {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
   
   .title {
     font-size: 24px !important;
