@@ -85,6 +85,10 @@ export class FileManagementComponent extends ComponentAbstract {
       }, {})
     );
 
+    // Update isOwnerView based on fileView value before API call
+    const fileViewValue = this.form.get('fileView')?.value;
+    this.isOwnerView = fileViewValue === 'Owner';
+
     this.options = {
       params: {
         ...params,
@@ -284,8 +288,10 @@ export class FileManagementComponent extends ComponentAbstract {
   onFileViewChange(): void {
     const fileViewValue = this.form.get('fileView')?.value;
     this.isOwnerView = fileViewValue === 'Owner';
-    this.selectedFiles = []; // Clear selection when switching view
-    this.selection.clear(); // Clear selection model
+    
+    // Clear selection when switching views
+    this.selectedFiles = [];
+    this.selection.clear();
     
     // Trigger search when switching between views
     this.search();
