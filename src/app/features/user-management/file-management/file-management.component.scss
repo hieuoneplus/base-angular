@@ -189,21 +189,46 @@
   }
 
   .file-info-cell {
-    max-width: 300px;
+    max-width: 350px;
     word-wrap: break-word;
     
     .file-info-content {
-      .file-info-text {
-        font-size: 12px;
-        color: #666;
-        line-height: 1.4;
-        display: block;
-        cursor: help;
+      .file-info-header {
+        margin-bottom: 4px;
+        
+        .file-info-count {
+          font-size: 11px;
+          font-weight: 600;
+          color: #e74c3c;
+          background-color: #fdf2f2;
+          padding: 2px 6px;
+          border-radius: 3px;
+          border: 1px solid #f5c6cb;
+        }
+      }
+      
+      .file-info-details {
+        .file-info-text {
+          font-size: 11px;
+          color: #555;
+          line-height: 1.3;
+          margin: 0;
+          white-space: pre-line;
+          font-family: 'Courier New', monospace;
+          background-color: #f8f9fa;
+          padding: 6px 8px;
+          border-radius: 4px;
+          border: 1px solid #e9ecef;
+          max-height: 120px;
+          overflow-y: auto;
+          cursor: help;
+        }
       }
     }
     
     .no-file-info {
       color: #999;
       font-style: italic;
+      text-align: center;
     }
   }

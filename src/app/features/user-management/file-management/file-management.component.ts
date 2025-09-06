@@ -198,6 +198,44 @@ export class FileManagementComponent extends ComponentAbstract {
     return `<label class="wf-status ${status.class}">${status.value}</label>`;
   }
 
+  getFormattedFileInfo(fileInfo: string): string {
+    if (!fileInfo) return '-';
+    
+    try {
+      const parsedData = JSON.parse(fileInfo);
+      if (Array.isArray(parsedData)) {
+        // Extract sensitive data items and format them
+        const sensitiveItems = parsedData.map((item, index) => {
+          const data = item.sensitiveData || '';
+          const position = item.position || '';
+          return `${index + 1}. ${data} (${position})`;
+        });
+        
+        // Return first 3 items with count if more exist
+        const displayItems = sensitiveItems.slice(0, 3);
+        const hasMore = sensitiveItems.length > 3;
+        const result = displayItems.join('\n');
+        
+        return hasMore ? `${result}\n... và ${sensitiveItems.length - 3} mục khác` : result;
+      }
+      return fileInfo;
+    } catch (error) {
+      // If JSON parsing fails, return truncated original string
+      return fileInfo.length > 100 ? fileInfo.substring(0, 100) + '...' : fileInfo;
+    }
+  }
+
+  getFileInfoCount(fileInfo: string): number {
+    if (!fileInfo) return 0;
+    
+    try {
+      const parsedData = JSON.parse(fileInfo);
+      return Array.isArray(parsedData) ? parsedData.length : 0;
+    } catch (error) {
+      return 0;
+    }
+  }
+
   previewFile(element) {
     this.indicator.showActivityIndicator();
     this.fileManagementService.downLoadFile(element.id).pipe(

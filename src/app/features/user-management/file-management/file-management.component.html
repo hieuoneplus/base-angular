@@ -90,9 +90,12 @@
             <th mat-header-cell *matHeaderCellDef>THÔNG TIN FILE</th>
             <td mat-cell *matCellDef="let element" class="file-info-cell">
               <div *ngIf="element.fileInfo" class="file-info-content">
-                <span class="file-info-text" [title]="element.fileInfo">
-                  {{element.fileInfo.length > 100 ? (element.fileInfo | slice:0:100) + '...' : element.fileInfo}}
-                </span>
+                <div class="file-info-header">
+                  <span class="file-info-count">{{getFileInfoCount(element.fileInfo)}} mục dữ liệu nhạy cảm</span>
+                </div>
+                <div class="file-info-details">
+                  <pre class="file-info-text" [title]="element.fileInfo">{{getFormattedFileInfo(element.fileInfo)}}</pre>
+                </div>
               </div>
               <div *ngIf="!element.fileInfo" class="no-file-info">
                 <span>-</span>
