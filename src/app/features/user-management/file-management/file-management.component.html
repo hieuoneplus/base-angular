@@ -34,10 +34,16 @@
     </form>
   </div>
   <div style="z-index: 0;" class="panel mrt-4 dform-child-content" [ngClass]="isChecker ? 'panel-bottom' : ''">
-    <div class="panel-heading justify-content-between bdt">
-      <label fxFlex="50">
+    <div class="panel-heading justify-content-between bdt" fxLayout="row" fxLayoutAlign="space-between center">
+      <label>
         DANH SÁCH
       </label>
+      <div *ngIf="isOwnerView && selectedFiles.length > 0" class="bulk-actions">
+        <button type="button" class="btn btn-primary" (click)="openBulkShareDialog()">
+          <mat-icon class="mbb-icon ic-share mrl-2"></mat-icon>
+          <span>Chia sẻ ({{selectedFiles.length}})</span>
+        </button>
+      </div>
     </div>
     <div class="panel-body">
       <div [ngClass]="'table-css'">

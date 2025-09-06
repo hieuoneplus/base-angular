@@ -286,6 +286,9 @@ export class FileManagementComponent extends ComponentAbstract {
     this.isOwnerView = fileViewValue === 'Owner';
     this.selectedFiles = []; // Clear selection when switching view
     this.selection.clear(); // Clear selection model
+    
+    // Trigger search when switching between views
+    this.search();
   }
 
   onFileSelectionChange(selectedFiles: any[]): void {
@@ -326,6 +329,41 @@ export class FileManagementComponent extends ComponentAbstract {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         // Refresh the file list after successful share
+        this.search();
+      }
+    });
+  }
+
+  openBulkShareDialog(): void {
+    if (this.selectedFiles.length === 0) {
+      this.toastr.showToastr(
+        'Vui lòng chọn ít nhất một file để chia sẻ.',
+        'Thông báo!',
+        MessageSeverity.warning,
+        TOAST_DEFAULT_CONFIG
+      );
+      return;
+    }
+
+    const selectedFileIds = this.selectedFiles.map(file => file.id);
+    const selectedFileNames = this.selectedFiles.map(file => file.fileName);
+
+    const dialogRef = this.dialog.open(FileShareDialogComponent, {
+      width: '500px',
+      maxWidth: '90vw',
+      disableClose: false,
+      autoFocus: false,
+      data: {
+        selectedFileIds: selectedFileIds,
+        selectedFileNames: selectedFileNames
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        // Clear selection and refresh the file list after successful share
+        this.selectedFiles = [];
+        this.selection.clear();
         this.search();
       }
     });

@@ -160,3 +160,30 @@
     bottom: 2rem;
     left: 0.5rem;
   }
+
+  .bulk-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    button {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
