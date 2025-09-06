@@ -40,9 +40,9 @@ export const FILE_NAME = () =>
 
 export const STATUS_FORM = [
   { key: '', value: 'Tất cả trạng thái', class: '' },
-  { key: 'INACTIVE', value: 'Dừng hoạt động', class: 'wf-status-reject' },
-  { key: 'INIT', value: 'Vô hiệu', class: 'wf-status-cancel' },
-  { key: 'ACTIVE', value: 'Đang hoạt động', class: 'wf-status-approved' },
-  { key: 'abc', value: 'Từ chối duyệt', class: 'wf-status-reject' },
+  { key: 'PROCESSING', value: 'Đang xử lý', class: 'wf-status-inprocess' },
+  { key: 'INIT', value: 'Chưa xử lý', class: 'wf-status-cancel' },
+  { key: 'COMPLETED', value: 'Sẵn sàng xem', class: 'wf-status-approved' },
+  { key: 'FAILED', value: 'Xử lý lỗi', class: 'wf-status-reject' },
   { key: 'D', value: 'Hủy', class: 'wf-status-reject' },
 ];
