@@ -5,8 +5,9 @@
       <span class="file-name">{{ data.fileName }}</span>
     </div>
     <div class="file-actions">
-      <button mat-icon-button (click)="downloadFile()" matTooltip="Tải xuống">
+      <button mat-raised-button color="primary" (click)="downloadFile()" class="download-btn">
         <mat-icon>download</mat-icon>
+        <span>Tải xuống</span>
       </button>
       <button mat-icon-button (click)="closeDialog()" matTooltip="Đóng">
         <mat-icon>close</mat-icon>
@@ -23,6 +24,12 @@
     <!-- Image Preview -->
     <div *ngIf="isImageFile" class="image-preview">
       <img [src]="data.fileUrl" [alt]="data.fileName" class="preview-image">
+      <div class="preview-overlay">
+        <button mat-raised-button color="primary" (click)="downloadFile()" class="overlay-download-btn">
+          <mat-icon>download</mat-icon>
+          <span>Tải xuống hình ảnh</span>
+        </button>
+      </div>
     </div>
 
     <!-- Text File Preview -->
@@ -37,10 +44,6 @@
         <h3>Không thể xem trước loại file này</h3>
         <p>Loại file <strong>{{ data.fileName }}</strong> không được hỗ trợ xem trước.</p>
         <p>Vui lòng tải xuống để xem nội dung file.</p>
-        <button mat-raised-button color="primary" (click)="downloadFile()">
-          <mat-icon>download</mat-icon>
-          Tải xuống file
-        </button>
       </div>
     </div>
   </div>

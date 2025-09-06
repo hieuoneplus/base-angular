@@ -12,7 +12,7 @@ export interface FilePreviewData {
 @Component({
   selector: 'app-file-preview-dialog',
   templateUrl: './file-preview-dialog.component.html',
-  styleUrls: ['./file-preview-dialog.component.scss']
+  styleUrls: ['./file-preview-dialog.component.scss', './overlay-buttons.scss']
 })
 export class FilePreviewDialogComponent implements OnInit {
   safeFileUrl: SafeResourceUrl;
