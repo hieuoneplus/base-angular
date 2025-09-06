@@ -13,11 +13,10 @@
     </div>
     <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap" (ngSubmit)="search()">
 
-      <sm-text-control [item]="$fileName" fxFlex="20" [form]="form"></sm-text-control>
-      <sm-date-control [item]="$creationDateTime" fxFlex="20" [form]="form"></sm-date-control>
-      <sm-date-control [item]="$toCreationDateTime" fxFlex="20" [form]="form"></sm-date-control>
+<!--      <sm-text-control [item]="$fileName" fxFlex="25" [form]="form"></sm-text-control>-->
+<!--      <sm-date-control [item]="$creationDateTime" fxFlex="25" [form]="form"></sm-date-control>-->
+<!--      <sm-date-control [item]="$toCreationDateTime" fxFlex="25" [form]="form"></sm-date-control>-->
       <sm-select-control [item]="$fileView" fxFlex="20" [form]="form" (change)="onFileViewChange()"></sm-select-control>
-
       <div class="mrr-2" fxLayoutAlign="end center">
         <button [disabled]="this.form.invalid" type="submit" fxFlex="25" class="btn btn-primary mrr-2">
           <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
@@ -107,10 +106,10 @@
           <ng-container matColumnDef="actions" stickyEnd>
             <th mat-header-cell *matHeaderCellDef>HÀNH ĐỘNG</th>
             <td mat-cell *matCellDef="let element;">
-              <button *ngIf="enableView" mat-icon-button (click)="previewFile(element)" class="mrr-1 preview-btn">
+              <button *ngIf="enableView && canView.includes(element.status)" mat-icon-button (click)="previewFile(element)" class="mrr-1 preview-btn">
                 <mat-icon class="preview-icon" [matTooltip]="'Xem trước' | translate">visibility</mat-icon>
               </button>
-              <button *ngIf="enableView" mat-icon-button (click)="downloadFile(element)">
+              <button *ngIf="enableView && canView.includes(element.status)" mat-icon-button (click)="downloadFile(element)">
                 <mat-icon class="mbb-icon ic-download_file fc-primary" [matTooltip]="'Download' | translate">
                 </mat-icon>
               </button>

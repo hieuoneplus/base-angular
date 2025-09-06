@@ -43,9 +43,9 @@ export const STATUS_FORM = [
   { key: '', value: 'Tất cả trạng thái', class: '' },
   { key: 'PROCESSING', value: 'Đang xử lý', class: 'wf-status-inprocess' },
   { key: 'INIT', value: 'Chưa xử lý', class: 'wf-status-cancel' },
-  { key: 'COMPLETED', value: 'Sẵn sàng xem', class: 'wf-status-approved' },
+  { key: 'CLEAR', value: 'Sẵn sàng xem', class: 'wf-status-approved' },
   { key: 'FAILED', value: 'Xử lý lỗi', class: 'wf-status-reject' },
-  { key: 'D', value: 'Hủy', class: 'wf-status-reject' },
+  { key: 'SENSITIVE', value: 'Có thông tin nhạy cảm', class: 'wf-status-waitting' },
 ];
 
 export const FILE_VIEW_FORM = [

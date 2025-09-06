@@ -41,6 +41,7 @@ export class FileManagementComponent extends ComponentAbstract {
   selectedFiles: any[] = [];
   isOwnerView = true;
   selection = new SelectionModel<any>(true, []);
+  canView: string[] = ['SENSITIVE', 'CLEAR'];
 
   constructor(
     protected injector: Injector,
@@ -54,14 +55,12 @@ export class FileManagementComponent extends ComponentAbstract {
     this.enableActions(ModuleKeys.file);
     this.form = this.itemControl.toFormGroup([
       this.$fileName,
-      this.$creationDateTime,
-      this.$toCreationDateTime,
       this.$fileView,
     ]);
-    
+
     // Initialize FileView state
     this.isOwnerView = this.form.get('fileView')?.value === 'Owner';
-    
+
     this.search();
   }
 
@@ -92,19 +91,18 @@ export class FileManagementComponent extends ComponentAbstract {
     this.options = {
       params: {
         ...params,
+        page: this.pageIndex,
+        pageSize: this.pageSize
       }
     };
-    this.requestParams = {
-      page: this.pageIndex,
-      pageSize: this.pageSize,
-    }
+
 
     this.dformPagination.goto(this.pageSize, this.pageIndex);
   }
 
   QueryData() {
     this.indicator.showActivityIndicator();
-    this.fileManagementService.queryFile(this.options.params, this.requestParams).pipe(
+    this.fileManagementService.queryFile(this.options.params).pipe(
       takeUntil(this.ngUnsubscribe),
       finalize(() => this.indicator.hideActivityIndicator())
     ).subscribe((res) => {
@@ -152,12 +150,10 @@ export class FileManagementComponent extends ComponentAbstract {
     this.options = {
       params: {
         ...this.options.params,
+        page: this.pageIndex,
+        size: this.pageSize,
       }
     };
-    this.requestParams = {
-      page: this.pageIndex,
-      size: this.pageSize,
-    }
     this.QueryData();
   }
 
@@ -215,7 +211,7 @@ export class FileManagementComponent extends ComponentAbstract {
           const blob = new Blob([res.body], { type: res.headers.get('Content-Type') });
           const fileUrl = window.URL.createObjectURL(blob);
           const fileType = this.getFileType(element.mineType || res.headers.get('Content-Type'));
-          
+
           this.openFilePreviewDialog(element.fileName, fileUrl, fileType, blob);
         }
       },
@@ -233,7 +229,7 @@ export class FileManagementComponent extends ComponentAbstract {
 
   private getFileType(mimeType: string): string {
     if (!mimeType) return 'unknown';
-    
+
     if (mimeType.includes('pdf')) return 'pdf';
     if (mimeType.includes('image/')) return 'image';
     if (mimeType.includes('text/')) return 'text';
@@ -242,7 +238,7 @@ export class FileManagementComponent extends ComponentAbstract {
     if (mimeType.includes('application/vnd.ms-excel') || mimeType.includes('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')) return 'excel';
     if (mimeType.includes('application/vnd.ms-powerpoint') || mimeType.includes('application/vnd.openxmlformats-officedocument.presentationml.presentation')) return 'powerpoint';
     if (mimeType.includes('application/msword') || mimeType.includes('application/vnd.openxmlformats-officedocument.wordprocessingml.document')) return 'word';
-    
+
     return 'unknown';
   }
 
@@ -288,11 +284,11 @@ export class FileManagementComponent extends ComponentAbstract {
   onFileViewChange(): void {
     const fileViewValue = this.form.get('fileView')?.value;
     this.isOwnerView = fileViewValue === 'Owner';
-    
+
     // Clear selection when switching views
     this.selectedFiles = [];
     this.selection.clear();
-    
+
     // Trigger search when switching between views
     this.search();
   }
@@ -311,7 +307,7 @@ export class FileManagementComponent extends ComponentAbstract {
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach(row => this.selection.select(row));
-    
+
     this.updateSelectedFiles();
   }
 

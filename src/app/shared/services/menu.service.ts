@@ -59,7 +59,7 @@ export const AppMenus = [
   {
     id: 1,
     route: 'pmp_admin/admin',
-    name: 'Quản trị người dùng',
+    name: 'Quản trị ứng dụng',
     parentId: 0, // MENU CẤP 1
     position: 1,
     icon: 'mbb-icon ic-user',
@@ -84,19 +84,19 @@ export const AppMenus = [
   },
 
   // Quản lý người dùng
-  {
-    id: 3,
-    route: 'pmp_admin/admin/users',
-    name: 'Quản lý người dùng',
-    parentId: 1, // MENU CẤP 2
-    position: 1,
-    icon: null,
-    active: true,
-    activeService: true,
-    type: 'FUNCTION',
-    typeLink: 'angularLink',
-    module: [ModuleKeys.user],
-  },
+  // {
+  //   id: 3,
+  //   route: 'pmp_admin/admin/users',
+  //   name: 'Quản lý người dùng',
+  //   parentId: 1, // MENU CẤP 2
+  //   position: 1,
+  //   icon: null,
+  //   active: true,
+  //   activeService: true,
+  //   type: 'FUNCTION',
+  //   typeLink: 'angularLink',
+  //   module: [ModuleKeys.user],
+  // },
   {
     id: 3,
     route: 'pmp_admin/admin/file',

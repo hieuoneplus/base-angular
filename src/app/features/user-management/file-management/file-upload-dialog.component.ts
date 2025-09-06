@@ -85,7 +85,6 @@ export class FileUploadDialogComponent extends ComponentAbstract implements OnIn
       this.toastr.showToastr('Bạn chưa chọn file', 'Thông báo!', MessageSeverity.error, TOAST_DEFAULT_CONFIG);
       return;
     }
-    debugger
     this.indicator.showActivityIndicator();
     this.start_process_upload();
 

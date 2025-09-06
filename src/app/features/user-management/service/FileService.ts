@@ -23,14 +23,13 @@ export class FileService {
     return this.httpClientService.download(Verbs.GET, options);
   }
 
-  queryFile(body : IParamsFileSearch, params: any): Observable<HttpResponse<PaginationFileBaseDto<ListFileResponse>>> {
+  queryFile(params : IParamsFileSearch): Observable<HttpResponse<PaginationFileBaseDto<ListFileResponse>>> {
     // Determine which API to use based on fileView
-    const apiPath = body.fileView === 'Seener' ? PATH.USER.SHARE_FILE : PATH.USER.FILE;
-    
+    const apiPath = params.fileView === 'Seener' ? PATH.USER.SHARE_FILE : PATH.USER.FILE;
+
     const option: HttpOptions = {
       url: environment.urlPmpBe,
       path: apiPath,
-      body: body,
       params
     }
     return this.httpClientService.get(option);
@@ -39,7 +38,7 @@ export class FileService {
   uploadFile(file: File): Observable<HttpResponse<any>> {
     const formData = new FormData();
     formData.append('file', file);
-    
+
     const option: HttpOptions = {
       url: environment.urlPmpBe,
       path: PATH.USER.UPLOAD_FILE,
